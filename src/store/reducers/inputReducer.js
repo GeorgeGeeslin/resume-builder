@@ -19,7 +19,9 @@ export const initialState = {
     socials: [],
     skills: {
         showCategories: false,
-        uncategorized: ["HTML5","React", "ES6", "Node", "CSS", "SCSS", "Bootstrap", "Responsive Design"]
+        uncategorized: ["HTML5","React", "ES6", "Node", "CSS", "SCSS", "Bootstrap", "Responsive Design", "SQL", "Java"],
+        "front end": ["HTML5", "React", "CSS", "SCSS", "Bootstrap", "Responsive Design"],
+        "back end": ["SQL", "Java"]
     },
     work: [
         {

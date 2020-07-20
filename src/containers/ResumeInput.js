@@ -5,7 +5,7 @@ import WorkExpInputGroup from '../components/WorkExpInputGroup';
 import EduInput from '../components/EduInput';
 import EduInputGroup from '../components/EduInputGroup';
 import PersonalInfoInput from '../components/PersonalInfoInput';
-import {Grouper, SectionHeader} from '../components/ui/elements';
+import SkillInput from '../components/SkillInput';
 
 const ResumeInput = () => {
 
@@ -13,6 +13,7 @@ const ResumeInput = () => {
     const work = context.resumeContent.work;
     const education = context.resumeContent.education;
     const addArrayItem = context.addArrayItem;
+    const skills = context.resumeContent.skills
 
     const workExpInputArray = work.map((item, index) => {
         const { arrayInfoChange, nestedArrayInfoChange, deleteArrayItem, deleteNestedArrayItem, addNestedArrayItem } = context;
@@ -43,9 +44,7 @@ const ResumeInput = () => {
             <PersonalInfoInput />
             <WorkExpInputGroup workExpInputArray={workExpInputArray} addArrayItem={addArrayItem}/>
             <EduInputGroup eduInputArray={eduInputArray} addArrayItem={addArrayItem} />
-            <Grouper>
-                <SectionHeader>Skills</SectionHeader>
-            </Grouper>
+            <SkillInput skills={skills}/>
         </div>
     )
 };

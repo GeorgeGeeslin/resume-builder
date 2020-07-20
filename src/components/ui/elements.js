@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { IconContext } from "react-icons";
 import {GrClose, GrAddCircle} from 'react-icons/gr'
-import {FaEye, FaEyeSlash, FaPlus} from 'react-icons/fa';
+import {FaEye, FaEyeSlash, FaPlus, FaTimes, FaCaretUp, FaCaretDown} from 'react-icons/fa';
 
 
 //***Colors***/
@@ -100,6 +100,16 @@ const Button = styled.div`
         background-color: #2684FF;
         box-shadow: 0 3px 3px -3px rgba(0, 0, 0, 0.2), 0 4px 5px 1px rgba(0, 0, 0, 0.14), 0 3px 8px 2px rgba(0, 0, 0, 0.12);
     }
+`;
+
+const SkillChip = styled.div`
+    display: inline-block;
+    border-radius: 8px;
+    background-color: #36B37E;
+    border: 1px solid transparent;
+    color: white; /*get a better color*/
+    padding: 0.25em;
+    margin: 0.25em;
 `;
 
 // Hover functions 
@@ -219,6 +229,26 @@ export const AddButton = ({onClickFunc, label}) => {
             </div>
 
         </Button>
+    )
+}
+
+/* up and down arrows to reorder skills
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                    <FaCaretUp/>
+                    <FaCaretDown/>
+                </div>
+*/
+
+export const Skill = ({skill}) => {
+    return (
+        <SkillChip>
+            <div style={{display: 'flex', alignItems: 'center'}}>
+                <div style={{margin: '0px 6px'}}>
+                    {skill}
+                </div>
+                <FaTimes/>
+            </div>
+        </SkillChip>
     )
 }
 
