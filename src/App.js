@@ -1,9 +1,11 @@
 import React, { useReducer } from 'react';
+import ReactTooltip from "react-tooltip";
 import Context from './context/Context';
 import * as InputReducer from './store/reducers/inputReducer';
 import ResumeEditor from './containers/ResumeEditor';
 import Nav from './components/Nav';
 import './App.scss';
+import {highlighterButtonParent, toggleSectionVisability} from './components/ui/elements';
 
 
 const App = () => {
@@ -13,6 +15,11 @@ const App = () => {
   const baseInfoChange = (e) => {
     const {name, payload} = e;
     dispatchInput({type: 'baseInfoChange', field: name, payload});
+  };
+
+  const baseObjectInfoChange = (e) => {
+    const {key, name, payload} = e;
+    dispatchInput({type: "baseObjectInfoChange", key, field: name, payload});
   };
 
   const arrayInfoChange = (e) => {
@@ -39,19 +46,16 @@ const App = () => {
   };
 
   const deleteNestedArrayItem = (e) => {
-    console.log('deleteNestedArrayItem()')
     const { parent, parentIndex, key, index } = e;
     dispatchInput({type: "deleteNestedArrayItem", parent, parentIndex, key, index});
   }
 
   const addArrayItem = (e) => {
-    console.log('addArrayItem()')
     const { newObj, key } = e;
     dispatchInput({type: 'addArrayItem', newObj, key})
   };
 
   const deleteArrayItem = (e) => {
-    console.log('deleteArrayItem()')
     const { key, index } = e;
     dispatchInput({type: 'deleteArrayItem', key, index});
   };
@@ -76,20 +80,32 @@ const App = () => {
     dispatchInput({type: 'addNestedArrayItem', array});
   }
 
-  console.log('App render')
+  const toggleBaseSection = (e) => {
+    const {target, key} = e;
+    let sections = stateInput.sections;
+    sections[key] = !sections[key];
+    const parent = highlighterButtonParent(target);
+   // const disabled = 
+    toggleSectionVisability(parent, sections[key]);
+    dispatchInput({type: 'toggleBaseSection', sections});
+  }
+
   return (
     <Context.Provider value={{
       resumeContent: stateInput,
       baseInfoChange,
+      baseObjectInfoChange,
       arrayInfoChange,
       nestedArrayInfoChange,
       addArrayItem,
       deleteArrayItem,
       deleteNestedArrayItem,
-      addNestedArrayItem
+      addNestedArrayItem,
+      toggleBaseSection
     }}>
       <Nav />
       <ResumeEditor />
+      <ReactTooltip /> 
     </Context.Provider>
   );
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import {FlexGroup, Input, Close, DateClose, H3Label, AddDate, ItemGrouper} from './ui/elements';
+import {FlexGroup, Input, Close, DateClose, SubsectionHeader, AddDate, ItemGrouper} from './ui/elements';
+import {modules} from './ui/quill-config';
 import ReactTooltip from "react-tooltip";
 
 const WorkExpInput = ({employer, title, dates, experience, index, arrayInfoChange, nestedArrayInfoChange, deleteArrayItem, deleteNestedArrayItem, addNestedArrayItem}) => {
@@ -21,7 +22,7 @@ const WorkExpInput = ({employer, title, dates, experience, index, arrayInfoChang
                 <div style={{width: '50%'}}>
                     <label htmlFor={"dateEnd"+index}>End Date</label>
                     { index > 0 &&
-                        <DateClose closeFunction={(e) => deleteNestedArrayItem(
+                        <DateClose onClickFunc={(e) => deleteNestedArrayItem(
                                 {
                                     parent: 'work',
                                     key: 'dates',
@@ -43,10 +44,10 @@ const WorkExpInput = ({employer, title, dates, experience, index, arrayInfoChang
     });
 
     return (
-        <ItemGrouper className='workexp'>
-            <H3Label>Experience Item: {index + 1}</H3Label>
-            <Close className='closeWorkexp' 
-                closeFunction={() => deleteArrayItem({key, index})} 
+        <ItemGrouper>
+            <SubsectionHeader>Work Experience {index + 1}:</SubsectionHeader>
+            <Close 
+                onClickFunc={() => deleteArrayItem({key, index})} 
                 label="work experience"
                 highlightClass="deleteHighlight"
             />
@@ -78,15 +79,19 @@ const WorkExpInput = ({employer, title, dates, experience, index, arrayInfoChang
             </FlexGroup>
             <div style={{width: '100%', display: 'flex', flexFlow: 'row wrap'}}>
                 {dateInput} 
-                <AddDate addFunction={() => addNestedArrayItem(
+                <AddDate onClickFunc={() => addNestedArrayItem(
                     {
                         parent: 'work',
                         key: 'dates',
                         parentIndex
                     }
                 )} />
-            </div>         
+            </div> 
+            <label htmlFor="workDesc">Describe Experience</label>        
             <ReactQuill value={experience} 
+                theme="snow"
+                modules={modules}
+                id="workDesc"
                 onChange={(html) => arrayInfoChange(
                     {
                         payload: html, 
@@ -95,8 +100,7 @@ const WorkExpInput = ({employer, title, dates, experience, index, arrayInfoChang
                         name: "experience"
                     }
                 )}
-            />   
-            <ReactTooltip />            
+            />              
         </ItemGrouper>
     )
 };

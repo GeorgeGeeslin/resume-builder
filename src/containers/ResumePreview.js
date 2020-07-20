@@ -13,7 +13,7 @@ const ResumePreview = () => {
     });
 
     return (
-        <div>
+        <div style={{width: '50%', borderTop: '1px solid #444', padding: '1em'}}>
             {name}
             {workComponents}
         </div>

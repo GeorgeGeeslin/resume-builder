@@ -1,26 +1,26 @@
 export const initialState = {
-    username: 'george.geeslin@gmail.com',
-    sections: {
-        title: true,
-        profile: true,
-        personalInfo: true,
-        skills: true,
-        workExperience: true,
-        education: true,
-        links: true,
-        awards: true
-    },
     theme: 'default',
-    name: 'George Geeslin',
-    email: 'george.geeslin@gmail.com',
-    phone: '325-518-9738',
+    username: 'george.geeslin@gmail.com',
+    name: 'George Geeslin',  
+    phone: '325-518-9738', 
+    email: 'george.geeslin@gmail.com', 
     website: 'georgegeeslin.com',
+    desired_position: {
+        role: 'Full Stack Developer',
+        profile: 'Hi you should hire me',
+    },
+    address: {
+        street1: '11711 Tanglebrair Trl',
+        street2: '1407',
+        city: 'Austin',
+        state: 'TX',
+        zip: '79605',
+    },
     socials: [],
-    profile: 'Hi you should hire me',
-    role: 'Full Stack Developer',
-    skills: [
-        "HTML5","React", "ES6", "Node", "CSS", "SCSS", "Bootstrap", "Responsive Design"
-    ],
+    skills: {
+        showCategories: false,
+        uncategorized: ["HTML5","React", "ES6", "Node", "CSS", "SCSS", "Bootstrap", "Responsive Design"]
+    },
     work: [
         {
             employer: "Frontline",
@@ -37,10 +37,21 @@ export const initialState = {
     ],
     education: [{
         school: "",
+        degree: "",
         major: "",
         date: "",
         freeform: ""
-    }]
+    }],
+    sections: {
+        desired_position: true,
+        address: true,
+        work: true,
+        education: true,
+        skills: true,
+        links: true,
+        certifications: true,
+        awards: true
+    },
 };
 
 export const InputReducer = (state = initialState, action) => {
@@ -55,10 +66,24 @@ export const InputReducer = (state = initialState, action) => {
     let nestedArray;
     switch(action.type) {
         case 'baseInfoChange':
+
             return {
                 ...state,
                 [action.field]: action.payload
             }
+
+        case 'baseObjectInfoChange':
+            key = action.key;
+            field = action.field;
+            payload = action.payload;
+            obj = state[key];
+            obj[field] = payload;
+
+            return {
+                ...state,
+                obj
+            }
+
         case 'arrayInfoChange':
             array = [...state[key]];
             obj = array[index];
@@ -71,6 +96,7 @@ export const InputReducer = (state = initialState, action) => {
                 ...state,
                 [key]: array 
             }
+
         case 'nestedArrayInfoChange':
             payload = action.payload;
             field = action.field;
@@ -87,7 +113,8 @@ export const InputReducer = (state = initialState, action) => {
             return {
                 ...state,
                 [parent]: array
-            }
+            } 
+
         case 'addArrayItem':
                 array = [...state[key]];
                 array.push(action.newObj);
@@ -96,6 +123,7 @@ export const InputReducer = (state = initialState, action) => {
                 ...state,
                 [key]: array
             }
+
         case 'deleteArrayItem':
             array = [...state[key]];
             array.splice(index,1);
@@ -103,6 +131,7 @@ export const InputReducer = (state = initialState, action) => {
                 ...state,
                 [key]: array
             }
+
         case 'deleteNestedArrayItem':
             parent = action.parent;
             array = [...state[parent]];
@@ -113,13 +142,23 @@ export const InputReducer = (state = initialState, action) => {
             return {
                 ...state
             }
+
         case 'addNestedArrayItem':
              array = action.array;
 
             return {
                 ...state,
                 array
-            }           
+            } 
+
+        case 'toggleBaseSection':
+            const sections = action.sections;
+
+            return {
+                ...state,
+                sections
+            } 
+
         default:
             return state    
     }

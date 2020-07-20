@@ -15,7 +15,7 @@ body {
 }
 
 //Highlighting Parent Elements
-$transitionTime: 0.25s;
+$transitionTime: 0.1s;
 
 .deleteHighlight {
     background-color: #B3F5FF; /*T75 - Arctic chill*/
@@ -38,6 +38,29 @@ $transitionTime: 0.25s;
         transition: all $transitionTime ease-in;
     }
     transition: all $transitionTime ease-in;
+}
+
+.hidenSection {
+    background-color: #DFE1E6;
+    padding-top: .1em !important;
+    padding-bottom: .1em !important;
+    border: 3px groove #7A869A !important;
+    transition: all $transitionTime ease-in;
+    input {
+        background-color: #EBECF0;
+        text-decoration: line-through;
+        line-height: .5em !important;
+        font-size: 11px;
+        transition: all $transitionTime ease-in;
+    }
+    div {
+        padding-top: 0.1em !important;
+        padding-bottom: 0.1em !important;
+        transition: all $transitionTime ease-in;
+    }
+    h3 {
+        text-decoration: line-through;
+    }
 }
 
 
