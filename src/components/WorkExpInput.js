@@ -87,20 +87,22 @@ const WorkExpInput = ({employer, title, dates, experience, index, arrayInfoChang
                     }
                 )} />
             </div> 
-            <label htmlFor="workDesc">Describe Experience</label>        
-            <ReactQuill value={experience} 
-                theme="snow"
-                modules={modules}
-                id="workDesc"
-                onChange={(html) => arrayInfoChange(
-                    {
-                        payload: html, 
-                        key,
-                        index,
-                        name: "experience"
-                    }
-                )}
-            />              
+            <div style={{padding: '0.25em'}}>
+                <label htmlFor="workDesc">Details</label>        
+                <ReactQuill value={experience} 
+                    theme="snow"
+                    modules={modules}
+                    id="workDesc"
+                    onChange={(html) => arrayInfoChange(
+                        {
+                            payload: html, 
+                            key,
+                            index,
+                            name: "experience"
+                        }
+                    )}
+                />  
+            </div>            
         </ItemGrouper>
     )
 };

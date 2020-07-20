@@ -34,6 +34,7 @@ export const Grouper = styled.div`
 export const FlexGroup = styled.div`
     display: flex;
     padding: 0.25em;
+    clear: both;
 `;
 
 export const ItemGrouper = styled.div`
@@ -41,12 +42,11 @@ export const ItemGrouper = styled.div`
     border: 1px solid ${primary};
     border-radius: 4px;
     margin-bottom: 0.5em;
-   padding-bottom: 0.25em; 
 `;
 
 export const SectionHeader = styled.h2`
     margin-top: 0px;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.25em;
 `;
 
 export const SubsectionHeader = styled.h3`
@@ -60,7 +60,7 @@ export const SubsectionHeader = styled.h3`
 
 export const Input = styled.input`
     padding: 8px 10px;
-    margin: 2px 0px 8px;
+    margin: 0px;
     display: block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -171,7 +171,9 @@ export const DateClose = ({onClickFunc, label, highlightClass}) => {
             onMouseEnter={(e) => parentParentHighlight(e, highlightClass)}
             onMouseLeave={(e) => {parentParentRemoveHighlight(e, highlightClass)}}
         >
-            <GrClose onClick={onClickFunc}/>
+            <IconContext.Provider value={{size: '14px'}}>
+                <GrClose onClick={onClickFunc}/>
+            </IconContext.Provider>
         </div>   
     )
 };
@@ -180,7 +182,7 @@ export const AddDate = ({onClickFunc}) => {
     return (
         <div onClick={onClickFunc} data-tip="Add an additional date range."
             data-background-color='#008DA6'
-            style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            style={{display: 'flex', alignItems: 'flex-end', justifyContent: 'center', padding: '10px 10px'}}>
             <IconContext.Provider value={{size: '1.3em', style: {width: '100%'}}}>
                 <GrAddCircle />
             </IconContext.Provider>    

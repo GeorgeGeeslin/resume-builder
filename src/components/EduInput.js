@@ -2,6 +2,7 @@ import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {FlexGroup, Input, Close, SubsectionHeader, ItemGrouper} from './ui/elements';
+import {modules} from './ui/quill-config';
 import ReactTooltip from "react-tooltip";
 
 const EduInput = ({ school, major, degree, date, freeform, index, arrayInfoChange, deleteArrayItem}) => {
@@ -62,17 +63,21 @@ const EduInput = ({ school, major, degree, date, freeform, index, arrayInfoChang
                     )}/>
                 </div>
             </FlexGroup>
-            <label htmlFor="customEdu">Custom Text</label>
-            <ReactQuill value={freeform} 
-                id="customEdu"
-                onChange={(html) => arrayInfoChange(
-                    {
-                        payload: html, 
-                        key,
-                        index,
-                        name: "freeform"
-                    }
-            )}/>
+            <div style={{padding: '0.25em'}}>
+                <label htmlFor="customEdu">Custom Text</label>
+                <ReactQuill value={freeform} 
+                    theme="snow"
+                    modules={modules}
+                    id="customEdu"
+                    onChange={(html) => arrayInfoChange(
+                        {
+                            payload: html, 
+                            key,
+                            index,
+                            name: "freeform"
+                        }
+                )}/>
+            </div>
             <ReactTooltip /> 
         </ItemGrouper>
     )
