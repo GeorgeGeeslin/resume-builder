@@ -3,12 +3,26 @@ import {Grouper, SectionHeader, SubsectionHeader, Skill, Input, FlexGroup, ItemG
 
 const SkillInput = ({skills}) => {
 
+    const InputGroup = () => {
+        return (
+            <FlexGroup>
+                <div>
+                    <label htmlFor="addSkill">Add Skill</label>
+                    <Input id="addSkill" /> 
+                </div>
+                <div style={{marginTop: "auto", marginLeft: "1em"}}>
+                    <AddButton label="Add Skill"/>
+                </div>
+            </FlexGroup>
+        )
+    }
+
     let categories = [];
     for (const [key] of Object.entries(skills)) {
-        categories.push(key)
+        if (key !== "showCategories") {
+            categories.push(key)
+        }
     };
-
-    categories = categories.filter(item => item !== 'showCategories')
 
     let allSkillsArr = [];
     categories.forEach(category => {
@@ -20,13 +34,14 @@ const SkillInput = ({skills}) => {
     ));
 
     allSkills.unshift(
-        <FlexGroup>
-            <div>
-                <label htmlFor="addSkill">Add Skill</label>
-                <Input id="addSkill" /> 
-            </div>
-        </FlexGroup>
+        <InputGroup />
     );
+
+    // const allSkillsGroup = () => {
+    //     return (
+    //         <ItemGrouper category=""
+    //     )
+    // }
 
     let skillGroups = categories.map((category, index) => {
 
@@ -37,14 +52,9 @@ const SkillInput = ({skills}) => {
         });
 
         return (
-            <ItemGrouper key={index}>
+            <ItemGrouper key={index} category={category}>
                 <SubsectionHeader>{category}</SubsectionHeader>
-                <FlexGroup>
-                    <div>
-                        <label htmlFor="addSkill">Add Skill</label>
-                        <Input id="addSkill" /> 
-                    </div>
-                </FlexGroup>
+                <InputGroup />
                 {catSkills}
             </ItemGrouper>
         );

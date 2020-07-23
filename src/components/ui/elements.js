@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { IconContext } from "react-icons";
 import {GrClose, GrAddCircle} from 'react-icons/gr'
-import {FaEye, FaEyeSlash, FaPlus, FaTimes, FaCaretUp, FaCaretDown} from 'react-icons/fa';
+import {FaEye, FaEyeSlash, FaPlus, FaTimes, FaCaretUp, FaCaretDown, FaPencilAlt} from 'react-icons/fa';
 
 
 //***Colors***/
@@ -33,6 +33,7 @@ export const Grouper = styled.div`
 
 export const FlexGroup = styled.div`
     display: flex;
+    flex-direction: row;
     padding: 0.25em;
     clear: both;
 `;
@@ -75,16 +76,16 @@ const Button = styled.div`
     border: none;
     border-radius: 4px;
     padding: 0 16px;
-    width: 220px;
+    /* width: 220px; */
     min-width: 64px;
-    height: 36px;
-    text-overflow: ellipsis;
+    height: 34px;
+    /* text-overflow: ellipsis; */
     background-color: #0065FF;
     color: #FFF;
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     font-size: 1em;
     line-height: 36px;
-    overflow: hidden;
+    /* overflow: hidden; */
     cursor: pointer;
     transition: box-shadow: 0.2s; 
     transition: background-color: 0.2s;  
@@ -227,7 +228,6 @@ export const AddButton = ({onClickFunc, label}) => {
                 </IconContext.Provider>
                 <div style={{paddingLeft: '0.5em'}}>{label}</div>
             </div>
-
         </Button>
     )
 }
@@ -239,7 +239,8 @@ export const AddButton = ({onClickFunc, label}) => {
                 </div>
 */
 
-export const Skill = ({skill}) => {
+//TODO wire up tooltips and delete button
+export const Skill = ({onClickFunc, skill}) => {
     return (
         <SkillChip>
             <div style={{display: 'flex', alignItems: 'center'}}>
@@ -251,6 +252,11 @@ export const Skill = ({skill}) => {
         </SkillChip>
     )
 }
+
+// TODO: Edit button so I can edit skill categories 
+// export const Edit = ({label, onClickFunc}) => {
+
+// }
 
 
 

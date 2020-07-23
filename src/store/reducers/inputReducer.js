@@ -20,8 +20,8 @@ export const initialState = {
     skills: {
         showCategories: true,
         uncategorized: ["ES6", "Node", "CSS", "Jasper"],
-        "front end": ["HTML5", "React", "CSS", "SCSS", "Bootstrap", "Responsive Design"],
-        "back end": ["SQL", "Java"]
+        "Front-end": ["HTML5", "React", "CSS", "SCSS", "Bootstrap", "Responsive Design"],
+        "Back-end": ["SQL", "Java", "React"]
     },
     work: [
         {
