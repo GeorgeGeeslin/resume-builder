@@ -17,11 +17,10 @@ export const initialState = {
         zip: '79605',
     },
     socials: [],
+    // skills: ["HTML5", "React", "CSS", "SCSS", "Bootstrap", "Responsive Design", "SQL", "JavaScript", "Node"],
     skills: {
-        showCategories: true,
-        uncategorized: ["ES6", "Node", "CSS", "Jasper"],
-        "Front-end": ["HTML5", "React", "CSS", "SCSS", "Bootstrap", "Responsive Design"],
-        "Back-end": ["SQL", "Java", "React"]
+        addSkill: '',
+        skills: ["HTML5", "React", "CSS", "SCSS", "Bootstrap", "Responsive Design", "SQL", "JavaScript", "Node"],
     },
     work: [
         {
@@ -50,9 +49,9 @@ export const initialState = {
         work: true,
         education: true,
         skills: true,
-        links: true,
-        certifications: true,
-        awards: true
+//        links: true,
+//        certifications: true,
+ //       awards: true
     },
 };
 
@@ -67,14 +66,14 @@ export const InputReducer = (state = initialState, action) => {
     let parentIndex;
     let nestedArray;
     switch(action.type) {
-        case 'baseInfoChange':
+        case 'baseInfoChange':  //Target key is at the root of state.
 
             return {
                 ...state,
                 [action.field]: action.payload
             }
 
-        case 'baseObjectInfoChange':
+        case 'baseObjectInfoChange': //Target key is in an object at the root of state.
             key = action.key;
             field = action.field;
             payload = action.payload;
@@ -82,11 +81,10 @@ export const InputReducer = (state = initialState, action) => {
             obj[field] = payload;
 
             return {
-                ...state,
-                obj
+                ...state
             }
 
-        case 'arrayInfoChange':
+        case 'arrayInfoChange': //Target key is in an object inside an array. The array is at the root of state.
             array = [...state[key]];
             obj = array[index];
             field = action.field;
@@ -99,7 +97,7 @@ export const InputReducer = (state = initialState, action) => {
                 [key]: array 
             }
 
-        case 'nestedArrayInfoChange':
+        case 'nestedArrayInfoChange': //Target key is in an object inside an array within another object inside another array. (ie Date Range inside work exp)
             payload = action.payload;
             field = action.field;
             parent = action.parent;
@@ -117,7 +115,7 @@ export const InputReducer = (state = initialState, action) => {
                 [parent]: array
             } 
 
-        case 'addArrayItem':
+        case 'addArrayItem':  // Add an object to an existing array. (ie adding a work exp or education item.)
                 array = [...state[key]];
                 array.push(action.newObj);
             
@@ -126,7 +124,7 @@ export const InputReducer = (state = initialState, action) => {
                 [key]: array
             }
 
-        case 'deleteArrayItem':
+        case 'deleteArrayItem': // delete an object from an array. (See addArrayItem)
             array = [...state[key]];
             array.splice(index,1);
             return {
@@ -134,7 +132,7 @@ export const InputReducer = (state = initialState, action) => {
                 [key]: array
             }
 
-        case 'deleteNestedArrayItem':
+        case 'deleteNestedArrayItem': // delete object from a nested array (ie Date Range in work exp)
             parent = action.parent;
             array = [...state[parent]];
             parentIndex = action.parentIndex;
@@ -145,21 +143,37 @@ export const InputReducer = (state = initialState, action) => {
                 ...state
             }
 
-        case 'addNestedArrayItem':
+        case 'addNestedArrayItem': // Add array to nest within existing array (ie Date Range in work exp)
              array = action.array;
 
             return {
-                ...state,
-                array
+                ...state
             } 
 
-        case 'toggleBaseSection':
+        case 'toggleBaseSection': // Used for hiding / disabling objects at the root of state.  
             const sections = action.sections;
 
             return {
                 ...state,
                 sections
             } 
+
+        case 'addToSkillArray': // Add to an array nested in an object (ie skills).
+           obj = action.obj;
+           obj.addSkill = "";
+          
+            return {
+                ...state
+            }
+
+        case 'deleteSkill': // Delete an array element from an array that is nested in a base level object.
+            obj = state[action.parent];
+            array = obj[action.key];
+            array.splice(action.index,1);
+            
+            return {
+                ...state
+            }
 
         default:
             return state    

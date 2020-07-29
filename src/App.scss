@@ -7,6 +7,47 @@ Roboto Slab
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
 
+$tablet: 768px;
+$small-desktop: 1024px;
+$medium-desktop: 1500px;
+$large-desktop: 1800px;
+
+// @mixin mobile {
+//     @media (max-width: #{$tablet}) {
+//         @content;
+//     }
+// }
+  
+// @mixin non-mobile {
+//     @media (min-width: #{$tablet + 1px}) {
+//         @content;
+//     }
+// }
+  
+@mixin tablet {
+    @media (min-width: #{$tablet}) and (max-width: #{$small-desktop - 1px}) {
+        @content;
+    }
+}
+
+@mixin small-desktop {
+    @media (min-width: #{$small-desktop}) and (max-width: #{$medium-desktop - 1px}) {
+        @content;
+    }
+}
+
+@mixin medium-desktop {
+    @media (min-width: #{$medium-desktop}) and (max-width: #{$large-desktop - 1}) {
+        @content;
+    }
+}
+
+@mixin large-desktop {
+    @media (min-width: #{$large-desktop}) {
+        @content;
+    }
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     color: #444;
@@ -18,10 +59,21 @@ body {
 $transitionTime: 0.1s;
 
 .deleteHighlight {
-    background-color: #B3F5FF; /*T75 - Arctic chill*/
+    background-color: #B3F5FF !important; /*T75 - Arctic chill*/
     border: 1px dashed #172B4D !important;
     input {
-        background-color: #E6FCFF; /*T50 - Gram's sofa*/
+        background-color: #E6FCFF !important; /*T50 - Gram's sofa*/
+        transition: all $transitionTime ease-in;
+    }
+    transition: all $transitionTime ease-in;
+}
+
+.deleteHighlight {
+    background-color: #B3F5FF !important; /*T75 - Arctic chill*/
+    border: 1px dashed #172B4D !important;
+    color: #172B4D !important;
+    input {
+        background-color: #E6FCFF !important; /*T50 - Gram's sofa*/
         transition: all $transitionTime ease-in;
     }
     transition: all $transitionTime ease-in;
@@ -61,6 +113,34 @@ $transitionTime: 0.1s;
     h3 {
         text-decoration: line-through;
     }
+}
+
+// Only reason to have this in scss is to make use of media queries. 
+// If I do not end up making good use of media queries then I should bring these styles 
+// back into styled-components.
+.resumePage {
+    background-color: white;
+    // full page size
+    width: 8.5in;
+    height: 11in;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    //TODO: test view as tablet
+    @include tablet {
+        /* 2/3rd size */
+        width: calc((8.5in / 3) * 2);
+        height: calc((11in / 3) * 2);
+    }
+    // @include small-desktop {
+    //     /* 3/4th size */
+    //     width: calc((8.5in / 6) * 5);
+    //     height: calc((11in / 6) * 5);
+    // }
+    // @include medium-desktop {
+
+    // }
+    // @include large-desktop {
+
+    // }
 }
 
 

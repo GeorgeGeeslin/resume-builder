@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
 import WorkExp from '../components/WorkExp';
+import {PreviewBox, ResumePage} from '../components/ui/previewElements';
 
 const ResumePreview = () => {
     const context = useContext(Context);
@@ -13,10 +14,12 @@ const ResumePreview = () => {
     });
 
     return (
-        <div style={{width: '50%', borderTop: '1px solid #444', padding: '1em'}}>
-            {name}
-            {workComponents}
-        </div>
+       <PreviewBox>
+            <ResumePage>
+                {name}
+                {workComponents}
+            </ResumePage>
+       </PreviewBox>
     )
 };
 

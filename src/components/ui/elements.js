@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IconContext } from "react-icons";
-import {GrClose, GrAddCircle} from 'react-icons/gr'
-import {FaEye, FaEyeSlash, FaPlus, FaTimes, FaCaretUp, FaCaretDown, FaPencilAlt} from 'react-icons/fa';
+import {GrAddCircle} from 'react-icons/gr'
+import {FaEye, FaEyeSlash, FaPlus, FaTimes} from 'react-icons/fa';
+import ReactTooltip from "react-tooltip";
 
 
 //***Colors***/
@@ -166,9 +167,9 @@ export const Close = ({onClickFunc, label, highlightClass}) => {
             data-tip={`Delete this ${label}.`}
             data-background-color='#FF5630'
             onMouseEnter={(e) => parentHighlight(e, highlightClass)}
-            onMouseLeave={(e) => {parentRemoveHighlight(e, highlightClass)}}
+            onMouseLeave={(e) => parentRemoveHighlight(e, highlightClass)}
         >
-            <GrClose onClick={onClickFunc}/>
+            <FaTimes onClick={onClickFunc}/>
         </div>
         
     )
@@ -180,10 +181,10 @@ export const DateClose = ({onClickFunc, label, highlightClass}) => {
             data-tip={'Delete this date range.'}
             data-background-color='#FF5630'
             onMouseEnter={(e) => parentParentHighlight(e, highlightClass)}
-            onMouseLeave={(e) => {parentParentRemoveHighlight(e, highlightClass)}}
+            onMouseLeave={(e) => parentParentRemoveHighlight(e, highlightClass)}
         >
             <IconContext.Provider value={{size: '14px'}}>
-                <GrClose onClick={onClickFunc}/>
+                <FaTimes onClick={onClickFunc}/>
             </IconContext.Provider>
         </div>   
     )
@@ -232,31 +233,32 @@ export const AddButton = ({onClickFunc, label}) => {
     )
 }
 
-/* up and down arrows to reorder skills
-                <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <FaCaretUp/>
-                    <FaCaretDown/>
-                </div>
-*/
+const SkillDelete = ({onClickFunc, label, highlightClass}) => {
+    return (
+        <FaTimes
+            data-tip={`Delete this ${label}.`}
+            data-background-color='#FF5630'
+            onMouseEnter={(e) => parentHighlight(e, highlightClass)}
+            onMouseLeave={(e) => parentRemoveHighlight(e, highlightClass)}
+            onClick={onClickFunc}
+        />
+    )
+};
 
-//TODO wire up tooltips and delete button
-export const Skill = ({onClickFunc, skill}) => {
+export const Skill = ({onClickFunc, skill, label, highlightClass}) => {
     return (
         <SkillChip>
-            <div style={{display: 'flex', alignItems: 'center'}}>
+            <div className='highlighterButton' style={{display: 'flex', alignItems: 'center'}}>
                 <div style={{margin: '0px 6px'}}>
                     {skill}
                 </div>
-                <FaTimes/>
+                <SkillDelete onClickFunc={onClickFunc} label={label} highlightClass={highlightClass} />
             </div>
+            <ReactTooltip/>
         </SkillChip>
     )
 }
 
-// TODO: Edit button so I can edit skill categories 
-// export const Edit = ({label, onClickFunc}) => {
-
-// }
 
 
 

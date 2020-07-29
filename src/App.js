@@ -18,6 +18,7 @@ const App = () => {
   };
 
   const baseObjectInfoChange = (e) => {
+    console.log(e);
     const {key, name, payload} = e;
     dispatchInput({type: "baseObjectInfoChange", key, field: name, payload});
   };
@@ -80,14 +81,36 @@ const App = () => {
     dispatchInput({type: 'addNestedArrayItem', array});
   }
 
+  const addToSkillArray = (e) => {
+    const {parent, key, inputKey, payload} = e;
+
+    if (payload.trim() !== "") {
+      let obj = stateInput[parent];
+      let array = obj[key];
+      array.push(payload);
+      obj[inputKey] = "";
+      dispatchInput({type: 'addToSkillArray', obj});
+    }
+  }
+
   const toggleBaseSection = (e) => {
     const {target, key} = e;
     let sections = stateInput.sections;
     sections[key] = !sections[key];
     const parent = highlighterButtonParent(target);
-   // const disabled = 
     toggleSectionVisability(parent, sections[key]);
     dispatchInput({type: 'toggleBaseSection', sections});
+  }
+
+  const inputEnterKey = (e, callback, args) => {
+    if (e.keyCode === 13) {
+      return callback(args);
+    }
+  }
+
+  const deleteSkill = (e) => {
+    const {parent, key, index} = e;
+    dispatchInput({type: 'deleteSkill', parent, key, index});
   }
 
   return (
@@ -101,7 +124,10 @@ const App = () => {
       deleteArrayItem,
       deleteNestedArrayItem,
       addNestedArrayItem,
-      toggleBaseSection
+      toggleBaseSection,
+      addToSkillArray,
+      inputEnterKey,
+      deleteSkill
     }}>
       <Nav />
       <ResumeEditor />
