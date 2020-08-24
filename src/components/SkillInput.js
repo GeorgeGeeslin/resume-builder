@@ -1,7 +1,6 @@
 import React,  { useContext } from 'react';
 import Context from '../context/Context';
 import {Grouper, SectionHeader, Skill, Input, FlexGroup, /*ItemGrouper,*/ AddButton} from '../components/ui/elements';
-import ReactTooltip from "react-tooltip";
 
 const SkillInput = () => {
     

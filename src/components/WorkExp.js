@@ -15,9 +15,7 @@ const WorkExp = ({index, employer, title, dates, experience}) => {
             <h3>{employer}</h3>
             <h4>{title}</h4>
             {dateDisplay}
-            <div>
-                {experience}
-            </div>
+            <div dangerouslySetInnerHTML={{__html: experience}}/>
         </div>
 
     )
