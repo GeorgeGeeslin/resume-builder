@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
-import WorkExpInput from '../components/WorkExpInput';
-import WorkExpInputGroup from '../components/WorkExpInputGroup';
-import EduInput from '../components/EduInput';
-import EduInputGroup from '../components/EduInputGroup';
-import PersonalInfoInput from '../components/PersonalInfoInput';
-import SkillInput from '../components/SkillInput';
+import WorkExpInput from '../components/resumeInput/WorkExpInput';
+import WorkExpInputGroup from '../components/resumeInput/WorkExpInputGroup';
+import EduInput from '../components/resumeInput/EduInput';
+import EduInputGroup from '../components/resumeInput/EduInputGroup';
+import PersonalInfoInput from '../components/resumeInput/PersonalInfoInput';
+import SkillInput from '../components/resumeInput/SkillInput';
 
 const ResumeInput = () => {
 

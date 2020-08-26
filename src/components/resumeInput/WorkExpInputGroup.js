@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grouper, SectionHeader, AddButton} from './ui/elements';
+import {Grouper, SectionHeader, AddButton} from '../ui/elements';
 
 const WorkExpInputGroup = ({workExpInputArray, addArrayItem}) => {
 

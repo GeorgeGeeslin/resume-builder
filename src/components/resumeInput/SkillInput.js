@@ -1,6 +1,6 @@
 import React,  { useContext } from 'react';
-import Context from '../context/Context';
-import {Grouper, SectionHeader, Skill, Input, FlexGroup, /*ItemGrouper,*/ AddButton} from '../components/ui/elements';
+import Context from '../../context/Context';
+import {Grouper, SectionHeader, Skill, Input, FlexGroup, /*ItemGrouper,*/ AddButton} from '../ui/elements';
 
 const SkillInput = () => {
     

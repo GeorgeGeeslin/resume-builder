@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import Context from '../context/Context';
-import {FlexGroup, Input, Grouper, ItemGrouper, SectionHeader, SubsectionHeader, VisabilityToggle, Show} from './ui/elements';
+import Context from '../../context/Context';
+import {FlexGroup, Input, Grouper, ItemGrouper, SectionHeader, SubsectionHeader, VisabilityToggle, Show} from '../ui/elements';
 // import ReactTooltip from "react-tooltip";
 
 const PersonalInfoInput = () => {

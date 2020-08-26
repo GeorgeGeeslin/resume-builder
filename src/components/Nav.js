@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { saveAs } from 'file-saver';
 
 const Navbar = styled.nav`
     background-color: #0052CC;
@@ -10,15 +9,6 @@ const Navbar = styled.nav`
 
 const Nav = () => {
 
-    // const getHTML = () => {
-
-    // }
-
-    // const PDFDownloadRequest = () => {
-    //     const payload = getHTML();
-    //     console.log(html)
-    // }
-
     const payload = JSON.stringify({data: "<body><div style='background-color:green;'>sent from mr. green</div></body>"});
 
     const postTest = () => {
@@ -27,7 +17,6 @@ const Nav = () => {
             method: 'POST'
         })
         .then (response => response.json())
-        // .then(data => console.log(data));
         .then(data => downloadPDF(data.pdf))
     }
 

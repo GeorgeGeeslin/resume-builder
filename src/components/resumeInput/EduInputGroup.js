@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grouper, AddButton, SectionHeader} from './ui/elements';
+import {Grouper, AddButton, SectionHeader} from '../ui/elements';
 
 const EduInputGroup = ({eduInputArray, addArrayItem}) => {
 

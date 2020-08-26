@@ -37,10 +37,10 @@ export const initialState = {
         }
     ],
     education: [{
-        school: "",
-        degree: "",
-        major: "",
-        date: "",
+        school: "Texas Tech",
+        degree: "BA",
+        major: "Advertising",
+        date: "May 2010",
         freeform: ""
     }],
     sections: {

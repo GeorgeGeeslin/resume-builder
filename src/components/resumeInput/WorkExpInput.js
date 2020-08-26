@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import {FlexGroup, Input, Close, DateClose, SubsectionHeader, AddDate, ItemGrouper} from './ui/elements';
-import {modules} from './ui/quill-config';
+import {FlexGroup, Input, Close, DateClose, SubsectionHeader, AddDate, ItemGrouper} from '../ui/elements';
+import {modules} from '../ui/quill-config';
 import ReactTooltip from "react-tooltip";
 
 const WorkExpInput = ({employer, title, dates, experience, index, arrayInfoChange, nestedArrayInfoChange, deleteArrayItem, deleteNestedArrayItem, addNestedArrayItem}) => {

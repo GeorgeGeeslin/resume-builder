@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlexGroup} from './ui/elements';
+import {FlexGroup} from '../ui/elements';
 
 const BasicInfo = ({name, phone, email}) => {
     return(
