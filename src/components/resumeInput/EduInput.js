@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import DateRangeInput from './DateRangeInput';
 import {FlexGroup, Input, Close, SubsectionHeader, ItemGrouper} from '../ui/elements';
 import {modules} from '../ui/quill-config';
 import ReactTooltip from "react-tooltip";
 
-const EduInput = ({ school, major, degree, date, freeform, index, arrayInfoChange, deleteArrayItem}) => {
+const EduInput = ({ school, major, degree, dates, gpa, freeform, index, arrayInfoChange, deleteArrayItem}) => {
     const key = 'education';
+    const parentIndex = index;
+
     return (
         <ItemGrouper>
             <SubsectionHeader>Education {index + 1}:</SubsectionHeader>
@@ -52,17 +55,18 @@ const EduInput = ({ school, major, degree, date, freeform, index, arrayInfoChang
                     )}/>  
                 </div>
                 <div style={{width: '50%'}}>
-                    <label htmlFor="date">Graduation Date</label>
-                    <Input type='text' value={date} id="date" onChange={(e) => arrayInfoChange(
+                    <label htmlFor="date">GPA</label>
+                    <Input type='text' value={gpa} id="gpa" onChange={(e) => arrayInfoChange(
                         {
                             payload: e.target.value,
                             key,
                             index,
-                            name: "date"
+                            name: "gpa"
                         }
                     )}/>
-                </div>
+                </div> 
             </FlexGroup>
+            <DateRangeInput dates={dates} parentIndex={parentIndex} parent='education'/>   
             <div style={{padding: '0.25em'}}>
                 <label htmlFor="customEdu">Custom Text</label>
                 <ReactQuill value={freeform} 

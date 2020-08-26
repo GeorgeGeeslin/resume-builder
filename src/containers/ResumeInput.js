@@ -16,25 +16,23 @@ const ResumeInput = () => {
     const skills = context.resumeContent.skills
 
     const workExpInputArray = work.map((item, index) => {
-        const { arrayInfoChange, nestedArrayInfoChange, deleteArrayItem, deleteNestedArrayItem, addNestedArrayItem } = context;
         const {employer, title, dates, experience} = context.resumeContent.work[index];
+        const { arrayInfoChange, deleteArrayItem} = context;
         return (
             <WorkExpInput employer={employer}title={title}dates={dates}
-            experience={experience}index={index}key={index}arrayInfoChange={arrayInfoChange}
-            nestedArrayInfoChange={nestedArrayInfoChange} 
-            deleteArrayItem={deleteArrayItem}
-            deleteNestedArrayItem={deleteNestedArrayItem}
-            addNestedArrayItem={addNestedArrayItem}
+                experience={experience}index={index}key={index}arrayInfoChange={arrayInfoChange}
+                deleteArrayItem={deleteArrayItem}
             />
         ) 
     });
 
     const eduInputArray = education.map((item, index) => {
-        const { school, major, degree, date, freeform } = context.resumeContent.education[index]
+        const { school, major, degree, dates, gpa, freeform } = context.resumeContent.education[index]
         const { arrayInfoChange, deleteArrayItem } = context;
         return (
-            <EduInput school={school} major={major} degree={degree} date={date} freeform={freeform} index={index}
-            arrayInfoChange={arrayInfoChange}deleteArrayItem={deleteArrayItem}
+            <EduInput school={school} major={major} degree={degree} dates={dates} freeform={freeform} index={index}
+                arrayInfoChange={arrayInfoChange}deleteArrayItem={deleteArrayItem}
+                gpa={gpa}
             />
         )
     });

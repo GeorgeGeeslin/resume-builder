@@ -40,7 +40,9 @@ export const initialState = {
         school: "Texas Tech",
         degree: "BA",
         major: "Advertising",
-        date: "May 2010",
+        // date: "May 2010",
+        dates: [{start: '2006', end: '2010'}],
+        gpa: "3.2",
         freeform: ""
     }],
     sections: {
