@@ -19,8 +19,8 @@ const WorkExpInput = ({employer, title, dates, experience, index, arrayInfoChang
             />
             <FlexGroup>
                 <div style={{width: '50%', marginRight: '1em'}}>
-                    <label htmlFor="employer">Employer</label>
-                    <Input type='text' value={employer} id="employer" onChange={(e) => arrayInfoChange(
+                    <label htmlFor={"employer"+index}>Employer</label>
+                    <Input type='text' value={employer} id={"employer"+index} onChange={(e) => arrayInfoChange(
                         {
                             payload: e.target.value,
                             key,
@@ -31,8 +31,8 @@ const WorkExpInput = ({employer, title, dates, experience, index, arrayInfoChang
                     />
                 </div>
                 <div style={{width: '50%'}}>
-                    <label htmlFor="title">Title</label>
-                    <Input type='text' value={title} id="title" onChange={(e) => arrayInfoChange(
+                    <label htmlFor={"title"+index}>Title</label>
+                    <Input type='text' value={title} id={"title"+index} onChange={(e) => arrayInfoChange(
                         {
                             payload: e.target.value,
                             key,

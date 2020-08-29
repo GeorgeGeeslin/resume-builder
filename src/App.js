@@ -12,6 +12,8 @@ const App = () => {
 
   const [stateInput, dispatchInput] = useReducer(InputReducer.InputReducer, InputReducer.initialState);
 
+  //TODO: App.js has become the place where all the major functions that need to be made avalible throughout the app via context live. 
+  // Should probably stick these in some files and export them for better organization. 
   const baseInfoChange = (e) => {
     const {name, payload} = e;
     dispatchInput({type: 'baseInfoChange', field: name, payload});
@@ -113,6 +115,28 @@ const App = () => {
     dispatchInput({type: 'deleteSkill', parent, key, index});
   }
 
+  // Download the PDF
+  const createPDF = (b64) => {
+    // Force a download by creating a downloadlink and then clicking and removing it.
+    const link = document.createElement('a');
+    link.href = 'data:application/octet-stream;base64,' + b64;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link)
+  };
+
+  const requestPDF = () => {
+    const htmlString = document.getElementById("ResumePage").outerHTML;
+    const payload = JSON.stringify({data: htmlString});
+
+      fetch('http://localhost:3000/pdf', {
+          body: payload,
+          method: 'POST'
+      })
+      .then (response => response.json())
+      .then(data => createPDF(data.pdf))
+  }
+
   return (
     <Context.Provider value={{
       resumeContent: stateInput,
@@ -127,7 +151,8 @@ const App = () => {
       toggleBaseSection,
       addToSkillArray,
       inputEnterKey,
-      deleteSkill
+      deleteSkill,
+      requestPDF
     }}>
       <Nav />
       <ResumeEditor />

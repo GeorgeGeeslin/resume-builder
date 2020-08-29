@@ -1,13 +1,12 @@
 import React from 'react';
-import {FlexGroup} from '../ui/elements';
-
-const BasicInfo = ({name, phone, email}) => {
+import {TextVeryLarge, TextLarge} from '../ui/previewElements';
+ 
+const BasicInfo = ({name, role}) => {
     return(
-        <FlexGroup>
-            <div>{name}</div>
-            <div>{phone}</div>
-            <div>{email}</div>
-        </FlexGroup>
+        <div>
+            <TextVeryLarge style={{width: '100%', marginBottom: '1rem'}}>{name}</TextVeryLarge>
+            <TextLarge>{role}</TextLarge>
+        </div>
     )
 };
 

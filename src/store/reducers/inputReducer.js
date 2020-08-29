@@ -9,12 +9,20 @@ export const initialState = {
         role: 'Full Stack Developer',
         profile: 'Hi you should hire me',
     },
+    links: {
+        facebook: '',
+        twitter: '',
+        linkedin: '',
+        github: '',
+        portfolio:'',
+        other: ''
+    },
     address: {
         street1: '11711 Tanglebrair Trl',
         street2: '1407',
         city: 'Austin',
         state: 'TX',
-        zip: '79605',
+        zip: '79750',
     },
     socials: [],
     // skills: ["HTML5", "React", "CSS", "SCSS", "Bootstrap", "Responsive Design", "SQL", "JavaScript", "Node"],
@@ -51,7 +59,7 @@ export const initialState = {
         work: true,
         education: true,
         skills: true,
-//        links: true,
+        links: true,
 //        certifications: true,
  //       awards: true
     },

@@ -1,5 +1,5 @@
 export const concatLine = (seperator, ...args) => {
-    return args.reduce((accumulator, current, index) => {
+    return args.reduce((accumulator, current) => {
         if (current.trim() === '') { 
             return accumulator;
         } else {

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Context from '../../context/Context';
-import {FlexGroup, Input, Grouper, ItemGrouper, SectionHeader, SubsectionHeader, VisabilityToggle, Show} from '../ui/elements';
+import {FlexGroup, Input, Grouper, ItemGrouper, SectionHeader, SubsectionHeader, VisabilityToggle} from '../ui/elements';
 // import ReactTooltip from "react-tooltip";
 
 const PersonalInfoInput = () => {
@@ -10,7 +10,9 @@ const PersonalInfoInput = () => {
     const {name, phone, email} = context.resumeContent;
     const {street1, street2, city, state, zip} = context.resumeContent.address;
     const {role, profile} = context.resumeContent.desired_position;
-    const {address, desired_position} = context.resumeContent.sections;
+    const {facebook, twitter, linkedin, github, portfolio, other} = context.resumeContent.links;
+    const {address, desired_position, links} = context.resumeContent.sections;
+
 
     
     return (
@@ -96,7 +98,7 @@ const PersonalInfoInput = () => {
                     </div>
                     <div style={{width: '50%'}}>
                         <label htmlFor='street2'>Street 2</label>
-                        <Input disabled={!address} type='text' value={street2} id='street1' onChange={e => baseObjectInfoChange(
+                        <Input disabled={!address} type='text' value={street2} id='street2' onChange={e => baseObjectInfoChange(
                             {
                                 payload: e.target.value,
                                 name: 'street2',
@@ -126,7 +128,7 @@ const PersonalInfoInput = () => {
                             }
                         )} />
                     </div>  
-                    <div style={{marginRight: '1em'}}>
+                    <div>
                         <label htmlFor='zip'>Zipcode</label>
                         <Input disabled={!address} type='text' value={zip} id='zip' onChange={e => baseObjectInfoChange(
                             {
@@ -136,6 +138,79 @@ const PersonalInfoInput = () => {
                             }
                         )} />
                     </div>                                        
+                </FlexGroup>
+            </ItemGrouper>
+            <ItemGrouper>
+                <SubsectionHeader>Links</SubsectionHeader>
+                <VisabilityToggle label="links" highlightClass="deleteHighlight" section="links"
+                    visability={links}
+                    onClickFunc={toggleBaseSection}
+                />
+                <FlexGroup>
+                    <div style={{marginRight: '1em', width: '50%'}}>
+                        <label htmlFor='zip'>LinkedIn</label>
+                        <Input disabled={!links} type='text' value={linkedin} id='linkedin' onChange={e => baseObjectInfoChange(
+                            {
+                                payload: e.target.value,
+                                name: 'linkedin',
+                                key: 'links'
+                            }
+                        )} />
+                    </div>
+                    <div style={{width: '50%'}}>
+                        <label htmlFor='zip'>GithHub</label>
+                        <Input disabled={!links} type='text' value={github} id='github' onChange={e => baseObjectInfoChange(
+                            {
+                                payload: e.target.value,
+                                name: 'github',
+                                key: 'links'
+                            }
+                        )} />
+                    </div>
+                </FlexGroup>
+                <FlexGroup>
+                    <div style={{marginRight: '1em', width: '50%'}}>
+                        <label htmlFor='zip'>Twitter</label>
+                        <Input disabled={!links} type='text' value={twitter} id='twitter' onChange={e => baseObjectInfoChange(
+                            {
+                                payload: e.target.value,
+                                name: 'twitter',
+                                key: 'links'
+                            }
+                        )} />
+                    </div>
+                    <div style={{width: '50%'}}>
+                        <label htmlFor='zip'>Facebook</label>
+                        <Input disabled={!links} type='text' value={facebook} id='facebook' onChange={e => baseObjectInfoChange(
+                            {
+                                payload: e.target.value,
+                                name: 'facebook',
+                                key: 'links'
+                            }
+                        )} />
+                    </div>
+                </FlexGroup>
+                <FlexGroup>
+                    <div style={{marginRight: '1em', width: '50%'}}>
+                        <label htmlFor='zip'>Portfolio</label>
+                        <Input disabled={!links} type='text' value={portfolio} id='portfolio' onChange={e => baseObjectInfoChange(
+                            {
+                                payload: e.target.value,
+                                name: 'portfolio',
+                                key: 'links'
+                            }
+                        )} />
+                    </div>
+                    <div style={{width: '50%'}}>
+                        <label htmlFor='zip'>Other</label>
+                        <Input disabled={!links} type='text' value={other} id='other' onChange={e => baseObjectInfoChange(
+                            {
+                                payload: e.target.value,
+                                name: 'other',
+                                key: 'links'
+                            }
+                        )} />
+                    </div>
                 </FlexGroup>
             </ItemGrouper>
         </Grouper>

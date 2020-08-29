@@ -13,14 +13,14 @@ const DateRangeInput = ({dates, parentIndex, parent}) => {
         return (
             <FlexGroup key={index} style={{width: '44%'}}>
                 <div style={{width: '50%', marginRight: '1em'}}>
-                    <label htmlFor={"dateStart"+index}>Start Date</label>
+                    <label htmlFor={"dateStart"+parent+parentIndex+'-'+index}>Start Date</label>
                     <Input type="text" name="start" value={date.start} 
-                        id={"dateStart"+index} data-parent="work" data-parent-index={parentIndex}data-key="dates" 
+                        id={"dateStart"+parent+parentIndex+'-'+index} data-parent="work" data-parent-index={parentIndex}data-key="dates" 
                         data-index={index} onChange={nestedArrayInfoChange}
                     />
                 </div>
                 <div style={{width: '50%'}}>
-                    <label htmlFor={"dateEnd"+index}>End Date</label>
+                    <label htmlFor={"dateEnd"+parent+parentIndex+'-'+index}>End Date</label>
                     { index > 0 &&
                         <DateClose onClickFunc={(e) => deleteNestedArrayItem(
                                 {
@@ -35,7 +35,7 @@ const DateRangeInput = ({dates, parentIndex, parent}) => {
                     }
                     <ReactTooltip /> 
                     <Input type="text" name="end" value={date.end} 
-                        id={"dateEnd"+index} data-parent="work" data-parent-index={parentIndex}data-key="dates" 
+                        id={"dateEnd"+parent+parentIndex+'-'+index} data-parent="work" data-parent-index={parentIndex}data-key="dates" 
                         data-index={index} onChange={nestedArrayInfoChange}
                     />
                 </div>
@@ -47,12 +47,12 @@ const DateRangeInput = ({dates, parentIndex, parent}) => {
         <div style={{width: '100%', display: 'flex', flexFlow: 'row wrap'}}>
             {dateInput}
             <AddDate onClickFunc={() => addNestedArrayItem(
-                    {
-                        parent,
-                        key: 'dates',
-                        parentIndex
-                    }
-                )} />
+                {
+                    parent,
+                    key: 'dates',
+                    parentIndex
+                }
+            )} />
         </div>
     )
 };
