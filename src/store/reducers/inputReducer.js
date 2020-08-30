@@ -15,7 +15,7 @@ export const initialState = {
         linkedin: '',
         github: '',
         portfolio:'',
-        other: ''
+        otherLink: ''
     },
     address: {
         street1: '11711 Tanglebrair Trl',

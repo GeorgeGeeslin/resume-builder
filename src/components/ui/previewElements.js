@@ -19,14 +19,3 @@ export const ResumePage = (props) => {
         </div>
     )
 };
-
-// Text Elements
- export const TextVeryLarge = styled.div`
-    font-size: 48px;
-    font-weight: bold;
-`;
-
-export const TextLarge = styled.div`
-    font-size 24px;
-    font-weight: bold;
-`;

@@ -1,11 +1,23 @@
 import React from 'react';
-import {TextVeryLarge, TextLarge} from '../ui/previewElements';
  
 const BasicInfo = ({name, role}) => {
+
+    const veryLargeText = {
+        width: '100%',
+        marginBottom: '1rem',
+        fontSize: '48px',
+        fontWeight: 'bold'
+    }
+
+    const largeText = {
+        fontSize: '24px',
+        fontWeight: 'bold'
+    }
+
     return(
         <div>
-            <TextVeryLarge style={{width: '100%', marginBottom: '1rem'}}>{name}</TextVeryLarge>
-            <TextLarge>{role}</TextLarge>
+            <div style={veryLargeText}>{name}</div>
+            <div style={largeText}>{role}</div>
         </div>
     )
 };

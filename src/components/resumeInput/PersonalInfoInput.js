@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
 import Context from '../../context/Context';
 import {FlexGroup, Input, Grouper, ItemGrouper, SectionHeader, SubsectionHeader, VisabilityToggle} from '../ui/elements';
-// import ReactTooltip from "react-tooltip";
 
 const PersonalInfoInput = () => {
+    //TODO This component could be broken out into its subsections for much simpler JSX.
 
     const context = useContext(Context);
     const {baseInfoChange, baseObjectInfoChange, toggleBaseSection} = context;
     const {name, phone, email} = context.resumeContent;
     const {street1, street2, city, state, zip} = context.resumeContent.address;
     const {role, profile} = context.resumeContent.desired_position;
-    const {facebook, twitter, linkedin, github, portfolio, other} = context.resumeContent.links;
+    const {facebook, twitter, linkedin, github, portfolio, otherLink} = context.resumeContent.links;
     const {address, desired_position, links} = context.resumeContent.sections;
 
 
@@ -203,7 +203,7 @@ const PersonalInfoInput = () => {
                     </div>
                     <div style={{width: '50%'}}>
                         <label htmlFor='zip'>Other</label>
-                        <Input disabled={!links} type='text' value={other} id='other' onChange={e => baseObjectInfoChange(
+                        <Input disabled={!links} type='text' value={otherLink} id='other' onChange={e => baseObjectInfoChange(
                             {
                                 payload: e.target.value,
                                 name: 'other',

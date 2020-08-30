@@ -14,9 +14,8 @@ const ResumePreview = () => {
     const work = context.resumeContent.work;
     const education = context.resumeContent.education;
     const {street1, street2, city, state, zip} = context.resumeContent.address;
+    const {facebook, twitter, linkedin, github, portfolio, otherLink} = context.resumeContent.links;
 
-
- 
 
     const workComponents = work.map((item, index) => {
         const {employer, title, dates, experience} = work[index];
@@ -28,6 +27,14 @@ const ResumePreview = () => {
         return <Edu key={index} index={index} school={school} degree={degree} major={major} date={date} freeform={freeform}/>
     });
 
+    const sectionHeadLine = 
+    {
+        color: "#0052CC",
+        textTransform: "uppercase",
+        fontWeight: "bold",
+        fontSize: "16px"
+    }
+
     return (
        <PreviewBox>
             <ResumePage>
@@ -35,12 +42,15 @@ const ResumePreview = () => {
                     {/*maincontent*/}
                     <div style={{display: 'block', width: '66%'}}>
                         <BasicInfo name={name} phone={phone} email={email} role={role} profile={profile}/>
+                        <h1 style={sectionHeadLine}>Experience</h1>
                         {workComponents}
                         {eduComponents}
                     </div>
                     {/*sidebar*/}
                     <div style={{width: '33%'}}>
-                        <Contact street1={street1}street2={street2}city={city}state={state}zip={zip}phone={phone}email={email}/>
+                        <Contact street1={street1}street2={street2}city={city}state={state}zip={zip}phone={phone}email={email}
+                        facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}
+                        />
                     </div>                  
                 </div>
             </ResumePage>

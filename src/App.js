@@ -126,8 +126,16 @@ const App = () => {
   };
 
   const requestPDF = () => {
-    const htmlString = document.getElementById("ResumePage").outerHTML;
+    //TODO: Make font type selectable
+    const fontImport = "@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');"
+    const fontFamily = `"font-family: 'Roboto', sans-serif;`
+    const bodyStyle = fontFamily + `background-color: white; width: 8.5in; height: 11in; padding: 0.5in;"`;
+
+    let htmlString = document.getElementById("ResumePage").outerHTML.toString();
+    htmlString = `<html><head><style>${fontImport}</style></head><body style=${bodyStyle}>` + htmlString + "</body></html>";
     const payload = JSON.stringify({data: htmlString});
+
+    // console.log(htmlString)
 
       fetch('http://localhost:3000/pdf', {
           body: payload,
