@@ -6,6 +6,8 @@ import WorkExp from '../components/resumePreview/WorkExp';
 import BasicInfo from '../components/resumePreview/BasicInfo';
 import Edu from '../components/resumePreview/Edu';
 import Contact from '../components/resumePreview/Contact';
+import Skills from '../components/resumePreview/Skills';
+import { SectionHeader } from '../components/ui/elements';
 
 const ResumePreview = () => {
     const context = useContext(Context);
@@ -23,8 +25,8 @@ const ResumePreview = () => {
     });
 
     const eduComponents = education.map((item, index) => {
-        const {school, degree, major, date, freeform} = education[index]; 
-        return <Edu key={index} index={index} school={school} degree={degree} major={major} date={date} freeform={freeform}/>
+        const {school, degree, major, dates, freeform} = education[index]; 
+        return <Edu key={index} index={index} school={school} degree={degree} major={major} dates={dates} freeform={freeform}/>
     });
 
     const sectionHeadLine = 
@@ -35,22 +37,44 @@ const ResumePreview = () => {
         fontSize: "16px"
     }
 
+    const sectionSeparatorLarge = {
+        paddingBottom: '4em'
+    };
+
+    const sectionSeparatorMedium = {
+        paddingBottom: '3em'
+    }
+
+    const sectionSeparatorSmall = {
+        paddingBottom: '1.5em'
+    }
+
     return (
        <PreviewBox>
             <ResumePage>
                 <div style={{display: 'flex'}}>
                     {/*maincontent*/}
                     <div style={{display: 'block', width: '66%'}}>
-                        <BasicInfo name={name} phone={phone} email={email} role={role} profile={profile}/>
+                        <div style={sectionSeparatorLarge}>
+                         <BasicInfo name={name} phone={phone} email={email} role={role} profile={profile}/>                      
+                        </div>
                         <h1 style={sectionHeadLine}>Experience</h1>
                         {workComponents}
-                        {eduComponents}
+
                     </div>
                     {/*sidebar*/}
                     <div style={{width: '33%'}}>
-                        <Contact street1={street1}street2={street2}city={city}state={state}zip={zip}phone={phone}email={email}
-                        facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}
-                        />
+                        <div style={sectionSeparatorMedium}>
+                            <Contact street1={street1}street2={street2}city={city}state={state}zip={zip}phone={phone}email={email}
+                            facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}
+                            />
+                        </div>
+                        <div style={sectionSeparatorSmall}>
+                            <div style={sectionHeadLine}>Skills</div>
+                            <Skills />
+                        </div>
+                        <div style={sectionHeadLine}>Education</div>
+                        {eduComponents}
                     </div>                  
                 </div>
             </ResumePage>

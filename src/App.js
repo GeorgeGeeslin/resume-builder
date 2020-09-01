@@ -6,13 +6,14 @@ import ResumeEditor from './containers/ResumeEditor';
 import Nav from './components/Nav';
 import './App.scss';
 import {highlighterButtonParent, toggleSectionVisability} from './components/ui/elements';
+import {selectFont} from './components/ui/fonts';
 
 
 const App = () => {
 
   const [stateInput, dispatchInput] = useReducer(InputReducer.InputReducer, InputReducer.initialState);
 
-  //TODO: App.js has become the place where all the major functions that need to be made avalible throughout the app via context live. 
+  //TODO: App.js has become the place where all the major functions that need to be made avalible throughout the app via Context live. 
   // Should probably stick these in some files and export them for better organization. 
   const baseInfoChange = (e) => {
     const {name, payload} = e;
@@ -115,6 +116,9 @@ const App = () => {
     dispatchInput({type: 'deleteSkill', parent, key, index});
   }
 
+  //Get font selection for Resume Output... this needs to effect preview and downloads
+  //selectFont
+
   // Download the PDF
   const createPDF = (b64) => {
     // Force a download by creating a downloadlink and then clicking and removing it.
@@ -127,8 +131,10 @@ const App = () => {
 
   const requestPDF = () => {
     //TODO: Make font type selectable
-    const fontImport = "@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');"
-    const fontFamily = `"font-family: 'Roboto', sans-serif;`
+    const fontImport = "@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');";
+    const fontImportSecondary = "@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;531;600;700;800;900&display=swap');";
+    const fontFamily = `"font-family: 'Roboto', sans-serif;`;
+    const fontFamilySecondary = `font-family: 'Roboto Slab', serif;`;
     const bodyStyle = fontFamily + `background-color: white; width: 8.5in; height: 11in; padding: 0.5in;"`;
 
     let htmlString = document.getElementById("ResumePage").outerHTML.toString();

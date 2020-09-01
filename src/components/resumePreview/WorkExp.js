@@ -1,21 +1,15 @@
 import React from 'react';
-import {concatLine} from '../ui/helperFunctions';
+import {concatDateRage} from '../ui/helperFunctions';
 
 const WorkExp = ({index, employer, title, dates, experience}) => {
 
-    const dateDisplay = dates.map((date, index) => {
-        if (index >= dates.length - 1) {
-            return <span key={index}>{concatLine(' - ', date.start, date.end)}</span>
-        } else {
-            return <span key={index}>{concatLine(' - ', date.start, date.end) + " | "}</span>
-        }
-    })
+    const dateDisplay = concatDateRage(dates);
 
     return (
         <div>
-            <h3>{employer}</h3>
-            <h4>{title}</h4>
+            <h2 style={{margin: '0.5rem, 0px'}}>{employer}</h2>
             {dateDisplay}
+            <p style={{margin: '0px', marginTop: '0.5rem', fontFamily: "'Roboto Slab', serif", fontWeight: "bold", fontSize: '14px'}}>{title}</p>
             <div dangerouslySetInnerHTML={{__html: experience}}/>
         </div>
 

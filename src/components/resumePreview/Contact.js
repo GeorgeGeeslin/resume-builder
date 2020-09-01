@@ -1,12 +1,12 @@
 import React from 'react';
 import {concatLine} from '../ui/helperFunctions';
  
-const Contact = ({street1, street2, city, state, zip, phone, email, linkedin, github, twitter, facebook, protfolio, otherLink}) => {
+const Contact = ({street1, street2, city, state, zip, phone, email, linkedin, github, twitter, facebook, portfolio, otherLink}) => {
 
     const stateZip = concatLine(' ', state, zip);
     const cityStateZip = concatLine(', ', city, stateZip);
 
-    const urls = [linkedin, github, twitter, facebook, protfolio, otherLink];
+    const urls = [linkedin, github, twitter, facebook, portfolio, otherLink];
     const links = urls.map((url, index) => (
         <p key={index}><a href={url}>{url}</a></p>
     ))

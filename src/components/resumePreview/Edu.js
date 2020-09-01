@@ -1,14 +1,17 @@
 import React from 'react';
-import {concatLine} from '../ui/helperFunctions';
+import {concatLine, concatDateRage} from '../ui/helperFunctions';
 
-const Edu = ({index, school, degree, major, date, custom}) => {
+const Edu = ({index, school, degree, major, dates, custom}) => {
 
-    const line1 = concatLine(', ', school, degree, major,);
+    const line1 = concatLine(' in ', degree, major,);
+
+    const dateDisplay = concatDateRage(dates);
 
     return (
         <div>
-            <h3>{line1}</h3>
-             <h4>{date}</h4>
+            <h2>{school}</h2>
+             <p style={{margin: '0px', marginTop: '0.5rem', fontFamily: "'Roboto Slab', serif", fontWeight: "bold", fontSize: '14px'}}>{line1}</p>
+            <p>{dateDisplay}</p>
         </div>
     )
 };

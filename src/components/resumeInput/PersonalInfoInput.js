@@ -148,7 +148,7 @@ const PersonalInfoInput = () => {
                 />
                 <FlexGroup>
                     <div style={{marginRight: '1em', width: '50%'}}>
-                        <label htmlFor='zip'>LinkedIn</label>
+                        <label htmlFor='linkedin'>LinkedIn</label>
                         <Input disabled={!links} type='text' value={linkedin} id='linkedin' onChange={e => baseObjectInfoChange(
                             {
                                 payload: e.target.value,
@@ -158,7 +158,7 @@ const PersonalInfoInput = () => {
                         )} />
                     </div>
                     <div style={{width: '50%'}}>
-                        <label htmlFor='zip'>GithHub</label>
+                        <label htmlFor='github'>GithHub</label>
                         <Input disabled={!links} type='text' value={github} id='github' onChange={e => baseObjectInfoChange(
                             {
                                 payload: e.target.value,
@@ -170,7 +170,7 @@ const PersonalInfoInput = () => {
                 </FlexGroup>
                 <FlexGroup>
                     <div style={{marginRight: '1em', width: '50%'}}>
-                        <label htmlFor='zip'>Twitter</label>
+                        <label htmlFor='twitter'>Twitter</label>
                         <Input disabled={!links} type='text' value={twitter} id='twitter' onChange={e => baseObjectInfoChange(
                             {
                                 payload: e.target.value,
@@ -180,7 +180,7 @@ const PersonalInfoInput = () => {
                         )} />
                     </div>
                     <div style={{width: '50%'}}>
-                        <label htmlFor='zip'>Facebook</label>
+                        <label htmlFor='facebook'>Facebook</label>
                         <Input disabled={!links} type='text' value={facebook} id='facebook' onChange={e => baseObjectInfoChange(
                             {
                                 payload: e.target.value,
@@ -192,7 +192,7 @@ const PersonalInfoInput = () => {
                 </FlexGroup>
                 <FlexGroup>
                     <div style={{marginRight: '1em', width: '50%'}}>
-                        <label htmlFor='zip'>Portfolio</label>
+                        <label htmlFor='portfolio'>Portfolio</label>
                         <Input disabled={!links} type='text' value={portfolio} id='portfolio' onChange={e => baseObjectInfoChange(
                             {
                                 payload: e.target.value,
@@ -202,11 +202,11 @@ const PersonalInfoInput = () => {
                         )} />
                     </div>
                     <div style={{width: '50%'}}>
-                        <label htmlFor='zip'>Other</label>
+                        <label htmlFor='other'>Other</label>
                         <Input disabled={!links} type='text' value={otherLink} id='other' onChange={e => baseObjectInfoChange(
                             {
                                 payload: e.target.value,
-                                name: 'other',
+                                name: 'otherLink',
                                 key: 'links'
                             }
                         )} />

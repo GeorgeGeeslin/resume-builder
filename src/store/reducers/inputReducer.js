@@ -1,5 +1,6 @@
 export const initialState = {
     theme: 'default',
+    font: 'Roboto',
     username: 'george.geeslin@gmail.com',
     name: 'George Geeslin',  
     phone: '325-518-9738', 
@@ -24,8 +25,6 @@ export const initialState = {
         state: 'TX',
         zip: '79750',
     },
-    socials: [],
-    // skills: ["HTML5", "React", "CSS", "SCSS", "Bootstrap", "Responsive Design", "SQL", "JavaScript", "Node"],
     skills: {
         addSkill: '',
         skills: ["HTML5", "React", "CSS", "SCSS", "Bootstrap", "Responsive Design", "SQL", "JavaScript", "Node"],
@@ -48,7 +47,6 @@ export const initialState = {
         school: "Texas Tech",
         degree: "BA",
         major: "Advertising",
-        // date: "May 2010",
         dates: [{start: '2006', end: '2010'}],
         gpa: "3.2",
         freeform: ""
