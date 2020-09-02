@@ -21,7 +21,6 @@ const App = () => {
   };
 
   const baseObjectInfoChange = (e) => {
-    console.log(e);
     const {key, name, payload} = e;
     dispatchInput({type: "baseObjectInfoChange", key, field: name, payload});
   };
@@ -135,13 +134,11 @@ const App = () => {
     const fontImportSecondary = "@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;531;600;700;800;900&display=swap');";
     const fontFamily = `"font-family: 'Roboto', sans-serif;`;
     const fontFamilySecondary = `font-family: 'Roboto Slab', serif;`;
-    const bodyStyle = fontFamily + `background-color: white; width: 8.5in; height: 11in; padding: 0.5in;"`;
+    const bodyStyle = fontFamily + `background-color: white; width: 8.5in; height: 11in; max-height: 11in; padding: 0.5in;"`;
 
     let htmlString = document.getElementById("ResumePage").outerHTML.toString();
     htmlString = `<html><head><style>${fontImport}</style></head><body style=${bodyStyle}>` + htmlString + "</body></html>";
     const payload = JSON.stringify({data: htmlString});
-
-    // console.log(htmlString)
 
       fetch('http://localhost:3000/pdf', {
           body: payload,

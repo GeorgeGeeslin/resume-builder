@@ -121,30 +121,31 @@ $transitionTime: 0.1s;
 // Only reason to have this in scss is to make use of media queries. 
 // If I do not end up making good use of media queries then I should bring these styles 
 // back into styled-components.
-.resumePage {
-    background-color: white;
-    // full page size
-    width: 8.5in;
-    height: 11in;
-    padding: 0.5in;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); 
-    //TODO: test view as tablet
-    @include tablet {
-        /* 2/3rd size */
-        width: calc((8.5in / 3) * 2);
-        height: calc((11in / 3) * 2);
-    }
-    // @include small-desktop {
-    //     /* 3/4th size */
-    //     width: calc((8.5in / 6) * 5);
-    //     height: calc((11in / 6) * 5);
-    // }
-    // @include medium-desktop {
+// .resumePage {
+//     background-color: white;
+//     // full page size
+//     width: 8.5in;
+//     height: 11in;
+//     max-height: 11in;
+//     padding: 0.5in;
+//     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); 
+//     //TODO: test view as tablet
+//     @include tablet {
+//         /* 2/3rd size */
+//         width: calc((8.5in / 3) * 2);
+//         height: calc((11in / 3) * 2);
+//     }
+//     // @include small-desktop {
+//     //     /* 3/4th size */
+//     //     width: calc((8.5in / 6) * 5);
+//     //     height: calc((11in / 6) * 5);
+//     // }
+//     // @include medium-desktop {
 
-    // }
-    // @include large-desktop {
+//     // }
+//     // @include large-desktop {
 
-    // }
-}
+//     // }
+// }
 
 

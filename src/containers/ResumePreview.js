@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
-import {PreviewBox, ResumePage} from '../components/ui/previewElements';
+import {PreviewBox, PreviewWrapper} from '../components/ui/previewElements';
 //Components
 import WorkExp from '../components/resumePreview/WorkExp';
 import BasicInfo from '../components/resumePreview/BasicInfo';
 import Edu from '../components/resumePreview/Edu';
 import Contact from '../components/resumePreview/Contact';
 import Skills from '../components/resumePreview/Skills';
-import { SectionHeader } from '../components/ui/elements';
+import ResumePage from '../components/resumePreview/ResumePage';
 
 const ResumePreview = () => {
     const context = useContext(Context);
@@ -51,33 +51,36 @@ const ResumePreview = () => {
 
     return (
        <PreviewBox>
-            <ResumePage>
-                <div style={{display: 'flex'}}>
-                    {/*maincontent*/}
-                    <div style={{display: 'block', width: '66%'}}>
-                        <div style={sectionSeparatorLarge}>
-                         <BasicInfo name={name} phone={phone} email={email} role={role} profile={profile}/>                      
-                        </div>
-                        <h1 style={sectionHeadLine}>Experience</h1>
-                        {workComponents}
+           <PreviewWrapper>
+                <ResumePage>
+                        <div style={{display: 'flex'}}>
+                            {/*maincontent*/}
+                            <div style={{display: 'block', width: '66%'}}>
+                                <div style={sectionSeparatorLarge}>
+                                <BasicInfo name={name} phone={phone} email={email} role={role} profile={profile}/>                      
+                                </div>
+                                <h1 style={sectionHeadLine}>Experience</h1>
+                                {workComponents}
 
-                    </div>
-                    {/*sidebar*/}
-                    <div style={{width: '33%'}}>
-                        <div style={sectionSeparatorMedium}>
-                            <Contact street1={street1}street2={street2}city={city}state={state}zip={zip}phone={phone}email={email}
-                            facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}
-                            />
+                            </div>
+                            {/*sidebar*/}
+                            <div style={{width: '33%'}}>
+                                <div style={sectionSeparatorMedium}>
+                                    <Contact street1={street1}street2={street2}city={city}state={state}zip={zip}phone={phone}email={email}
+                                    facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}
+                                    />
+                                </div>
+                                <div style={sectionSeparatorSmall}>
+                                    <div style={sectionHeadLine}>Skills</div>
+                                    <Skills />
+                                </div>
+                                <div style={sectionHeadLine}>Education</div>
+                                {eduComponents}
+                            </div>                  
                         </div>
-                        <div style={sectionSeparatorSmall}>
-                            <div style={sectionHeadLine}>Skills</div>
-                            <Skills />
-                        </div>
-                        <div style={sectionHeadLine}>Education</div>
-                        {eduComponents}
-                    </div>                  
-                </div>
-            </ResumePage>
+                    </ResumePage>
+           </PreviewWrapper>
+
        </PreviewBox>
     )
 };
