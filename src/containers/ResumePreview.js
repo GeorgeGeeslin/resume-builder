@@ -29,13 +29,12 @@ const ResumePreview = () => {
         return <Edu key={index} index={index} school={school} degree={degree} major={major} dates={dates} freeform={freeform}/>
     });
 
-    const sectionHeadLine = 
-    {
+    const sectionHeadLine = {
         color: "#0052CC",
         textTransform: "uppercase",
         fontWeight: "bold",
         fontSize: "16px"
-    }
+    };
 
     const sectionSeparatorLarge = {
         paddingBottom: '4em'
@@ -43,11 +42,11 @@ const ResumePreview = () => {
 
     const sectionSeparatorMedium = {
         paddingBottom: '3em'
-    }
+    };
 
     const sectionSeparatorSmall = {
         paddingBottom: '1.5em'
-    }
+    };
 
     return (
        <PreviewBox>
@@ -55,7 +54,7 @@ const ResumePreview = () => {
                 <ResumePage>
                         <div style={{display: 'flex'}}>
                             {/*maincontent*/}
-                            <div style={{display: 'block', width: '66%'}}>
+                            <div id="maincontent" style={{display: 'block', width: '66%'}}>
                                 <div style={sectionSeparatorLarge}>
                                 <BasicInfo name={name} phone={phone} email={email} role={role} profile={profile}/>                      
                                 </div>
@@ -64,7 +63,7 @@ const ResumePreview = () => {
 
                             </div>
                             {/*sidebar*/}
-                            <div style={{width: '33%'}}>
+                            <div id="sidebar" style={{width: '33%'}}>
                                 <div style={sectionSeparatorMedium}>
                                     <Contact street1={street1}street2={street2}city={city}state={state}zip={zip}phone={phone}email={email}
                                     facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}

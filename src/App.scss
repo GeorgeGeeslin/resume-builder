@@ -118,6 +118,22 @@ $transitionTime: 0.1s;
     }
 }
 
+//css for resume page break in preview. Just for visual effect. Actual page break sent in-line.
+.pageBreak{
+    margin: 0;
+    padding-top: 0.5in;
+    &:before {
+        margin-bottom: 0.5in;
+        display: block;
+        width: 8.5in;
+        height: 30px;
+        margin-left: -0.5in;
+        content: " ";
+        background-color: #FAFBFC;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.12);
+    }
+}
+
 // Only reason to have this in scss is to make use of media queries. 
 // If I do not end up making good use of media queries then I should bring these styles 
 // back into styled-components.
