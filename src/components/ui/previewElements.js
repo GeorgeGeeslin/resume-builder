@@ -7,7 +7,7 @@ export const PreviewBox = styled.div`
     justify-content: center;
     width: 60%;
     border-top: 1px solid #444;
-    padding: 1em;
+    padding: 16px;
     overflow-y: auto;
     height: 100vh;
 `;

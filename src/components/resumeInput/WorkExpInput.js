@@ -5,7 +5,7 @@ import {FlexGroup, Input, Close, SubsectionHeader, ItemGrouper} from '../ui/elem
 import DateRangeInput from './DateRangeInput';
 import {modules} from '../ui/quill-config';
 
-const WorkExpInput = ({employer, title, dates, experience, index, arrayInfoChange, nestedArrayInfoChange, deleteArrayItem, deleteNestedArrayItem, addNestedArrayItem}) => {
+const WorkExpInput = ({employer, title, dates, experience, index, arrayInfoChange, deleteArrayItem}) => {
     const key = 'work'
     const parentIndex = index;
 

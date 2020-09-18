@@ -1,20 +1,23 @@
-import React, {useEffect, useContext} from 'react';
+import React,  {useEffect, useContext} from 'react';
 import Context from '../../context/Context';
 
 const resumePageStyles = {
     boxSizing: 'border-box',
     backgroundColor: 'white',
     width: '8.5in',
-    minHeight: '11in',
+    // minHeight: '11in',
     // maxHeight: '11in',
-    padding: '0.5in'
+    padding: '0.5in',
+    overflowY: 'hidden'
  };
 
 const ResumePage = (props) => {
+    // Most of the logic in this component is for positioning page breaks.
 
-    // Intentionally definging in this shared scope. 
-    let rect1; 
-    let rect2;
+    const context = useContext(Context);
+    const {baseInfoChange} = context;
+    const {pageCount, height, font, name, phone, email, website, desired_position, 
+        links, address, skills, work, education, sections} = context.resumeContent;
 
     // Find last node that has children. (Will return a <p> or <div> tag instead of the text within the tag.)
     const findLastNode = (node) => {
@@ -28,52 +31,75 @@ const ResumePage = (props) => {
         }
     };
 
-    const setPageBreak = (node) => {
-        let elem = findLastNode(node);
-        elem.style.pageBreakBefore = 'always';
-        elem.classList.add('pageBreak');
-        rect1 = elem.getBoundingClientRect();
-    };      
+    // Starting from the bottom node, find the prev sibling recusivly. If no sibling find the parent and start again
+    // repeat untill finding a node at the desired height. Then call setBreakPoint().
+    const positionBreakPoint = (node, breakHeight) => {
+        const nodeHeight = findHeight(node);
 
-    const checkOverlap = (node) => {
-        // https://stackoverflow.com/questions/12066870/how-to-check-if-an-element-is-overlapping-other-elements
-        rect2 = node.getBoundingClientRect();
-
-        var overlap = !(rect1.right < rect2.left || 
-            rect1.left > rect2.right || 
-            rect1.bottom < rect2.top || 
-            rect1.top > rect2.bottom)
-
-        console.log(overlap)
-        
-        //TODO: If overlap exists on outter divs need to drill down to the most inner level where an overlap exists.
+        if (nodeHeight <= breakHeight) {
+            setBreakPoint(node);
+            return nodeHeight;
+        }
+        else if (node.previousSibling !== null) {
+            positionBreakPoint(node.previousSibling, breakHeight);
+        } else if (node.parentNode !== null) {
+            positionBreakPoint(node.parentNode, breakHeight);
+        }
+        return null;
     };
 
-    const context = useContext(Context);
-    const {baseInfoChange} = context;
-    const {pageCount, height, font, name, phone, email, website, desired_position, 
-        links, address, skills, work, education, sections} = context.resumeContent;
-    
-        // 11in = 1056px
+    const setBreakPoint = (element) => {
+        element.classList.add("pageBreak");
+        element.style.breakBefore = "always";
+    };
+
+    const findHeight = (node) => {
+        const resumeOffset = 50 + 16; //Nav height + PreviewBox padding
+        return node.offsetTop - resumeOffset;
+    };
+
+    const removePageBreak = () => {
+
+        const pageBreak = document.getElementsByClassName("pageBreak")[0];
+        if (pageBreak) {
+            pageBreak.style.removeProperty("breakBefore");
+            pageBreak.classList.remove("pageBreak");
+        }
+    };
+
+    const compareHeight = (maincontent, sidebar) => {
+        const mainLast = findLastNode(maincontent);
+        const sideLast = findLastNode(sidebar);
+        if (mainLast.offsetTop >= sideLast.offsetTop) {
+            return {tallest: maincontent, shortest: sidebar};
+        } else {
+            return {tallest: sidebar, shortest: maincontent};
+        }
+    }
+
     useEffect(() => {
         const newHeight = document.getElementById('ResumePage').clientHeight;
 
-        // need to determin when to page, and update the data accordingly 
-        // if (newHeight > height) {
- 
+        if (newHeight > 300) {
+            const heightLimit = 850;
 
-            // const node = document.getElementById('ResumePage')
+            removePageBreak();
+         
             const maincontent = document.getElementById('maincontent')
             const sidebar = document.getElementById('sidebar');
-            // const lastChild = maincontent.lastChild
-            setPageBreak(maincontent);
-            checkOverlap(sidebar);
+
+            // Find if maincontent or sidebar is taller. Use the taller side to position the page break.
+            const {tallest, shortest} = compareHeight(maincontent, sidebar);
+            const last = findLastNode(tallest)
+            const position = positionBreakPoint(last, heightLimit);
+
+            //TODO: what if I make a pageBreakComponent that is hidden and sits below the page and is the same width as the page
+            // Then when the pageBreak is set the css to the as above for the pdf, but this new element creates the visual effect in the preview.
+            console.log(position)
   
-
-        // }
-
-    //Everything except for pageCount and height must go in this depndency array.
-    },[font, name, phone, email, website, desired_position, links, address, skills, work, education, sections])
+        } 
+        
+    }, [font, name, phone, email, website, desired_position, links, address, skills, work, education, sections]);
 
     return (
         <div id ="ResumePage" style={resumePageStyles} className="resumePage">
