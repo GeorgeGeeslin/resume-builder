@@ -6,7 +6,7 @@ import ResumePreview from './ResumePreview';
 const ResumeEditor = () => {
 
     return (
-        <div style={{display: 'flex', backgroundColor: '#FAFBFC'}}>
+        <div style={{display: 'flex', backgroundColor: '#DFE1E6'}}>
             <ResumeInput />
             <ResumePreview />
         </div>

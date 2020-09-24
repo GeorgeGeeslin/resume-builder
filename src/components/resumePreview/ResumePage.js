@@ -1,25 +1,19 @@
-import React,  {useEffect, useContext} from 'react';
-import Context from '../../context/Context';
+import React,  {useState, useEffect} from 'react';
+import PageBreak from './PageBreak';
 
 const resumePageStyles = {
     boxSizing: 'border-box',
     backgroundColor: 'white',
     width: '8.5in',
-    // minHeight: '11in',
+    // minHeight: '1016px',
     // maxHeight: '11in',
-    padding: '0.5in',
+    // padding: '0.5in',
     overflowY: 'hidden'
  };
 
 const ResumePage = (props) => {
-    // Most of the logic in this component is for positioning page breaks.
+    // Most of the logic in this component is for positioning page breaks for the live preview.. its crap.
 
-    const context = useContext(Context);
-    const {baseInfoChange} = context;
-    const {pageCount, height, font, name, phone, email, website, desired_position, 
-        links, address, skills, work, education, sections} = context.resumeContent;
-
-    // Find last node that has children. (Will return a <p> or <div> tag instead of the text within the tag.)
     const findLastNode = (node) => {
         let lastNode = node;
         if (lastNode.hasChildNodes()) {
@@ -31,26 +25,29 @@ const ResumePage = (props) => {
         }
     };
 
-    // Starting from the bottom node, find the prev sibling recusivly. If no sibling find the parent and start again
-    // repeat untill finding a node at the desired height. Then call setBreakPoint().
+    const searchChildren = (node, breakHeight) => {
+        const children = node.children;
+        const size = children.length - 1;
+
+        for (let i = size; i >= 0; i--) {
+            let last = findLastNode(children[i]);
+            let nodeHeight = findHeight(last);
+            if (nodeHeight <= breakHeight) {
+                return nodeHeight;
+            }
+        }
+    }
+
     const positionBreakPoint = (node, breakHeight) => {
-        const nodeHeight = findHeight(node);
+        const baseNodes = node.children;
+        const size = baseNodes.length - 1;
 
-        if (nodeHeight <= breakHeight) {
-            setBreakPoint(node);
-            return nodeHeight;
+        for (let i = size; i >= 0; i--) {
+            let childHeight = searchChildren(baseNodes[i], breakHeight);
+            if (childHeight) {
+                return childHeight;
+            }
         }
-        else if (node.previousSibling !== null) {
-            positionBreakPoint(node.previousSibling, breakHeight);
-        } else if (node.parentNode !== null) {
-            positionBreakPoint(node.parentNode, breakHeight);
-        }
-        return null;
-    };
-
-    const setBreakPoint = (element) => {
-        element.classList.add("pageBreak");
-        element.style.breakBefore = "always";
     };
 
     const findHeight = (node) => {
@@ -65,6 +62,7 @@ const ResumePage = (props) => {
             pageBreak.style.removeProperty("breakBefore");
             pageBreak.classList.remove("pageBreak");
         }
+        setBreakPosition(null);
     };
 
     const compareHeight = (maincontent, sidebar) => {
@@ -77,12 +75,18 @@ const ResumePage = (props) => {
         }
     }
 
+    //hardcoded value for max height of page in px. 
+    const heightLimit = 1000;
+    const [breakPosition, setBreakPosition] = useState();
+    const [pageHeight, setPageHeight] = useState(heightLimit);
+
     useEffect(() => {
         const newHeight = document.getElementById('ResumePage').clientHeight;
 
-        if (newHeight > 300) {
-            const heightLimit = 850;
-
+        if (newHeight > heightLimit) {
+            // console.log('pageBreak')
+            // console.log({heightLimit, breakPosition})
+            
             removePageBreak();
          
             const maincontent = document.getElementById('maincontent')
@@ -90,20 +94,26 @@ const ResumePage = (props) => {
 
             // Find if maincontent or sidebar is taller. Use the taller side to position the page break.
             const {tallest, shortest} = compareHeight(maincontent, sidebar);
-            const last = findLastNode(tallest)
-            const position = positionBreakPoint(last, heightLimit);
 
-            //TODO: what if I make a pageBreakComponent that is hidden and sits below the page and is the same width as the page
-            // Then when the pageBreak is set the css to the as above for the pdf, but this new element creates the visual effect in the preview.
-            console.log(position)
-  
-        } 
-        
-    }, [font, name, phone, email, website, desired_position, links, address, skills, work, education, sections]);
+            const position = positionBreakPoint(tallest, heightLimit);
+            
+            // protect against buggy very high break point.
+            if (position > 900) {
+                setBreakPosition(positionBreakPoint(tallest, heightLimit));
+            }
+
+            // console.log({tallest})
+
+        } else {
+            // console.log('blow break height:', newHeight)
+            removePageBreak();
+        }     
+    });
 
     return (
         <div id ="ResumePage" style={resumePageStyles} className="resumePage">
             {props.children}
+            <PageBreak breakPosition={breakPosition} pageHeight={pageHeight}/>
         </div>
     )
 };

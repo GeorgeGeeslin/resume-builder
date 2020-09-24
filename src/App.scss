@@ -130,13 +130,41 @@ $transitionTime: 0.1s;
         margin-left: -0.5in;
         content: " ";
         background-color: #FAFBFC;
-        box-shadow: inset 0 1px 3px rgba(0,0,0,0.12);
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.45);
     }
 }
+
+.pageBreakOverlay {
+    margin: 0;
+    padding-top: 0.5in;
+    &:before {
+        margin-bottom: 0.5in;
+        display: block;
+        width: 8.5in;
+        height: 5px;
+        margin-left: -0.5in;
+        content: " ";
+        background-color: #DFE1E6;
+        border-top: 1px solid rgba(0,0,0,0.35);
+        border-bottom: 1px solid rgba(0,0,0,0.3);
+        box-shadow: inset 0px 2px 5px -3px rgba(0,0,0,1),
+
+    }    
+}
+
+// .pageBreakOverlay {
+//     border-top: 1px solid black;
+//     margin-left: -0.5in;
+//     margin-right: -0.5in;
+// }
 
 // Only reason to have this in scss is to make use of media queries. 
 // If I do not end up making good use of media queries then I should bring these styles 
 // back into styled-components.
+.resumePage {
+    padding: 16px;
+    // min-height: 1015px;
+}
 // .resumePage {
 //     background-color: white;
 //     // full page size

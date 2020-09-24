@@ -2,8 +2,6 @@ export const initialState = {
     theme: 'default',
     font: 'Roboto',
     username: 'george.geeslin@gmail.com',
-    pageCount: 1,
-    height: 200,
     name: 'George Geeslin',  
     phone: '325-518-9738', 
     email: 'george.geeslin@gmail.com', 
@@ -29,7 +27,10 @@ export const initialState = {
     },
     skills: {
         addSkill: '',
-        skills: ["HTML5", "React", "CSS", "SCSS", "Bootstrap", "Responsive Design", "SQL", "JavaScript", "Node"],
+        skills: ["HTML5", "React", "CSS", "SCSS", "Bootstrap", "Responsive Design", "SQL", "JavaScript", "Node",
+        'adding', 'skills', 'to', 'increase', 'the', 'height', 'of', 'the', 'page', 'until', 'the', 'page', 'breaks',
+        'just', 'keep', 'adding', 'more', 'and', 'more', 'skills', 'to', 'this', 'list'
+        ],
     },
     work: [
         {

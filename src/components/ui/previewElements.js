@@ -16,7 +16,7 @@ export const PreviewBox = styled.div`
 export const PreviewWrapper = styled.div`
     box-sizing: border-box;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); 
-    background-color: #ccc;
+    background-color: #DFE1E6;
     font-size: 12px;
     width: 8.5in;
     min-height: 11in;
