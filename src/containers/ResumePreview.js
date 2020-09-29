@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
-import {PreviewBox, PreviewWrapper} from '../components/ui/previewElements';
+import {PreviewBox, PreviewWrapper, ResumeContent} from '../components/ui/previewElements';
 //Components
 import WorkExp from '../components/resumePreview/WorkExp';
 import BasicInfo from '../components/resumePreview/BasicInfo';
@@ -10,6 +10,7 @@ import Skills from '../components/resumePreview/Skills';
 import ResumePage from '../components/resumePreview/ResumePage';
 
 const ResumePreview = () => {
+
     const context = useContext(Context);
     const {name, phone, email} = context.resumeContent;
     const {role, profile} = context.resumeContent.desired_position;
@@ -29,6 +30,8 @@ const ResumePreview = () => {
         return <Edu key={index} index={index} school={school} degree={degree} major={major} dates={dates} freeform={freeform}/>
     });
 
+    // TODO: refactor styles to their own file.
+    // Note: Styles that must be sent to the backend pdf generator must be in-line. External CSS and Styled-Components will be lost.
     const sectionHeadLine = {
         color: "#0052CC",
         textTransform: "uppercase",
@@ -49,38 +52,36 @@ const ResumePreview = () => {
     };
 
     return (
-       <PreviewBox>
-           <PreviewWrapper>
+        <PreviewBox>
+            <PreviewWrapper>
                 <ResumePage>
-                        <div style={{display: 'flex'}}>
-                            {/*maincontent*/}
-                            <div id="maincontent" style={{display: 'block', width: '66%'}}>
-                                <div style={sectionSeparatorLarge}>
+                    <ResumeContent id="ResumeContent" style={{display: 'flex'}}>
+                        {/*maincontent*/}
+                        <div id="maincontent" style={{display: 'block', width: '66%'}}>
+                            <div style={sectionSeparatorLarge}>
                                 <BasicInfo name={name} phone={phone} email={email} role={role} profile={profile}/>                      
-                                </div>
-                                <h1 style={sectionHeadLine}>Experience</h1>
-                                {workComponents}
-
                             </div>
-                            {/*sidebar*/}
-                            <div id="sidebar" style={{width: '33%'}}>
-                                <div style={sectionSeparatorMedium}>
-                                    <Contact street1={street1}street2={street2}city={city}state={state}zip={zip}phone={phone}email={email}
-                                    facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}
-                                    />
-                                </div>
-                                <div style={sectionSeparatorSmall}>
-                                    <div style={sectionHeadLine}>Skills</div>
-                                    <Skills />
-                                </div>
-                                <div style={sectionHeadLine}>Education</div>
-                                {eduComponents}
-                            </div>                  
+                            <h1 style={sectionHeadLine}>Experience</h1>
+                            {workComponents}
                         </div>
-                    </ResumePage>
-           </PreviewWrapper>
-
-       </PreviewBox>
+                        {/*sidebar*/}
+                        <div id="sidebar" style={{width: '33%'}}>
+                            <div style={sectionSeparatorMedium}>
+                                <Contact street1={street1}street2={street2}city={city}state={state}zip={zip}phone={phone}email={email}
+                                    facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}
+                                />
+                            </div>
+                            <div style={sectionSeparatorSmall}>
+                                <div style={sectionHeadLine}>Skills</div>
+                                <Skills />
+                            </div>
+                            <div style={sectionHeadLine}>Education</div>
+                            {eduComponents}
+                        </div>                  
+                    </ResumeContent>
+                </ResumePage>
+            </PreviewWrapper>
+        </PreviewBox>
     )
 };
 

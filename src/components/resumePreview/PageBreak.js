@@ -1,16 +1,12 @@
 import React from 'react';
 
-const PageBreak = ({breakPosition, pageHeight}) => {
+const PageBreak = ({contentHeight, pageHeight, leeway}) => {
 
-    const position = (pageHeight - (breakPosition - 15)) * -1;
-    // const position = -100
-
-
-
+    const position = (contentHeight - pageHeight) * -1;
 
     return (
         <div>
-            { breakPosition &&
+            { contentHeight - leeway > pageHeight &&
                 <div className="pageBreakOverlay" style={{position: 'relative', top: position, breakBefore: "always"}}>
                 </div>
             }

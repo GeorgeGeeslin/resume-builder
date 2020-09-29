@@ -136,7 +136,7 @@ const App = () => {
     const fontFamilySecondary = `font-family: 'Roboto Slab', serif;`;
     const bodyStyle = fontFamily + `background-color: white; width: 8.5in; height: 11in; max-height: 11in; padding: 0.5in;"`;
 
-    let htmlString = document.getElementById("ResumePage").outerHTML.toString();
+    let htmlString = document.getElementById("ResumeContent").outerHTML.toString();
     htmlString = `<html><head><style>${fontImport}</style></head><body style=${bodyStyle}>` + htmlString + "</body></html>";
     const payload = JSON.stringify({data: htmlString});
 
