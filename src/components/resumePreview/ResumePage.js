@@ -38,9 +38,6 @@ const ResumePage = (props) => {
         }
     };
 
-    // 3rd page around 1782 clientHeight
-
-
     const leeway = 16 + 12;    // Resume Content padding + PageBreak height
     const pageHeight = 860;
 
@@ -61,7 +58,7 @@ const ResumePage = (props) => {
         if (contentHeight > pageHeight) {
         
             removePageBreak();
-            setResumeHeight(((pageHeight * pageCountLocal) + leeway) + "px");
+            setResumeHeight(((pageHeight * (pageCountLocal > 2 ? 2 : pageCountLocal)) + leeway) + "px");
 
             const node = document.getElementById('ResumeContent');
             setPageBreakOffsets(node, pageHeight);
