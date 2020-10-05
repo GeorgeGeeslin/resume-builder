@@ -1,14 +1,17 @@
 import React from 'react';
+import {PageBreakOverlay} from '../ui/previewElements';
 
 const PageBreak = ({contentHeight, pageHeight, leeway}) => {
+
+
 
     const position = (contentHeight - pageHeight) * -1;
 
     return (
         <div>
             { contentHeight - leeway > pageHeight &&
-                <div className="pageBreakOverlay" style={{position: 'relative', top: position, breakBefore: "always"}}>
-                </div>
+                <PageBreakOverlay className="pageBreakOverlay" style={{top: position}}>
+                </PageBreakOverlay>
             }
         </div>
     )

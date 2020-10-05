@@ -152,14 +152,15 @@ $transitionTime: 0.1s;
 //     }    
 // }
 
-.pageBreakOverlay {
-        height: 10px;
-        background-color: #DFE1E6;
-        border-top: 1px solid rgba(0,0,0,0.35);
-        border-bottom: 1px solid rgba(0,0,0,0.3);
-        box-shadow: inset 0px 2px 5px -3px rgba(0,0,0,1),
-}
+// .pageBreakOverlay {
+//         height: 10px;
+//         background-color: #DFE1E6;
+//         border-top: 1px solid rgba(0,0,0,0.35);
+//         border-bottom: 1px solid rgba(0,0,0,0.3);
+//         box-shadow: inset 0px 2px 5px -3px rgba(0,0,0,1),
+// }
 
+// Class gets elements that fall after the pagebreak and need to be moved down in the preview.
 .pageBreakOffset {
     position: relative;
     top: 48px; 

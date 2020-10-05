@@ -6,7 +6,7 @@ import ResumeEditor from './containers/ResumeEditor';
 import Nav from './components/Nav';
 import './App.scss';
 import {highlighterButtonParent, toggleSectionVisability} from './components/ui/elements';
-import {selectFont} from './components/ui/fonts';
+// import {selectFont} from './components/ui/fonts';
 
 
 const App = () => {
@@ -81,7 +81,7 @@ const App = () => {
     array[key] = nestedArray;
     
     dispatchInput({type: 'addNestedArrayItem', array});
-  }
+  };
 
   const addToSkillArray = (e) => {
     const {parent, key, inputKey, payload} = e;
@@ -93,7 +93,7 @@ const App = () => {
       obj[inputKey] = "";
       dispatchInput({type: 'addToSkillArray', obj});
     }
-  }
+  };
 
   const toggleBaseSection = (e) => {
     const {target, key} = e;
@@ -102,18 +102,19 @@ const App = () => {
     const parent = highlighterButtonParent(target);
     toggleSectionVisability(parent, sections[key]);
     dispatchInput({type: 'toggleBaseSection', sections});
-  }
+  };
 
   const inputEnterKey = (e, callback, args) => {
     if (e.keyCode === 13) {
       return callback(args);
     }
-  }
+  };
 
   const deleteSkill = (e) => {
     const {parent, key, index} = e;
     dispatchInput({type: 'deleteSkill', parent, key, index});
-  }
+  };
+
 
   //Get font selection for Resume Output... this needs to effect preview and downloads
   //selectFont

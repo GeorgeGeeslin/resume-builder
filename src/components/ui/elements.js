@@ -9,18 +9,12 @@ import ReactTooltip from "react-tooltip";
 //***Colors***/
 const primary = '#0052CC';
 const white = '#fff'
+const warningBG = '#FF5630';
 
-/*box shadow
-https://codepen.io/sdthornton/pen/wBZdXq
-.card-1 {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-}
 
-.card-1:hover {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-*/
+
+//TODO: This should be broken out into multiple files. 
+//Especailly the components that use the highlight parent functions.
 
 //***Basic Elements***/
 export const Grouper = styled.div`
@@ -69,6 +63,18 @@ export const Input = styled.input`
     box-sizing: border-box;
     color: #444;
     width: 100%;
+`;
+
+export const WarningMessage = styled.div`
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: ${warningBG};
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
 `;
 
 const Button = styled.div`
@@ -157,7 +163,7 @@ export const toggleSectionVisability = (section, visability) => {
         section.classList.remove('removeHighlight');
         section.classList.add('hidenSection')
     }
-}
+};
 
 // Simple React components wrapping Icons 
 export const Close = ({onClickFunc, label, highlightClass}) => {

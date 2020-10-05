@@ -1,8 +1,16 @@
-import React,  {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import PageBreak from './PageBreak';
+import Context from '../../context/Context';
 import {ResumePageWrapper} from '../ui/previewElements';
 
 const ResumePage = (props) => {
+
+    const context = useContext(Context);
+    const {baseInfoChange} = context;
+
+    const [resumeHeight, setResumeHeight] = useState();
+    const [contentHeight, setContentHeight] = useState();
+    const [contentOffset, setContentOffset] = useState();
 
     const setPageBreakOffsets = (node, pageHeight) => {
         if (node.hasChildNodes && node.nodeType === 1) {
@@ -30,29 +38,44 @@ const ResumePage = (props) => {
         }
     };
 
-    const [resumeHeight, setResumeHeight] = useState();
-    const [contentHeight, setContentHeight] = useState();
+    // 3rd page around 1782 clientHeight
+
 
     const leeway = 16 + 12;    // Resume Content padding + PageBreak height
-    const pageHeight = 925;
+    const pageHeight = 860;
 
     useEffect(() => {
         setContentHeight(document.getElementById('ResumeContent').clientHeight);
+        setContentOffset(document.getElementById('ResumeContent').offsetTop);
+    })
+
+    useEffect(() => {
+
+        const pageCountLocal = Math.ceil((contentHeight - contentOffset + (leeway + 10)) / pageHeight);
+
+        baseInfoChange({
+            payload: pageCountLocal,
+            name: "pageCount"
+        });
         
         if (contentHeight > pageHeight) {
         
             removePageBreak();
-            setResumeHeight(((893 * 2) + leeway) + "px");
+            setResumeHeight(((pageHeight * pageCountLocal) + leeway) + "px");
 
             const node = document.getElementById('ResumeContent');
             setPageBreakOffsets(node, pageHeight);
 
         } else {
-            console.log("hello")
             removePageBreak();
-            setResumeHeight('893px');
+            setResumeHeight(pageHeight + "px");
         }     
-    });
+    }, [contentHeight]);
+
+      // const setPageCount = (clientHeight, pageHeight, leeway) => {
+  //   const pageCount = Math.ceil((clientHeight + leeway) / pageHeight);
+  //   dispatchInput({type: 'setPageCount', pageCount});
+  // }
 
     return (
         <ResumePageWrapper theme={{ height: resumeHeight}}>
