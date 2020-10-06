@@ -28,10 +28,7 @@ export const initialState = {
     },
     skills: {
         addSkill: '',
-        skills: ["HTML5", "React", "CSS", "SCSS", "Bootstrap", "Responsive Design", "SQL", "JavaScript", "Node",
-        'adding', 'skills', 'to', 'increase', 'the', 'height', 'of', 'the', 'page', 'until', 'the', 'page', 'breaks',
-        'just', 'keep', 'adding', 'more', 'and', 'more', 'skills', 'to', 'this', 'list'
-        ],
+        skills: ["HTML5", "React", "CSS", "SCSS", "Bootstrap", "Responsive Design", "SQL", "JavaScript", "Node"],
     },
     work: [
         {

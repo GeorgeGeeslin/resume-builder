@@ -8,7 +8,6 @@ import './App.scss';
 import {highlighterButtonParent, toggleSectionVisability} from './components/ui/elements';
 // import {selectFont} from './components/ui/fonts';
 
-
 const App = () => {
 
   const [stateInput, dispatchInput] = useReducer(InputReducer.InputReducer, InputReducer.initialState);
@@ -135,7 +134,7 @@ const App = () => {
     const fontImportSecondary = "@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;531;600;700;800;900&display=swap');";
     const fontFamily = `"font-family: 'Roboto', sans-serif;`;
     const fontFamilySecondary = `font-family: 'Roboto Slab', serif;`;
-    const bodyStyle = fontFamily + `background-color: white; width: 8.5in; height: 11in; max-height: 11in; padding: 0.5in;"`;
+    const bodyStyle = fontFamily + `background-color: white; width: 8.5in; height: 11in; max-height: 11in;"`;
 
     let htmlString = document.getElementById("ResumeContent").outerHTML.toString();
     htmlString = `<html><head><style>${fontImport}</style></head><body style=${bodyStyle}>` + htmlString + "</body></html>";

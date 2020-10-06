@@ -28,9 +28,7 @@ export const ResumePageWrapper = styled.div`
 
 export const ResumeContent = styled.div`
     padding: 16px;
-    // min-height: 893px; // 925 (overall height) - top and bottom padding
     min-height: 850px;
-
 `;
 
 export const PageBreakOverlay = styled.div`
