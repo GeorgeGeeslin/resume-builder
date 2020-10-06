@@ -8,7 +8,7 @@ const ResumeEditor = () => {
 
     return (
         <div style={{display: 'flex', backgroundColor: '#DFE1E6'}}>
-          {/* <PageCountWarning /> */}  
+            <PageCountWarning /> 
             <ResumeInput />
             <ResumePreview />
         </div>
