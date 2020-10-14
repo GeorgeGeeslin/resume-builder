@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Context from '../../context/Context';
-import {FlexGroup, Input, DateClose, AddDate} from '../ui/elements';
+import {FlexGroup, DatePicker, DateClose, AddDate} from '../ui/elements';
 import ReactTooltip from "react-tooltip";
 
 
@@ -11,10 +11,10 @@ const DateRangeInput = ({dates, parentIndex, parent}) => {
 
     const dateInput = dates.map((date, index) => {
         return (
-            <FlexGroup key={index} style={{width: '44%'}}>
+            <FlexGroup key={index} style={{width: '50%'}}>
                 <div style={{width: '50%', marginRight: '1em'}}>
                     <label htmlFor={"dateStart"+parent+parentIndex+'-'+index}>Start Date</label>
-                    <Input type="text" name="start" value={date.start} 
+                    <DatePicker type="date" name="start" value={date.start} 
                         id={"dateStart"+parent+parentIndex+'-'+index} data-parent="work" data-parent-index={parentIndex}data-key="dates" 
                         data-index={index} onChange={nestedArrayInfoChange}
                     />
@@ -34,7 +34,7 @@ const DateRangeInput = ({dates, parentIndex, parent}) => {
                         />
                     }
                     <ReactTooltip /> 
-                    <Input type="text" name="end" value={date.end} 
+                    <DatePicker type="date" name="end" value={date.end} 
                         id={"dateEnd"+parent+parentIndex+'-'+index} data-parent="work" data-parent-index={parentIndex}data-key="dates" 
                         data-index={index} onChange={nestedArrayInfoChange}
                     />

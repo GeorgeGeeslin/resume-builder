@@ -65,6 +65,18 @@ export const Input = styled.input`
     width: 100%;
 `;
 
+export const DatePicker = styled.input`
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #444;
+    margin: 0px;
+    padding: 8px 4px;
+    width: 100%;
+
+`;
+
 export const WarningMessage = styled.div`
     position: fixed;
     z-index: 100;
@@ -200,7 +212,7 @@ export const AddDate = ({onClickFunc}) => {
     return (
         <div onClick={onClickFunc} data-tip="Add an additional date range."
             data-background-color='#008DA6'
-            style={{display: 'flex', alignItems: 'flex-end', justifyContent: 'center', padding: '10px 10px'}}>
+            style={{display: 'flex', alignItems: 'flex-end', justifyContent: 'center', padding: '10px 4px', marginLeft: '14px'}}>
             <IconContext.Provider value={{size: '1.3em', style: {width: '100%'}}}>
                 <GrAddCircle />
             </IconContext.Provider>    

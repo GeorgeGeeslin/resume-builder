@@ -34,13 +34,13 @@ export const initialState = {
         {
             employer: "Frontline",
             title: "Senior Report Developer",
-            dates: [{start: "Dec 2014", end: "Dec 2018"},{start: "Dec 2019", end: "Dec 2020"}],
+            dates: [{start: "2014-12-01", end: "2018-12-04"}],
             experience: "<p>test</p>"
         }, 
         {
             employer: "Abilene Tech",
             title: "SysAdmin",
-            dates: [{start: "Nov 2011", end: "Aug 2013"}],
+            dates: [{start: "2011-11-01", end: "2013-08-01"}],
             experience: "<p>hello</p>"
         }
     ],
@@ -48,7 +48,7 @@ export const initialState = {
         school: "Texas Tech",
         degree: "BA",
         major: "Advertising",
-        dates: [{start: '2006', end: '2010'}],
+        dates: [{start: '2006-01-01', end: '2010-05-01'}],
         gpa: "3.2",
         freeform: ""
     }],
