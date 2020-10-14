@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import Context from '../../context/Context';
  
-const BasicInfo = ({name, role}) => {
+const BasicInfo = ({name, role, profile}) => {
 
+    const context = useContext(Context);
+    const {desired_position} = context.resumeContent.sections;
+
+    //in-line styles required for html payload.
     const veryLargeText = {
         width: '100%',
         marginBottom: '1rem',
@@ -17,7 +22,16 @@ const BasicInfo = ({name, role}) => {
     return(
         <div>
             <div style={veryLargeText}>{name}</div>
-            <div style={largeText}>{role}</div>
+            { desired_position &&
+                <div>
+                    { role && <div style={largeText}>{role}</div> }
+                    { profile && 
+                        <div>
+                            <p><span style={{fontSize: '16px', fontWeight: 'bold'}}>Profile:</span><br></br>{profile}</p>
+                        </div> 
+                    }
+                </div>
+            }
         </div>
     )
 };

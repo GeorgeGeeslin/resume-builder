@@ -39,6 +39,7 @@ const ResumePreview = () => {
         fontSize: "16px"
     };
 
+/*
     const sectionSeparatorLarge = {
         paddingBottom: '4em'
     };
@@ -46,6 +47,7 @@ const ResumePreview = () => {
     const sectionSeparatorMedium = {
         paddingBottom: '3em'
     };
+*/    
 
     const sectionSeparatorSmall = {
         paddingBottom: '1.5em'
@@ -57,8 +59,8 @@ const ResumePreview = () => {
                 <ResumePage>
                     <ResumeContent id="ResumeContent" style={{display: 'flex'}}>
                         {/*maincontent*/}
-                        <div id="maincontent" style={{display: 'block', width: '66%'}}>
-                            <div style={sectionSeparatorLarge}>
+                        <div id="maincontent" style={{display: 'block', width: '66%', marginRight: "2rem"}}>
+                            <div style={sectionSeparatorSmall}>
                                 <BasicInfo name={name} phone={phone} email={email} role={role} profile={profile}/>                      
                             </div>
                             <h1 style={sectionHeadLine}>Experience</h1>
@@ -66,7 +68,7 @@ const ResumePreview = () => {
                         </div>
                         {/*sidebar*/}
                         <div id="sidebar" style={{width: '33%'}}>
-                            <div style={sectionSeparatorMedium}>
+                            <div style={sectionSeparatorSmall}>
                                 <Contact street1={street1}street2={street2}city={city}state={state}zip={zip}phone={phone}email={email}
                                     facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}
                                 />

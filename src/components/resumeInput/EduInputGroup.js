@@ -14,7 +14,7 @@ const EduInputGroup = ({eduInputArray, addArrayItem}) => {
                             school: "",
                             major: "",
                             degree: "",
-                            date: "",
+                            dates: [{start: "", end: ""}],
                             freeform: ""
                         },
                         key: 'education'

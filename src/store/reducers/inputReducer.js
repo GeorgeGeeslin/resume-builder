@@ -9,14 +9,14 @@ export const initialState = {
     website: 'georgegeeslin.com',
     desired_position: {
         role: 'Full Stack Developer',
-        profile: 'Hi you should hire me',
+        profile: 'Senior report developer interested in transitioning to Full-Stack development. Well versed in the React ecosystem, and quick to adopt and master new technologies.',
     },
     links: {
         facebook: '',
         twitter: '',
         linkedin: '',
-        github: '',
-        portfolio:'',
+        github: 'www.github.com/georgegeeslin.com',
+        portfolio:'www.georgegeeslin.com',
         otherLink: ''
     },
     address: {
