@@ -27,7 +27,7 @@ const BasicInfo = ({name, role, profile}) => {
                     { role && <div style={largeText}>{role}</div> }
                     { profile && 
                         <div>
-                            <p><span style={{fontSize: '16px', fontWeight: 'bold'}}>Profile:</span><br></br>{profile}</p>
+                            <p><span style={{fontSize: '16px', fontWeight: 'bold', display:'block', paddingBottom: '0.5em'}}>Profile:</span>{profile}</p>
                         </div> 
                     }
                 </div>
