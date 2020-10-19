@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import {FlexGroup, Input, Close, SubsectionHeader, ItemGrouper} from '../ui/elements';
+import {FlexGroup, Input, Close, SubsectionHeader, ItemGrouper, CurrentCheckbox} from '../ui/elements';
 import DateRangeInput from './DateRangeInput';
 import {modules} from '../ui/quill-config';
 
-const WorkExpInput = ({employer, title, dates, experience, index, arrayInfoChange, deleteArrayItem}) => {
+const WorkExpInput = ({employer, title, dates, experience, index, arrayInfoChange, deleteArrayItem, current}) => {
     const key = 'work'
     const parentIndex = index;
 
@@ -43,7 +43,17 @@ const WorkExpInput = ({employer, title, dates, experience, index, arrayInfoChang
                     />  
                 </div>  
             </FlexGroup>
-            <DateRangeInput dates={dates} parentIndex={parentIndex} parent='work'/>
+            <FlexGroup>
+                <CurrentCheckbox label="Currently Employed Here?" value={current} onClickFunc={(e) => arrayInfoChange(
+                    {
+                        payload: !current,
+                        key: "work",
+                        index,
+                        name: "current"
+                    }
+                )}/>
+            </FlexGroup>
+            <DateRangeInput dates={dates} parentIndex={parentIndex} parent='work' current={current}/>
             <div style={{padding: '0.25em'}}>
                 <label htmlFor="workDesc">Details</label>        
                 <ReactQuill value={experience} 

@@ -35,13 +35,15 @@ export const initialState = {
             employer: "Frontline",
             title: "Senior Report Developer",
             dates: [{start: "2014-12-01", end: "2018-12-04"}],
-            experience: "<p>test</p>"
+            experience: "<p>test</p>",
+            current: false
         }, 
         {
             employer: "Abilene Tech",
             title: "SysAdmin",
             dates: [{start: "2011-11-01", end: "2013-08-01"}],
-            experience: "<p>hello</p>"
+            experience: "<p>hello</p>",
+            current: false
         }
     ],
     education: [{
@@ -50,7 +52,8 @@ export const initialState = {
         major: "Advertising",
         dates: [{start: '2006-01-01', end: '2010-05-01'}],
         gpa: "3.2",
-        freeform: ""
+        freeform: "",
+        current: false
     }],
     sections: {
         desired_position: true,

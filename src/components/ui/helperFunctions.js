@@ -10,12 +10,16 @@ export const concatLine = (seperator, ...args) => {
     }); 
 };
 
-export const concatDateRage = (dates) => {
-    const dateDisplay = dates.map((date, index) => {    
+export const concatDateRage = (dates, current) => {
+    const dateDisplay = dates.map((date, index) => { 
+        const startDate = date.start ? formatDate(date.start) : "";
+        const endDate = index === 0 && current ? "Present" 
+            : date.end ? formatDate(date.end) : "";
+        
         if (index >= dates.length - 1) {
-            return <span key={index}>{concatLine(' - ', formatDate(date.start), formatDate(date.end))}</span>
+            return <span key={index}>{concatLine(' - ', startDate, endDate)}</span>
         } else {
-            return <span key={index}>{concatLine(' - ', formatDate(date.start), formatDate(date.end)) + " | "}</span>
+            return <span key={index}>{concatLine(' - ', startDate, endDate) + " | "}</span>
         }        
     })
     return dateDisplay;

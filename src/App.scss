@@ -3,11 +3,13 @@
 Downloaded Fonts:
 Roboto
 Roboto Slab
+Abril Fatface (masthead)
 */
 // @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;531;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 
 
 $tablet: 768px;
@@ -56,6 +58,15 @@ body {
     color: #444;
     margin: 0px;
 
+}
+
+#logo {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 30px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    padding-left: 1em;
 }
 
 //Highlighting Parent Elements

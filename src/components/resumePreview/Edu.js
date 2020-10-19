@@ -1,11 +1,11 @@
 import React from 'react';
 import {concatLine, concatDateRage} from '../ui/helperFunctions';
 
-const Edu = ({index, school, degree, major, dates, custom}) => {
+const Edu = ({index, school, degree, major, dates, custom, current}) => {
 
     const line1 = concatLine(' in ', degree, major,);
 
-    const dateDisplay = concatDateRage(dates);
+    const dateDisplay = concatDateRage(dates, current);
 
     return (
         <div>

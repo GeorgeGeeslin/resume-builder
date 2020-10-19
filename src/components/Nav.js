@@ -15,7 +15,8 @@ const Nav = () => {
 
     return (
         <Navbar>
-            <button onClick={requestPDF}>puppet test</button>
+            <span id="logo">Resume Writer</span>
+           { /* <button onClick={requestPDF}>puppet test</button> */ }
         </Navbar>
     )
 }

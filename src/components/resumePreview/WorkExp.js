@@ -1,9 +1,9 @@
 import React from 'react';
 import {concatDateRage} from '../ui/helperFunctions';
 
-const WorkExp = ({index, employer, title, dates, experience}) => {
+const WorkExp = ({index, employer, title, dates, experience, current}) => {
 
-    const dateDisplay = concatDateRage(dates);
+    const dateDisplay = concatDateRage(dates, current);
 
     return (
         <div>

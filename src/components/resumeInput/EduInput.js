@@ -2,11 +2,11 @@ import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import DateRangeInput from './DateRangeInput';
-import {FlexGroup, Input, Close, SubsectionHeader, ItemGrouper} from '../ui/elements';
+import {FlexGroup, Input, Close, SubsectionHeader, ItemGrouper, CurrentCheckbox} from '../ui/elements';
 import {modules} from '../ui/quill-config';
 import ReactTooltip from "react-tooltip";
 
-const EduInput = ({ school, major, degree, dates, gpa, freeform, index, arrayInfoChange, deleteArrayItem}) => {
+const EduInput = ({ school, major, degree, dates, gpa, freeform, index, arrayInfoChange, deleteArrayItem, current}) => {
     const key = 'education';
     const parentIndex = index;
 
@@ -66,7 +66,17 @@ const EduInput = ({ school, major, degree, dates, gpa, freeform, index, arrayInf
                     )}/>
                 </div> 
             </FlexGroup>
-            <DateRangeInput dates={dates} parentIndex={parentIndex} parent='education'/>   
+            <FlexGroup>
+                <CurrentCheckbox label="Currently Enrolled Here?" value={current} onClickFunc={(e) => arrayInfoChange(
+                    {
+                        payload: !current,
+                        key,
+                        index,
+                        name: "current"
+                    }
+                )}/>
+            </FlexGroup>
+            <DateRangeInput dates={dates} parentIndex={parentIndex} parent='education' current={current}/>   
             <div style={{padding: '0.25em'}}>
                 <label htmlFor="customEdu">Custom Text</label>
                 <ReactQuill value={freeform} 

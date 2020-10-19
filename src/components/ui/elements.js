@@ -277,6 +277,15 @@ export const Skill = ({onClickFunc, skill, label, highlightClass}) => {
     )
 }
 
+export const CurrentCheckbox = ({label, value, onClickFunc}) => {
+    return (
+        <div style={{marginTop: '1em', marginBottom: '0.5em'}}>
+            <label htmlFor="current" style={{marginRight: '1em'}}>{label}</label>
+            <input type="checkbox" name="current" checked={value} onClick={onClickFunc} />
+        </div>
+    )
+}
+
 
 
 

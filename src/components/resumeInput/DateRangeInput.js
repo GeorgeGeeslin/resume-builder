@@ -4,18 +4,19 @@ import {FlexGroup, DatePicker, DateClose, AddDate} from '../ui/elements';
 import ReactTooltip from "react-tooltip";
 
 
-const DateRangeInput = ({dates, parentIndex, parent}) => {
+const DateRangeInput = ({dates, parentIndex, parent, current}) => {
 
     const context = useContext(Context);
     const { nestedArrayInfoChange, deleteNestedArrayItem, addNestedArrayItem } = context;
 
     const dateInput = dates.map((date, index) => {
+        const disabled = index === 0 && current === true ? true : false;
         return (
-            <FlexGroup key={index} style={{width: '50%'}}>
+            <FlexGroup key={index} style={{width: '85%'}}>
                 <div style={{width: '50%', marginRight: '1em'}}>
                     <label htmlFor={"dateStart"+parent+parentIndex+'-'+index}>Start Date</label>
                     <DatePicker type="date" name="start" value={date.start} 
-                        id={"dateStart"+parent+parentIndex+'-'+index} data-parent="work" data-parent-index={parentIndex}data-key="dates" 
+                        id={"dateStart"+parent+parentIndex+'-'+index} data-parent={parent} data-parent-index={parentIndex}data-key="dates" 
                         data-index={index} onChange={nestedArrayInfoChange}
                     />
                 </div>
@@ -35,8 +36,9 @@ const DateRangeInput = ({dates, parentIndex, parent}) => {
                     }
                     <ReactTooltip /> 
                     <DatePicker type="date" name="end" value={date.end} 
-                        id={"dateEnd"+parent+parentIndex+'-'+index} data-parent="work" data-parent-index={parentIndex}data-key="dates" 
+                        id={"dateEnd"+parent+parentIndex+'-'+index} data-parent={parent} data-parent-index={parentIndex}data-key="dates" 
                         data-index={index} onChange={nestedArrayInfoChange}
+                        disabled={disabled}
                     />
                 </div>
             </FlexGroup>
@@ -57,5 +59,5 @@ const DateRangeInput = ({dates, parentIndex, parent}) => {
     )
 };
 
-export default DateRangeInput
+export default DateRangeInput;
 
