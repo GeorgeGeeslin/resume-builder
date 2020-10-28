@@ -15,12 +15,12 @@ const ResumeInput = () => {
     const addArrayItem = context.addArrayItem;
 
     const workExpInputArray = work.map((item, index) => {
-        const { employer, title, dates, experience, current } = context.resumeContent.work[index];
+        const { employer, title, dates, experience, current, city, state } = context.resumeContent.work[index];
         const { arrayInfoChange, deleteArrayItem } = context;
         return (
             <WorkExpInput employer={employer}title={title}dates={dates}
                 experience={experience}index={index}key={index}arrayInfoChange={arrayInfoChange}
-                deleteArrayItem={deleteArrayItem}current={current}
+                deleteArrayItem={deleteArrayItem}current={current}city={city}state={state}
             />
         ) 
     });

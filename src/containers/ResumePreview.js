@@ -21,8 +21,8 @@ const ResumePreview = () => {
 
 
     const workComponents = work.map((item, index) => {
-        const {employer, title, dates, experience, current} = work[index];
-        return <WorkExp key={index} index={index} employer={employer} title={title} dates={dates} experience={experience} current={current}/>
+        const {employer, title, dates, experience, current, city, state} = work[index];
+        return <WorkExp key={index} index={index} employer={employer} title={title} dates={dates} experience={experience} current={current} city={city} state={state}/>
     });
 
     const eduComponents = education.map((item, index) => {

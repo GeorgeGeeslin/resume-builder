@@ -65,6 +65,17 @@ export const Input = styled.input`
     width: 100%;
 `;
 
+export const Select = styled.select`
+    padding: 8px 10px;
+    margin: 0px;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #444;
+    width: 100%;
+`;
+
 export const DatePicker = styled.input`
     display: block;
     border: 1px solid #ccc;

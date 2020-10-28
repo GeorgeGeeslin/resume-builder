@@ -35,15 +35,19 @@ export const initialState = {
             employer: "Frontline",
             title: "Senior Report Developer",
             dates: [{start: "2014-12-01", end: "2018-12-04"}],
-            experience: "<p>test</p>",
-            current: false
+            experience: "<ul><li>Sole developer for full-stack project using React, Redux, DreamFactory and PostgreSQL to create a searchable and filterable catalog to provide users with detailed information about the over 600 reports available within our product.</li><li>Developed features for an SPA built in AngularJS with a Spring Boot back end.</li><li>Created data integration tools written in Java and Groovy to automate the flow of data between our production databases and databases used by our clients 3rd party appplications.</li><li>Developed stored procedures, views, functions and queries for several flavors of SQL including DB2, SQL Server, PostgreSQL and Oracle</li><li>Created reports and dashboards</li><li>Reduced client downtime by troubeshooting reports and optimizing SQL</li></ul>",
+            current: false,
+            city: "Austin",
+            state: "TX"
         }, 
         {
             employer: "Abilene Tech",
-            title: "SysAdmin",
+            title: "Network Administrator",
             dates: [{start: "2011-11-01", end: "2013-08-01"}],
-            experience: "<p>hello</p>",
-            current: false
+            experience: "<ol><li>Managed IT systems of multiple small and midsize business clients.</li><li>Administered Active Directory, Group Policy and MMS Exchange</li><li>Used virtulization technologies including VMWare Hyper-V, ESX, and Veeam to provide robust and flexible server infrastructure.</li><li>Configured and maintained networking infrastructure including firewalls, routers, and switches</li><li>Manged IT assests such as domains, SSL certs, leased hardware and software licenses.</li></ol>",
+            current: false,
+            city: "Abilene",
+            state: "TX"
         }
     ],
     education: [{

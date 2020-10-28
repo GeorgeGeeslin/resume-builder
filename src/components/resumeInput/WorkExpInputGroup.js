@@ -15,7 +15,9 @@ const WorkExpInputGroup = ({workExpInputArray, addArrayItem}) => {
                             title: "",
                             dates: [{start: "", end: ""}],
                             experience: "",
-                            current: false
+                            current: false,
+                            city: "",
+                            state: ""
                         },
                         key: 'work'
                     }
