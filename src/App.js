@@ -135,10 +135,13 @@ const App = () => {
     const fontFamily = `"font-family: 'Roboto', sans-serif;`;
     const fontFamilySecondary = `font-family: 'Roboto Slab', serif;`;
     const bodyStyle = fontFamily + `background-color: white; width: 8.5in; height: 11in; max-height: 11in;"`;
+    const workDescLineHeight = '<style> .workDesc ul li {line-height: 1.5rem;} .workDesc ol li {line-height: 1.5rem;} .workDesc p {line-height: 1.5rem;}</style>'
 
     let htmlString = document.getElementById("ResumeContent").outerHTML.toString();
-    htmlString = `<html><head><style>${fontImport}</style></head><body style=${bodyStyle}>` + htmlString + "</body></html>";
+    htmlString = `<html><head><style>${fontImport}</style>${workDescLineHeight}</head><body style=${bodyStyle}>` + htmlString + "</body></html>";
     const payload = JSON.stringify({data: htmlString});
+
+    console.log(htmlString)
 
       fetch('http://localhost:3000/pdf', {
           body: payload,

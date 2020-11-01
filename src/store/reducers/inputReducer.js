@@ -48,6 +48,15 @@ export const initialState = {
             current: false,
             city: "Abilene",
             state: "TX"
+        },
+        {
+            employer: "Wavecreste",
+            title: "IT Analyst",
+            dates: [{start: "2010-01-01", end: "2011-01-11"}],
+            experience: "<ul><li>Led effort to identify and resolve bugs which were severly impacting an internal enterprise system for AT&T which was currently in beta</li><li>Reduced failure rate from 70% during the testing phase to less than half a precent before general release.</li><li>Identified bugs and their interactions across multiple connected APIs</li><li>Developed a deep seated hate for self strangling bureaucracy and the middling managers that sustain it.</li><li>Learned that large organizations are not for me</li></ul>",
+            current: false,
+            city: "Abilene",
+            state: "TX"
         }
     ],
     education: [{

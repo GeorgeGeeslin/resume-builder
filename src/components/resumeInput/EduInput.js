@@ -78,6 +78,7 @@ const EduInput = ({ school, major, degree, dates, gpa, freeform, index, arrayInf
             </FlexGroup>
             <DateRangeInput dates={dates} parentIndex={parentIndex} parent='education' current={current}/>   
             <div style={{padding: '0.25em'}}>
+            {/*
                 <label htmlFor="customEdu">Custom Text</label>
                 <ReactQuill value={freeform} 
                     theme="snow"
@@ -91,6 +92,7 @@ const EduInput = ({ school, major, degree, dates, gpa, freeform, index, arrayInf
                             name: "freeform"
                         }
                 )}/>
+                    */}
             </div>
             <ReactTooltip /> 
         </ItemGrouper>

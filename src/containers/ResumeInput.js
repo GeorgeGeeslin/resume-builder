@@ -37,7 +37,7 @@ const ResumeInput = () => {
     });
 
     return (
-        <div style={{width: '40%', borderTop: '1px solid #444', borderRight: '1px solid #444', padding: '1em', overflowY: 'auto', height: '100vh'}}>
+        <div style={{width: '35%', borderTop: '1px solid #444', borderRight: '1px solid #444', padding: '1em', overflowY: 'auto', height: '100vh'}}>
             <PersonalInfoInput />
             <WorkExpInputGroup workExpInputArray={workExpInputArray} addArrayItem={addArrayItem}/>
             <EduInputGroup eduInputArray={eduInputArray} addArrayItem={addArrayItem} />

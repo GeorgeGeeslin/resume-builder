@@ -26,8 +26,8 @@ const ResumePreview = () => {
     });
 
     const eduComponents = education.map((item, index) => {
-        const {school, degree, major, dates, freeform} = education[index]; 
-        return <Edu key={index} index={index} school={school} degree={degree} major={major} dates={dates} freeform={freeform}/>
+        const {school, degree, major, dates, freeform, gpa, current} = education[index]; 
+        return <Edu key={index} index={index} school={school} degree={degree} major={major} dates={dates} freeform={freeform} gpa={gpa} current={current}/>
     });
 
     // TODO: refactor styles to their own file.
@@ -36,7 +36,7 @@ const ResumePreview = () => {
         color: "#0052CC",
         textTransform: "uppercase",
         fontWeight: "bold",
-        fontSize: "16px"
+        fontSize: "18px"
     };
 
 /*
@@ -57,17 +57,17 @@ const ResumePreview = () => {
         <PreviewBox>
             <PreviewWrapper>
                 <ResumePage>
-                    <ResumeContent id="ResumeContent" style={{display: 'flex'}}>
+                    <ResumeContent id="ResumeContent" style={{display: 'flex', minWidth: '8.5in', maxWidth: '8.5in'}}>
                         {/*maincontent*/}
-                        <div id="maincontent" style={{display: 'block', width: '66%', marginRight: "2rem"}}>
+                        <div id="maincontent" style={{display: 'block', width: '75%', marginRight: "2rem"}}>
                             <div style={sectionSeparatorSmall}>
                                 <BasicInfo name={name} phone={phone} email={email} role={role} profile={profile}/>                      
                             </div>
-                            <h1 style={sectionHeadLine}>Experience</h1>
+                            <div style={sectionHeadLine}>Experience</div>
                             {workComponents}
                         </div>
                         {/*sidebar*/}
-                        <div id="sidebar" style={{width: '33%'}}>
+                        <div id="sidebar" style={{width: '25%'}}>
                             <div style={sectionSeparatorSmall}>
                                 <Contact street1={street1}street2={street2}city={city}state={state}zip={zip}phone={phone}email={email}
                                     facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}
