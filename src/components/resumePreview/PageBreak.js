@@ -5,7 +5,7 @@ const PageBreak = ({contentHeight, pageHeight, leeway}) => {
 
 
 
-    const position = (contentHeight - pageHeight) * -1;
+    const position = (contentHeight - pageHeight - 48 /*page margin*/) * -1;
 
     return (
         <div>

@@ -12,7 +12,7 @@ import ResumePage from '../components/resumePreview/ResumePage';
 const ResumePreview = () => {
 
     const context = useContext(Context);
-    const {name, phone, email} = context.resumeContent;
+    const {name, phone, email, resumeHeight} = context.resumeContent;
     const {role, profile} = context.resumeContent.desired_position;
     const work = context.resumeContent.work;
     const education = context.resumeContent.education;
@@ -57,7 +57,7 @@ const ResumePreview = () => {
         <PreviewBox>
             <PreviewWrapper>
                 <ResumePage>
-                    <ResumeContent id="ResumeContent" style={{display: 'flex', minWidth: '8.5in', maxWidth: '8.5in'}}>
+                    <ResumeContent id="ResumeContent" style={{display: 'flex', minWidth: '8.5in', maxWidth: '8.5in'}} theme={{height: resumeHeight}}>
                         {/*maincontent*/}
                         <div id="maincontent" style={{display: 'block', width: '75%', marginRight: "2rem"}}>
                             <div style={sectionSeparatorSmall}>

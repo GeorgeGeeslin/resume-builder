@@ -21,13 +21,15 @@ export const PreviewWrapper = styled.div`
     min-width: 9in;
 `;
 
+
 export const ResumePageWrapper = styled.div`
-    height: ${props => props.theme.height},
-    min-width: '9in';
+    // height: ${props => props.theme.height},
+    // min-width: '9in';
 `;
 
 export const ResumeContent = styled.div`
-    padding: 16px;
+    height: ${props => props.theme.height};
+    padding: 0.5in;
     min-height: 850px;
     min-width: 8.5in;
     max-width: 8.5in;
@@ -41,7 +43,15 @@ export const PageBreakOverlay = styled.div`
     background-color: #DFE1E6;
     border-top: 1px solid rgba(0,0,0,0.35);
     border-bottom: 1px solid rgba(0,0,0,0.3);
-    box-shadow: inset 0px 2px 5px -3px rgba(0,0,0,1),
+    box-shadow: inset 0px 2px 5px -3px rgba(0,0,0,1);
+    &:before {
+        display:block;
+        position: relative;
+        top: -0.5in;
+        content: "";
+        background-color: white;
+        padding-top: 0.5in;
+    }
 `;
 
 export const WorkDesc = styled.div`

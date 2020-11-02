@@ -174,7 +174,7 @@ $transitionTime: 0.1s;
 // Class gets elements that fall after the pagebreak and need to be moved down in the preview.
 .pageBreakOffset {
     position: relative;
-    top: 48px; 
+    top: 108px; /*half inch for bottom and first page and half inch for top of second page and 12 for page break */ 
 }
 
 .resumeOverflow {

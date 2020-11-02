@@ -2,6 +2,7 @@ export const initialState = {
     theme: 'default',
     font: 'Roboto',
     pageCount: 1,
+    resumeHeight: 890,
     username: 'george.geeslin@gmail.com',
     name: 'George Geeslin',  
     phone: '325-518-9738', 
