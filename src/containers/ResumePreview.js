@@ -57,29 +57,31 @@ const ResumePreview = () => {
         <PreviewBox>
             <PreviewWrapper>
                 <ResumePage>
-                    <ResumeContent id="ResumeContent" style={{display: 'flex', minWidth: '8.5in', maxWidth: '8.5in'}} theme={{height: resumeHeight}}>
-                        {/*maincontent*/}
-                        <div id="maincontent" style={{display: 'block', width: '75%', marginRight: "2rem"}}>
-                            <div style={sectionSeparatorSmall}>
-                                <BasicInfo name={name} phone={phone} email={email} role={role} profile={profile}/>                      
+                    <ResumeContent id="ResumeContent" style={{minWidth: '8.5in', maxWidth: '8.5in'}} theme={{height: resumeHeight}}>
+                        <div id="contentHolder" style={{display: "flex"}}>
+                            {/*maincontent*/}
+                            <div id="maincontent" style={{display: 'block', width: '75%', marginRight: "2rem"}}>
+                                <div style={sectionSeparatorSmall}>
+                                    <BasicInfo name={name} phone={phone} email={email} role={role} profile={profile}/>                      
+                                </div>
+                                <div style={sectionHeadLine}>Experience</div>
+                                {workComponents}
                             </div>
-                            <div style={sectionHeadLine}>Experience</div>
-                            {workComponents}
-                        </div>
-                        {/*sidebar*/}
-                        <div id="sidebar" style={{width: '25%'}}>
-                            <div style={sectionSeparatorSmall}>
-                                <Contact street1={street1}street2={street2}city={city}state={state}zip={zip}phone={phone}email={email}
-                                    facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}
-                                />
-                            </div>
-                            <div style={sectionSeparatorSmall}>
-                                <div style={sectionHeadLine}>Skills</div>
-                                <Skills />
-                            </div>
-                            <div style={sectionHeadLine}>Education</div>
-                            {eduComponents}
-                        </div>                  
+                            {/*sidebar*/}
+                            <div id="sidebar" style={{width: '25%'}}>
+                                <div style={sectionSeparatorSmall}>
+                                    <Contact street1={street1}street2={street2}city={city}state={state}zip={zip}phone={phone}email={email}
+                                        facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}
+                                    />
+                                </div>
+                                <div style={sectionSeparatorSmall}>
+                                    <div style={sectionHeadLine}>Skills</div>
+                                    <Skills />
+                                </div>
+                                <div style={sectionHeadLine}>Education</div>
+                                {eduComponents}
+                            </div> 
+                        </div>                 
                     </ResumeContent>
                 </ResumePage>
             </PreviewWrapper>

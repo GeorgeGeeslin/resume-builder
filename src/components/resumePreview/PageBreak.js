@@ -4,12 +4,13 @@ import {PageBreakOverlay} from '../ui/previewElements';
 const PageBreak = ({contentHeight, pageHeight, leeway}) => {
 
 
+    // const position = (contentHeight - pageHeight - 48 /*page margin*/) * -1;
 
-    const position = (contentHeight - pageHeight - 48 /*page margin*/) * -1;
+    const position = -1 * (pageHeight + 108)
 
     return (
         <div>
-            { contentHeight - leeway > pageHeight &&
+            { contentHeight /*- leeway*/ > pageHeight &&
                 <PageBreakOverlay className="pageBreakOverlay" style={{top: position}}>
                 </PageBreakOverlay>
             }

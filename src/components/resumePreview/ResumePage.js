@@ -7,9 +7,8 @@ const ResumePage = (props) => {
 
     const context = useContext(Context);
     const {baseInfoChange} = context;
-    const {resumeHeight} = context.resumeContent;
+    const {work} = context.resumeContent
 
-    // const [resumeHeight, setResumeHeight] = useState();
     const [contentHeight, setContentHeight] = useState();
     const [contentOffset, setContentOffset] = useState();
 
@@ -19,17 +18,12 @@ const ResumePage = (props) => {
 
             children.forEach(child => {
                 if (child.nodeType === 1) {
-                    console.log("Is an Element!")
                     let offsetTop = child.offsetTop;
-                    console.log({offsetTop, contentOffset, pageHeight})
-                    if (child.offsetTop - contentOffset < pageHeight - 14) {
-                        console.log("Starts above page break!")
+                    if (child.offsetTop - contentOffset < pageHeight - 18) {
                         // Element begins above the pagebreak, but it might not end there. Find child elements below the page break.
-                        console.log("child")
                         setPageBreakOffsets(child, pageHeight);
                     } else {
                         // Element is below the pagebreak so it and all it's children should move down. 
-                        console.log("Starts below page break!")
                         child.classList.add("pageBreakOffset");
                     }
                 }
@@ -75,14 +69,15 @@ const ResumePage = (props) => {
     const pageHeight = 890;
 
     useEffect(() => {
-        setContentHeight(document.getElementById('ResumeContent').clientHeight);
+        setContentHeight(document.getElementById('contentHolder').clientHeight);
         setContentOffset(document.getElementById('ResumeContent').offsetTop);
     })
 
     useEffect(() => {
+        console.log("set offsets!")
+        // const pageCountLocal = Math.ceil((contentHeight - contentOffset + (leeway + 10)) / pageHeight);
 
-        const pageCountLocal = Math.ceil((contentHeight - contentOffset + (leeway + 10)) / pageHeight);
-
+        //TODO: Activate warning when resume enters 3 page territory.
         // baseInfoChange({
         //     payload: pageCountLocal,
         //     name: "pageCount"
@@ -92,7 +87,6 @@ const ResumePage = (props) => {
             removePageBreak();
             removeResumeOverflow();
         baseInfoChange({
-            // payload: ((pageHeight * (pageCountLocal > 2 ? 2 : pageCountLocal)) + leeway) + "px",
             payload: ((pageHeight * 2) + leeway) + "px",
             name: "resumeHeight"
         });
@@ -102,6 +96,7 @@ const ResumePage = (props) => {
             setResumeOverFlow(node, 1895 /* 2 pages plus pagebreak pluss extra leeway*/); // hide all text past two pages.
 
         } else {
+            console.log("remove offsets")
             removePageBreak();
             removeResumeOverflow();
             baseInfoChange({
