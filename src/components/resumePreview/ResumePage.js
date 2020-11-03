@@ -65,6 +65,14 @@ const ResumePage = (props) => {
         }
     }
 
+    const removePageBreakOffsets = () => {
+        const elems = document.getElementsByClassName("pageBreakOffset");
+
+        for (let i = 0; i < elems.length; i++) {
+            elems[i].classList.remove("pageBreakOffset")
+        }
+    }
+
     const leeway = 45 + 12;    // Resume Content padding + PageBreak height
     const pageHeight = 890;
 
@@ -99,6 +107,7 @@ const ResumePage = (props) => {
             console.log("remove offsets")
             removePageBreak();
             removeResumeOverflow();
+            removePageBreakOffsets();
             baseInfoChange({
                 payload: pageHeight + "px",
                 name: "resumeHeight"
