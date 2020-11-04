@@ -26,10 +26,10 @@ const ResumeInput = () => {
     });
 
     const eduInputArray = education.map((item, index) => {
-        const { school, major, degree, dates, gpa, freeform, current } = context.resumeContent.education[index]
+        const { school, major, degree, dates, gpa, coursework, current } = context.resumeContent.education[index]
         const { arrayInfoChange, deleteArrayItem } = context;
         return (
-            <EduInput key={index} school={school} major={major} degree={degree} dates={dates} freeform={freeform} index={index}
+            <EduInput key={index} school={school} major={major} degree={degree} dates={dates} coursework={coursework} index={index}
                 arrayInfoChange={arrayInfoChange}deleteArrayItem={deleteArrayItem}
                 gpa={gpa}current={current}
             />

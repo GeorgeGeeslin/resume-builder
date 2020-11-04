@@ -6,7 +6,7 @@ import {FlexGroup, Input, Close, SubsectionHeader, ItemGrouper, CurrentCheckbox}
 import {modules} from '../ui/quill-config';
 import ReactTooltip from "react-tooltip";
 
-const EduInput = ({ school, major, degree, dates, gpa, freeform, index, arrayInfoChange, deleteArrayItem, current}) => {
+const EduInput = ({ school, major, degree, dates, gpa, coursework, index, arrayInfoChange, deleteArrayItem, current}) => {
     const key = 'education';
     const parentIndex = index;
 
@@ -78,9 +78,8 @@ const EduInput = ({ school, major, degree, dates, gpa, freeform, index, arrayInf
             </FlexGroup>
             <DateRangeInput dates={dates} parentIndex={parentIndex} parent='education' current={current}/>   
             <div style={{padding: '0.25em'}}>
-            {/*
-                <label htmlFor="customEdu">Custom Text</label>
-                <ReactQuill value={freeform} 
+            {/*    <label htmlFor="customEdu">Relevant Courses</label>
+                <ReactQuill value={coursework} 
                     theme="snow"
                     modules={modules}
                     id="customEdu"
@@ -89,10 +88,10 @@ const EduInput = ({ school, major, degree, dates, gpa, freeform, index, arrayInf
                             payload: html, 
                             key,
                             index,
-                            name: "freeform"
+                            name: "coursework"
                         }
                 )}/>
-                    */}
+            */}    
             </div>
             <ReactTooltip /> 
         </ItemGrouper>

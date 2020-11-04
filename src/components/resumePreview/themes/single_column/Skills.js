@@ -1,20 +1,17 @@
 import React, {useContext} from 'react';
-import Context from '../../context/Context';
+import Context from '../../../../context/Context';
+import {concatLine} from '../../../ui/helperFunctions';
 
 const Skills = () => {
 
     const context = useContext(Context);
     const {skills} = context.resumeContent.skills;
 
-    const skillList = skills.map((skill, index) => {
-        return (
-            <p key={index}>{skill}</p>
-        )
-    });
+    const line1 = concatLine(', ', ...skills)
 
     return (
         <div>
-            {skillList}
+            {line1}
         </div>
     )
 };

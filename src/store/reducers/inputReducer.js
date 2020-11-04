@@ -1,5 +1,5 @@
 export const initialState = {
-    theme: 'default',
+    theme: 'singleColumn',
     font: 'Roboto',
     pageCount: 1,
     resumeHeight: 890,
@@ -41,6 +41,7 @@ export const initialState = {
             city: "Austin",
             state: "TX"
         }, 
+        /*
         {
             employer: "Abilene Tech",
             title: "Network Administrator",
@@ -50,6 +51,7 @@ export const initialState = {
             city: "Abilene",
             state: "TX"
         },
+        */
         {
             employer: "Wavecreste",
             title: "IT Analyst",
@@ -66,7 +68,7 @@ export const initialState = {
         major: "Advertising",
         dates: [{start: '2006-01-01', end: '2010-05-01'}],
         gpa: "3.2",
-        freeform: "",
+        coursework: "",
         current: false
     }],
     sections: {
