@@ -4,7 +4,7 @@ import Skills from './Skills';
 
 const Edu = ({school, degree, major, dates, coursework, current, gpa}) => {
 
-    const line1 = concatLine(' in ', degree, major,);
+    const line1 = degree ? concatLine(' in ', degree, major) : major;
 
     const dateDisplay = concatDateRage(dates, current);
     const gpaDisplay = gpa ? `, GPA: ${gpa}` : '';

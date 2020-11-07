@@ -17,6 +17,7 @@ const Default = () => {
     const education = context.resumeContent.education;
     const {street1, street2, city, state, zip} = context.resumeContent.address;
     const {facebook, twitter, linkedin, github, portfolio, otherLink} = context.resumeContent.links;
+    const {skills} = context.resumeContent.skills;
     
     const workComponents = work.map((item, index) => {
         const {employer, title, dates, experience, current, city, state} = work[index];
@@ -35,7 +36,7 @@ const Default = () => {
                 <div style={sectionSeparatorSmall}>
                     <BasicInfo name={name} phone={phone} email={email} role={role} profile={profile}/>                      
                 </div>
-                <div style={sectionHeadLine}>Experience</div>
+                { workComponents.length > 0 && <div style={sectionHeadLine}>Experience</div> } 
                 {workComponents}
             </div>
             {/*sidebar*/}
@@ -45,12 +46,14 @@ const Default = () => {
                         facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}
                     />
                 </div>
-                <div style={sectionSeparatorSmall}>
-                    <div style={sectionHeadLine}>Skills</div>
-                    <Skills />
-                </div>
-                <div style={sectionHeadLine}>Education</div>
-                {eduComponents}
+                { skills.length > 0 &&
+                    <div style={sectionSeparatorSmall}>
+                        <div style={sectionHeadLine}>Skills</div>
+                        <Skills />
+                    </div>
+                }
+                { eduComponents.length > 0 && <div style={sectionHeadLine}>Education</div> }
+                { eduComponents }
             </div> 
         </div>   
     );
