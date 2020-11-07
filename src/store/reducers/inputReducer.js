@@ -1,7 +1,7 @@
 export const initialState = {
     theme: 'singleColumn',
     font: 'Roboto',
-    pageCount: 1,
+    pageCount: 1, //make this do something or remove it. was for disabling 3rd page (page break logic supports only 2 pages)
     resumeHeight: 890,
     username: 'george.geeslin@gmail.com',
     name: 'George Geeslin',  
@@ -68,7 +68,8 @@ export const initialState = {
         major: "Advertising",
         dates: [{start: '2006-01-01', end: '2010-05-01'}],
         gpa: "3.2",
-        coursework: "",
+        coursework: ["Data Structures", "Applied Computering", "Code Class"],
+        addCoursework: "",
         current: false
     }],
     sections: {
@@ -198,6 +199,24 @@ export const InputReducer = (state = initialState, action) => {
             obj = state[action.parent];
             array = obj[action.key];
             array.splice(action.index,1);
+            
+            return {
+                ...state
+            }
+
+        case 'addToCoursework': // Add to an array that is within an object nested within an array. (ie coursework)
+            obj = action.obj;
+            obj.addCoursework = "";
+
+            return {
+                ...state
+            }
+
+        case 'deleteCoursework': // Delete an array element from an array that is within an object nested within an array (ie coursework)
+            array = state[action.parent];
+            obj = array[action.parentIndex];
+            nestedArray = obj[action.targetKey];
+            nestedArray.splice(action.index,1);
             
             return {
                 ...state

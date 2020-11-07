@@ -1,16 +1,19 @@
-import React, {useContext} from 'react';
-import Context from '../../../../context/Context';
-import {concatLine} from '../../../ui/helperFunctions';
+import React from 'react';
+import { concatLine } from '../../../ui/helperFunctions';
 
-const Skills = () => {
+const Skills = ({ array, label }) => {
 
-    const context = useContext(Context);
-    const {skills} = context.resumeContent.skills;
+    let line1 = "";
 
-    const line1 = concatLine(', ', ...skills)
+    if (array.length > 0) { 
+        line1 = concatLine(', ', ...array);        
+    }
 
     return (
-        <div>
+        <div style={{marginTop: '0.5em'}}>
+            {label && array.length > 0 && 
+                <span style={{fontWeight: "bold"}}>{label}</span>
+            }  
             {line1}
         </div>
     )

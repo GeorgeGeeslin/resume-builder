@@ -6,6 +6,7 @@ import EduInput from '../components/resumeInput/EduInput';
 import EduInputGroup from '../components/resumeInput/EduInputGroup';
 import PersonalInfoInput from '../components/resumeInput/PersonalInfoInput';
 import SkillInput from '../components/resumeInput/SkillInput';
+import Skillwrapper from '../components/resumeInput/Skillwrapper';
 
 const ResumeInput = () => {
 
@@ -26,11 +27,11 @@ const ResumeInput = () => {
     });
 
     const eduInputArray = education.map((item, index) => {
-        const { school, major, degree, dates, gpa, coursework, current } = context.resumeContent.education[index]
+        const { school, major, degree, dates, gpa, coursework, addCoursework, current } = context.resumeContent.education[index]
         const { arrayInfoChange, deleteArrayItem } = context;
         return (
             <EduInput key={index} school={school} major={major} degree={degree} dates={dates} coursework={coursework} index={index}
-                arrayInfoChange={arrayInfoChange}deleteArrayItem={deleteArrayItem}
+                addCoursework={addCoursework} arrayInfoChange={arrayInfoChange}deleteArrayItem={deleteArrayItem}
                 gpa={gpa}current={current}
             />
         )
@@ -41,7 +42,7 @@ const ResumeInput = () => {
             <PersonalInfoInput />
             <WorkExpInputGroup workExpInputArray={workExpInputArray} addArrayItem={addArrayItem}/>
             <EduInputGroup eduInputArray={eduInputArray} addArrayItem={addArrayItem} />
-            <SkillInput />
+            <Skillwrapper />
         </div>
     )
 };

@@ -24,6 +24,14 @@ const App = () => {
     dispatchInput({type: "baseObjectInfoChange", key, field: name, payload});
   };
 
+  const plainNestedArrayInfoChange = (e) => {
+    const {key, name, payload, parent, parentIndex, index} =e;
+    dispatchInput({
+      type: "plainNestedArrayInfoChange", key, field:name, payload, 
+      parent, parentIndex, index
+    });
+  }
+
   const arrayInfoChange = (e) => {
     const { key, index, name, payload } = e;
     dispatchInput({type: "arrayInfoChange", field: name, key, index, payload});
@@ -89,10 +97,32 @@ const App = () => {
       let obj = stateInput[parent];
       let array = obj[key];
       array.push(payload);
-      obj[inputKey] = "";
+
+      //This might be needed to clear string when there are double renders. 
+      // I unwired it from the component though so add it back there too if needed.
+      // obj[inputKey] = ""; 
+
       dispatchInput({type: 'addToSkillArray', obj});
     }
   };
+
+  const addToCoursework = (e) => {
+    const {parent, index, targetKey, payload} = e;
+
+    if (payload.trim() !== "") {
+      let array = stateInput[parent];
+      let obj = array[index];
+      let nestedArray = obj[targetKey];
+      nestedArray.push(payload);
+
+      dispatchInput({type: 'addToCoursework', obj});
+    }
+  };
+
+  const deleteCoursework = (e) => {
+    const {parent, parentIndex, index, targetKey} = e;
+    dispatchInput({type: 'deleteCoursework', parent, parentIndex, index, targetKey});
+  }
 
   const toggleBaseSection = (e) => {
     const {target, key} = e;
@@ -166,6 +196,8 @@ const App = () => {
       addToSkillArray,
       inputEnterKey,
       deleteSkill,
+      addToCoursework,
+      deleteCoursework,
       requestPDF
     }}>
       <Nav />

@@ -17,6 +17,7 @@ const SingleColumn = () => {
     const education = context.resumeContent.education;
     const {street1, street2, city, state, zip} = context.resumeContent.address;
     const {facebook, twitter, linkedin, github, portfolio, otherLink} = context.resumeContent.links;
+    const {skills} = context.resumeContent.skills;
 
     const workComponents = work.map((item, index) => {
         const {employer, title, dates, experience, current, city, state} = work[index];
@@ -24,8 +25,13 @@ const SingleColumn = () => {
     });
 
     const eduComponents = education.map((item, index) => {
-        const {school, degree, major, dates, coursework, gpa, current} = education[index]; 
-        return <Edu key={index} index={index} school={school} degree={degree} major={major} dates={dates} coursework={coursework} gpa={gpa} current={current}/>
+        const {school, degree, major, dates, gpa, current, coursework} = education[index]; 
+        return (
+            <Edu key={index} index={index} school={school} degree={degree} 
+                major={major} dates={dates} coursework={coursework}
+                gpa={gpa} current={current}
+            />
+        )
     });
 
     return (
@@ -52,7 +58,7 @@ const SingleColumn = () => {
             <div style={sectionSeparator}>
                 <div style={{...sectionHeadLine}}>Skills</div>
                 <div style={{marginTop: '0.5em'}}>
-                    <Skills />
+                    <Skills array={skills}/>
                 </div>
             </div>
         </div>

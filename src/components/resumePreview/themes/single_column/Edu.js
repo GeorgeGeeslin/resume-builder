@@ -1,14 +1,13 @@
 import React from 'react';
 import {concatLine, concatDateRage} from '../../../ui/helperFunctions';
+import Skills from './Skills';
 
-const Edu = ({index, school, degree, major, dates, coursework, current, gpa}) => {
+const Edu = ({school, degree, major, dates, coursework, current, gpa}) => {
 
     const line1 = concatLine(' in ', degree, major,);
 
     const dateDisplay = concatDateRage(dates, current);
     const gpaDisplay = gpa ? `, GPA: ${gpa}` : '';
-
-
 
     return (
         <div>
@@ -18,12 +17,11 @@ const Edu = ({index, school, degree, major, dates, coursework, current, gpa}) =>
             <div style={{marginTop: "0.2rem"}}>
                 {dateDisplay}{gpa && gpaDisplay}
             </div>
-                { /*coursework && 
+                { coursework && 
                     <div>
-                        <span>Relevant courses: </span>
-                        <span className="workDesc" dangerouslySetInnerHTML={{__html: coursework}}/>
+                        <Skills array={coursework} label={"Relevant courses: "}/>
                     </div>
-                */ }
+                }
         </div>
     )
 };
