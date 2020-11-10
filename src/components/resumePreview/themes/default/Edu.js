@@ -1,7 +1,7 @@
 import React from 'react';
-import {concatLine, concatDateRage} from '../ui/helperFunctions';
+import {concatLine, concatDateRage} from '../../../ui/helperFunctions';
 
-const Edu = ({index, school, degree, major, dates, freeform, current, gpa}) => {
+const Edu = ({index, school, degree, major, dates, coursework, current, gpa}) => {
 
     const line1 = concatLine(' in ', degree, major,);
 

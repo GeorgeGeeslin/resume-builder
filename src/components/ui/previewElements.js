@@ -55,9 +55,28 @@ export const PageBreakOverlay = styled.div`
     }
 `;
 
+// 1rem here, but needs to be 1.5rem in the html payload. Not sure whats up with that. <const workDescLineHeight>
 export const WorkDesc = styled.div`
     li {
-        // 1rem here, but needs to be 1.5rem in the html payload. Not sure whats up with that. <const workDescLineHeight>
         line-height: 1rem !important;
     }
 `;
+
+// These are objects to be used as in-line styles so that they will be included in the html payload.
+// Styled components will not be included in the payload.
+export const sectionHeadLine = {
+    color: "#0052CC",
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    fontSize: "18px"
+};
+
+
+export const sectionSeparatorSmall = {
+    paddingBottom: '1.5em'
+};
+
+export const sectionSeparator = {
+    paddingTop: '1.5em',
+    paddingBottom: '1.5em'
+}

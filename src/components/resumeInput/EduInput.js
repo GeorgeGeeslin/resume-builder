@@ -1,15 +1,18 @@
-import React from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import React, { useContext } from 'react';
+import Context from '../../context/Context';
 import DateRangeInput from './DateRangeInput';
 import {FlexGroup, Input, Close, SubsectionHeader, ItemGrouper, CurrentCheckbox} from '../ui/elements';
-import {modules} from '../ui/quill-config';
+import SkillInput from './SkillInput';
 import ReactTooltip from "react-tooltip";
 
-const EduInput = ({ school, major, degree, dates, gpa, freeform, index, arrayInfoChange, deleteArrayItem, current}) => {
+const EduInput = ({ school, major, degree, dates, gpa, coursework, addCoursework, index, arrayInfoChange, deleteArrayItem, current}) => {
     const key = 'education';
     const parentIndex = index;
 
+    const context = useContext(Context);
+    const { addToCoursework, deleteCoursework} = context;
+    const { theme } = context.resumeContent;
+    
     return (
         <ItemGrouper>
             <SubsectionHeader>Education {index + 1}:</SubsectionHeader>
@@ -77,23 +80,15 @@ const EduInput = ({ school, major, degree, dates, gpa, freeform, index, arrayInf
                 )}/>
             </FlexGroup>
             <DateRangeInput dates={dates} parentIndex={parentIndex} parent='education' current={current}/>   
-            <div style={{padding: '0.25em'}}>
-            {/*
-                <label htmlFor="customEdu">Custom Text</label>
-                <ReactQuill value={freeform} 
-                    theme="snow"
-                    modules={modules}
-                    id="customEdu"
-                    onChange={(html) => arrayInfoChange(
-                        {
-                            payload: html, 
-                            key,
-                            index,
-                            name: "freeform"
-                        }
-                )}/>
-                    */}
-            </div>
+            { theme === 'singleColumn' && 
+                <div style={{padding: '0.25em'}}>
+                    <SubsectionHeader>Relevant Courses</SubsectionHeader>
+                    <SkillInput label="Course" array={coursework} inputStr={addCoursework} parent="education"
+                        storeKey={key} fieldName="addCoursework" onAddFunc={addToCoursework} onChangeFunc={arrayInfoChange}
+                        index={index} parentIndex={parentIndex} targetKey="coursework" onDelete={deleteCoursework}
+                    />  
+                </div>
+            }
             <ReactTooltip /> 
         </ItemGrouper>
     )

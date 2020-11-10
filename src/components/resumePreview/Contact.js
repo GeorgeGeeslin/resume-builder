@@ -19,7 +19,7 @@ const Contact = ({street1, street2, city, state, zip, phone, email, linkedin, gi
         <div>
             { address &&  <p style={{fontSize: '1.2em'}}>{cityStateZip}</p> }
             <p style={{fontWeight: 'bold'}}>{phone}</p>
-            <p><a href={`mailto: ${email}`}>{email}</a></p>
+            <p><a style={{color: 'black', textDecoration: 'none'}} href={`mailto: ${email}`}>{email}</a></p>
             { links && urlLinks}
         </div>
     )
