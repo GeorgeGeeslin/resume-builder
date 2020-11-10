@@ -140,7 +140,7 @@ const PersonalInfoInput = () => {
                                 key: 'address'
                             }
                         )} />*/}
-                        <Select id="state" onChange={e => baseObjectInfoChange(
+                        <Select disabled={!address} id="state" onChange={e => baseObjectInfoChange(
                             {
                                 payload: e.target.value,
                                 name: 'state',

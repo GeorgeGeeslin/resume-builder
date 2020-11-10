@@ -79,6 +79,10 @@ $transitionTime: 0.1s;
         background-color: #E6FCFF !important; /*T50 - Gram's sofa*/
         transition: all $transitionTime ease-in;
     }
+    select {
+        background-color: #E6FCFF !important; /*T50 - Gram's sofa*/
+        transition: all $transitionTime ease-in;
+    }
     transition: all $transitionTime ease-in;
 }
 
@@ -87,6 +91,10 @@ $transitionTime: 0.1s;
     border: 1px dashed #172B4D !important;
     color: #172B4D !important;
     input {
+        background-color: #E6FCFF !important; /*T50 - Gram's sofa*/
+        transition: all $transitionTime ease-in;
+    }
+    select {
         background-color: #E6FCFF !important; /*T50 - Gram's sofa*/
         transition: all $transitionTime ease-in;
     }
@@ -100,6 +108,10 @@ $transitionTime: 0.1s;
 .deleteHighlightNoBorder {
     background-color: #B3F5FF; /*T75 - Arctic chill*/
     input {
+        background-color: #E6FCFF; /*T50 - Gram's sofa*/
+        transition: all $transitionTime ease-in;
+    }
+    select {
         background-color: #E6FCFF; /*T50 - Gram's sofa*/
         transition: all $transitionTime ease-in;
     }

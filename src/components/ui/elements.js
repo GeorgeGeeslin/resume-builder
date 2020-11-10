@@ -66,7 +66,7 @@ export const Input = styled.input`
 `;
 
 export const Select = styled.select`
-    padding: 8px 10px;
+    padding: 7px 10px;
     margin: 0px;
     display: block;
     border: 1px solid #ccc;
