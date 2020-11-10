@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Context from '../../context/Context';
-import {FlexGroup, Input, Grouper, ItemGrouper, SectionHeader, SubsectionHeader, VisabilityToggle} from '../ui/elements';
+import {FlexGroup, Input, Select, Grouper, ItemGrouper, SectionHeader, SubsectionHeader, VisabilityToggle} from '../ui/elements';
+import statesAndTerritories from '../../utils/statesAndTerritories';
 
 const PersonalInfoInput = () => {
     //TODO This component could be broken out into its subsections for much simpler JSX.
@@ -13,8 +14,18 @@ const PersonalInfoInput = () => {
     const {facebook, twitter, linkedin, github, portfolio, otherLink} = context.resumeContent.links;
     const {address, desired_position, links} = context.resumeContent.sections;
 
+    let stateOptions = statesAndTerritories.map(item => {
+        const indexOf = item.indexOf('-');
+        const value = item.slice(indexOf + 2);
+        const selected = item.includes(`- ${state}`);
 
-    
+        console.log(value);
+
+        return (
+            <option value={value} selected={selected}>{item}</option>
+        );
+    });
+  
     return (
         <Grouper>
             <SectionHeader>Personal Info</SectionHeader>
@@ -85,6 +96,7 @@ const PersonalInfoInput = () => {
                     visability={address}
                     onClickFunc={toggleBaseSection}
                 />
+                { false &&
                 <FlexGroup>
                     <div style={{marginRight: '1em', width: '50%'}}>
                         <label htmlFor='street1'>Street 1</label>
@@ -107,6 +119,7 @@ const PersonalInfoInput = () => {
                         )} />
                     </div>
                 </FlexGroup>
+                }
                 <FlexGroup>
                      <div style={{marginRight: '1em'}}>
                         <label htmlFor='city'>City</label>
@@ -120,13 +133,22 @@ const PersonalInfoInput = () => {
                     </div>   
                     <div style={{marginRight: '1em'}}>
                         <label htmlFor='state'>State</label>
-                        <Input disabled={!address} type='text' value={state} id='state' onChange={e => baseObjectInfoChange(
+                        {/*<Input disabled={!address} type='text' value={state} id='state' onChange={e => baseObjectInfoChange(
                             {
                                 payload: e.target.value,
                                 name: 'state',
                                 key: 'address'
                             }
-                        )} />
+                        )} />*/}
+                        <Select id="state" onChange={e => baseObjectInfoChange(
+                            {
+                                payload: e.target.value,
+                                name: 'state',
+                                key: 'address'
+                            }
+                        )}>
+                            {stateOptions}
+                        </Select>
                     </div>  
                     <div>
                         <label htmlFor='zip'>Zipcode</label>
@@ -214,7 +236,7 @@ const PersonalInfoInput = () => {
                 </FlexGroup>
             </ItemGrouper>
         </Grouper>
-    )
+    );
 };
 
 export default PersonalInfoInput;
