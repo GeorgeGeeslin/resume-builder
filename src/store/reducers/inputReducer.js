@@ -23,8 +23,8 @@ export const initialState = {
     address: {
         street1: '11711 Tanglebrair Trl',
         street2: '1407',
-        city: 'Austin',
-        state: 'TX',
+        city: '',
+        state: '',
         zip: '79750',
     },
     skills: {

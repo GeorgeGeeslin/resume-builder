@@ -19,12 +19,14 @@ const PersonalInfoInput = () => {
         const value = item.slice(indexOf + 2);
         const selected = item.includes(`- ${state}`);
 
-        console.log(value);
-
         return (
-            <option value={value} selected={selected}>{item}</option>
+            <option value={value} >{item}</option>
         );
     });
+
+    let defaultState = !state ? true : false;
+    console.log({defaultState})
+    stateOptions.unshift(<option value="">Select a State</option>);
   
     return (
         <Grouper>
@@ -140,7 +142,7 @@ const PersonalInfoInput = () => {
                                 key: 'address'
                             }
                         )} />*/}
-                        <Select disabled={!address} id="state" onChange={e => baseObjectInfoChange(
+                        <Select value={state} disabled={!address} id="state" onChange={e => baseObjectInfoChange(
                             {
                                 payload: e.target.value,
                                 name: 'state',

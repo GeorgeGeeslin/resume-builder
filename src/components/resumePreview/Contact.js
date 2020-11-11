@@ -8,7 +8,7 @@ const Contact = ({street1, street2, city, state, zip, phone, email, linkedin, gi
     const {address, links} = context.resumeContent.sections;
 
     const stateZip = concatLine(' ', state, zip);
-    const cityStateZip = concatLine(', ', city, stateZip);
+    const cityStateZip = city ? concatLine(', ', city, stateZip) : stateZip;
 
     const urls = [linkedin, github, twitter, facebook, portfolio, otherLink];
     const urlLinks = urls.map((url, index) => (
