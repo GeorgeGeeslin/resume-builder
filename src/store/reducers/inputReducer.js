@@ -23,8 +23,8 @@ export const initialState = {
     address: {
         street1: '11711 Tanglebrair Trl',
         street2: '1407',
-        city: '',
-        state: '',
+        city: 'Austin',
+        state: 'TX',
         zip: '79750',
     },
     skills: {
@@ -41,7 +41,7 @@ export const initialState = {
             city: "Austin",
             state: "TX"
         }, 
-        /*
+
         {
             employer: "Abilene Tech",
             title: "Network Administrator",
@@ -51,7 +51,7 @@ export const initialState = {
             city: "Abilene",
             state: "TX"
         },
-        */
+
         {
             employer: "Wavecreste",
             title: "IT Analyst",

@@ -60,14 +60,40 @@ body {
 
 }
 
-#logo {
-    font-family: 'Abril Fatface', cursive;
-    font-size: 30px;
-    height: 50px;
-    line-height: 50px;
-    color: #fff;
-    padding-left: 1em;
+/*
+button {
+    display: inline-block;
+    border: none;
+    // padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    background: #172B4D;
+    color: #ffffff;
+    // font-family: sans-serif;
+    // font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
+
+button:hover,
+button:focus {
+    background: #0053ba;
+}
+
+button:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+button:active {
+    transform: scale(0.99);
+}
+*/
+
 
 //Highlighting Parent Elements
 $transitionTime: 0.1s;
@@ -142,47 +168,6 @@ $transitionTime: 0.1s;
 }
 
 //css for resume page break in preview. Just for visual effect. Actual page break sent in-line.
-// .pageBreak{
-//     margin: 0;
-//     padding-top: 0.5in;
-//     &:before {
-//         margin-bottom: 0.5in;
-//         display: block;
-//         width: 8.5in;
-//         height: 15px;
-//         margin-left: -0.5in;
-//         content: " ";
-//         background-color: #FAFBFC;
-//         box-shadow: inset 0 1px 3px rgba(0,0,0,0.45);
-//     }
-// }
-
-// .pageBreakOverlay {
-//     margin: 0;
-//     padding-top: 0.5in;
-//     &:before {
-//         margin-bottom: 0.5in;
-//         display: block;
-//         width: 8.5in;
-//         height: 5px;
-//         margin-left: -0.5in;
-//         content: " ";
-//         background-color: #DFE1E6;
-//         border-top: 1px solid rgba(0,0,0,0.35);
-//         border-bottom: 1px solid rgba(0,0,0,0.3);
-//         box-shadow: inset 0px 2px 5px -3px rgba(0,0,0,1),
-
-//     }    
-// }
-
-// .pageBreakOverlay {
-//         height: 10px;
-//         background-color: #DFE1E6;
-//         border-top: 1px solid rgba(0,0,0,0.35);
-//         border-bottom: 1px solid rgba(0,0,0,0.3);
-//         box-shadow: inset 0px 2px 5px -3px rgba(0,0,0,1),
-// }
-
 // Class gets elements that fall after the pagebreak and need to be moved down in the preview.
 .pageBreakOffset {
     position: relative;
@@ -199,49 +184,3 @@ $transitionTime: 0.1s;
         padding-bottom: 2px;
     }
 }
-
-// #resumeContent {
-//     padding: 16px;
-// }
-
-// .pageBreakOverlay {
-//     border-top: 1px solid black;
-//     margin-left: -0.5in;
-//     margin-right: -0.5in;
-// }
-
-// Only reason to have this in scss is to make use of media queries. 
-// If I do not end up making good use of media queries then I should bring these styles 
-// back into styled-components.
-// .resumePage {
-//     padding: 16px;
-//     // min-height: 1015px;
-// }
-// .resumePage {
-//     background-color: white;
-//     // full page size
-//     width: 8.5in;
-//     height: 11in;
-//     max-height: 11in;
-//     padding: 0.5in;
-//     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); 
-//     //TODO: test view as tablet
-//     @include tablet {
-//         /* 2/3rd size */
-//         width: calc((8.5in / 3) * 2);
-//         height: calc((11in / 3) * 2);
-//     }
-//     // @include small-desktop {
-//     //     /* 3/4th size */
-//     //     width: calc((8.5in / 6) * 5);
-//     //     height: calc((11in / 6) * 5);
-//     // }
-//     // @include medium-desktop {
-
-//     // }
-//     // @include large-desktop {
-
-//     // }
-// }
-
-

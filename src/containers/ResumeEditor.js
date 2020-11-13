@@ -3,7 +3,6 @@ import ResumeInput from './ResumeInput';
 import ResumePreview from './ResumePreview';
 import PageCountWarning from '../components/PageCountWarning';
 
-
 const ResumeEditor = () => {
 
     return (

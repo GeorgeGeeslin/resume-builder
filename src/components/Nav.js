@@ -1,12 +1,8 @@
 import React, {useContext} from 'react';
 import Context from '../context/Context';
-import styled from 'styled-components';
-
-const Navbar = styled.nav`
-    background-color: #0052CC;
-    width: 100%;
-    height: 50px;
-`;
+import { Navbar, NavButton, Logo, FlexGroup, IconButton, IconBar } from './ui/elements';
+import {FaPaintRoller, FaFileDownload, FaCloudUploadAlt, FaSave, FaFilePdf, FaExpandArrowsAlt, FaSignInAlt} from 'react-icons/fa';
+import { IconContext } from "react-icons";
 
 const Nav = () => {
 
@@ -15,8 +11,20 @@ const Nav = () => {
 
     return (
         <Navbar>
-            <span id="logo">Resume Writer</span>
-           <button onClick={requestPDF}>puppet test</button> 
+            <Logo>Resume Writer</Logo>
+            <FlexGroup style={{alignItems: 'center'}}>
+                <IconBar> 
+                    <IconContext.Provider value={{color: 'white'}}>
+                        <IconButton><FaPaintRoller /></IconButton> {/* themes */}
+                        <IconButton><FaCloudUploadAlt /> </IconButton>{/* save/upload */}
+                        <IconButton onClick={requestPDF}><FaFileDownload /></IconButton> {/* download resume */}
+                        <IconButton><FaExpandArrowsAlt /></IconButton> {/* pdf modal view */}
+                    </IconContext.Provider>  
+                </IconBar>
+                <NavButton>My Resumes</NavButton>
+                <NavButton><FaSignInAlt style={{marginRight: '0.5em', position: 'relative', top:'2px'}}/>Login</NavButton>
+            </FlexGroup>
+
         </Navbar>
     )
 }

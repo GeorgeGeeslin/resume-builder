@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import PageBreak from './PageBreak';
 import Context from '../../context/Context';
-import {ResumePageWrapper} from '../ui/previewElements';
 
 const ResumePage = (props) => {
 

@@ -1,13 +1,20 @@
 import styled from 'styled-components';
 
-// Layout Elements
+// Layout Elements (position the Resume Preview on screen)
+export const PreviewNav = styled.div`
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 8px;
+    margin-bottom: 8px;
+`;
+
 export const PreviewBox = styled.div`
     box-sizing: border-box;
     display: flex;
     justify-content: center;
-    //TODO: media query this and ResumeInput width for various screen sizes
-    width: 65%;
-    border-top: 1px solid #444;
+    // width: 65%;
+    // border-top: 1px solid #444;
     padding: 16px;
     overflow: scroll;
     height: 100vh;
@@ -19,12 +26,6 @@ export const PreviewWrapper = styled.div`
     background-color: #DFE1E6;
     font-size: 12px;
     min-width: 9in;
-`;
-
-
-export const ResumePageWrapper = styled.div`
-    // height: ${props => props.theme.height},
-    // min-width: '9in';
 `;
 
 export const ResumeContent = styled.div`
@@ -55,6 +56,8 @@ export const PageBreakOverlay = styled.div`
     }
 `;
 
+// Resume elements (appear on Resume Preview itself)
+
 // 1rem here, but needs to be 1.5rem in the html payload. Not sure whats up with that. <const workDescLineHeight>
 export const WorkDesc = styled.div`
     li {
@@ -70,7 +73,6 @@ export const sectionHeadLine = {
     fontWeight: "bold",
     fontSize: "18px"
 };
-
 
 export const sectionSeparatorSmall = {
     paddingBottom: '1.5em'

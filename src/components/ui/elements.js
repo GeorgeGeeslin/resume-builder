@@ -15,11 +15,98 @@ const warningBG = '#FF5630';
 
 //TODO: This should be broken out into multiple files. 
 //Especailly the components that use the highlight parent functions.
+//And the Skill components and functions.
 
-//***Basic Elements***/
+/***Basic Elements***/
+export const Logo = styled.span`
+    font-family: 'Abril Fatface', cursive;
+    font-size: 30px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    padding-left: 1em;
+`;
+
+/***Navigation***/
+export const Navbar = styled.nav`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0052CC;
+    width: 100%;
+    height: 60px;
+`;
+
+export const NavButton = styled.button`
+    display: block;
+    border: none;
+    margin: 0;
+    text-decoration: none;
+    background: #172B4D;
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    transition: all 250ms ease-in-out, 
+    transform 150ms ease;
+    font-size: 14px;
+    padding: 0.5em;
+    margin-right: 1em;
+    height: 35px;
+    border-radius: 10px;
+    &:hover {
+        background-color: #00B8D9;
+    }
+    &:focus{
+        outline: none;
+    }
+    &:active {
+        position: relative;
+        top: 2px;
+        transform: scale(0.99);   
+    }
+`;
+
+export const IconBar = styled.div`
+    display: flex;
+    justify-content: center;
+    background-color: #172B4D;
+    padding: 0.35em 1em;
+    border-radius: 15%/50%;
+    margin-right: 2em;
+`;
+
+export const IconButton = styled.button`
+    display: block;
+    border: none;
+    margin: 0;
+    text-decoration: none;
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, 
+    transform 150ms ease;
+    font-size: 16px;
+    padding: 0.5em 0.75em;
+    background-color: #172B4D;
+    &:hover {
+        background-color: #0052CC;
+    }
+    &:focus {
+        outline: 1px solid #fff;
+        outline-offset: -4px;
+    }
+    &:active {
+        transform: scale(0.95);
+        outline: 1px solid #fff;
+        outline-offset: -4px;        
+    }
+`;
+
+
+/***Grouping Elements***/
 export const Grouper = styled.div`
     background-color: ${white};
-    border-radius: 4px;
+    // border-radius: 4px;
     padding: 1em;
     margin-bottom: 1em;
     box-shadow: 0 1px 3px rgba(0,0,0,0.45), 0 1px 2px rgba(0,0,0,0.55);
@@ -40,6 +127,7 @@ export const ItemGrouper = styled.div`
     margin-bottom: 0.5em;
 `;
 
+/***Headers***/
 export const SectionHeader = styled.h2`
     margin-top: 0px;
     margin-bottom: 0.25em;
@@ -54,6 +142,7 @@ export const SubsectionHeader = styled.h3`
     margin-bottom: 0.5em;
 `;
 
+/***Inputs & Buttons***/
 export const Input = styled.input`
     padding: 8px 10px;
     margin: 0px;
@@ -85,21 +174,9 @@ export const DatePicker = styled.input`
     margin: 0px;
     padding: 8px 4px;
     width: 100%;
-
 `;
 
-export const WarningMessage = styled.div`
-    position: fixed;
-    z-index: 100;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: ${warningBG};
-    color: #fff;
-    font-weight: bold;
-    text-align: center;
-`;
-
+//TODO make this a button element for better accessibility
 const Button = styled.div`
     display: inline-block;
     box-sizing: border-box;
@@ -133,6 +210,20 @@ const Button = styled.div`
     }
 `;
 
+/***Misc***/
+export const WarningMessage = styled.div`
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: ${warningBG};
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+`;
+
+// Not exported directly, dependent on Skill functions in this file.
 const SkillChip = styled.div`
     display: inline-block;
     border-radius: 8px;
@@ -260,7 +351,7 @@ export const AddButton = ({onClickFunc, label}) => {
             </div>
         </Button>
     )
-}
+};
 
 const SkillDelete = ({onClickFunc, label, highlightClass}) => {
     return (
@@ -286,7 +377,7 @@ export const Skill = ({onClickFunc, skill, label, highlightClass}) => {
             <ReactTooltip/>
         </SkillChip>
     )
-}
+};
 
 export const CurrentCheckbox = ({label, value, onClickFunc}) => {
     return (
@@ -295,8 +386,4 @@ export const CurrentCheckbox = ({label, value, onClickFunc}) => {
             <input type="checkbox" name="current" checked={value} onClick={onClickFunc} />
         </div>
     )
-}
-
-
-
-
+};
