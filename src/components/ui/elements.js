@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { IconContext } from "react-icons";
 import {GrAddCircle} from 'react-icons/gr'
 import {FaEye, FaEyeSlash, FaPlus, FaTimes} from 'react-icons/fa';
@@ -210,6 +210,60 @@ const Button = styled.div`
     }
 `;
 
+/***Modals***/
+// modal background
+export const ThemeModal = styled.div` 
+    display: ${props => props.active}; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    // padding-top: 100px; /* Location of the box */
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+`;
+
+const animatetop = keyframes`
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+`;
+
+//modal content
+export const ThemeModalContent = styled.div`
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 1000px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: ${animatetop};
+    animation-duration: 0.4s
+    background-color: #ccc; /* Fallback color */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+`;
+
+export const ThemeWindow = styled.div`
+    cursor: pointer;
+    color: #fff;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    transition all 150ms ease-in-out;
+    &:hover {
+        transform: scale(1.05);
+        img {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+    }
+`;
+
 /***Misc***/
 export const WarningMessage = styled.div`
     position: fixed;
@@ -222,6 +276,7 @@ export const WarningMessage = styled.div`
     font-weight: bold;
     text-align: center;
 `;
+
 
 // Not exported directly, dependent on Skill functions in this file.
 const SkillChip = styled.div`

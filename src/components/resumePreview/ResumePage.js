@@ -81,7 +81,7 @@ const ResumePage = (props) => {
     })
 
     useEffect(() => {
-        console.log("set offsets!")
+
         // const pageCountLocal = Math.ceil((contentHeight - contentOffset + (leeway + 10)) / pageHeight);
 
         //TODO: Activate warning when resume enters 3 page territory.
@@ -103,7 +103,6 @@ const ResumePage = (props) => {
             setResumeOverFlow(node, 1895 /* 2 pages plus pagebreak pluss extra leeway*/); // hide all text past two pages.
 
         } else {
-            console.log("remove offsets")
             removePageBreak();
             removeResumeOverflow();
             removePageBreakOffsets();

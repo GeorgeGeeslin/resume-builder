@@ -24,8 +24,6 @@ const PersonalInfoInput = () => {
         );
     });
 
-    let defaultState = !state ? true : false;
-    console.log({defaultState})
     stateOptions.unshift(<option value="">Select a State</option>);
   
     return (

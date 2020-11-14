@@ -1,9 +1,11 @@
 export const initialState = {
+    username: 'george.geeslin@gmail.com',
+    themeModal: false,
+    // TODO: below are resume only items. May need to extract other items into another reducer. 
     theme: 'default',
     font: 'Roboto',
     pageCount: 1, //make this do something or remove it. was for disabling 3rd page (page break logic supports only 2 pages)
     resumeHeight: 890,
-    username: 'george.geeslin@gmail.com',
     name: 'George Geeslin',  
     phone: '325-518-9738', 
     email: 'george.geeslin@gmail.com', 

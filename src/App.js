@@ -171,8 +171,6 @@ const App = () => {
     htmlString = `<html><head><style>${fontImport}</style>${workDescLineHeight}</head><body style=${bodyStyle}>` + htmlString + "</body></html>";
     const payload = JSON.stringify({data: htmlString});
 
-    console.log(htmlString)
-
       fetch('http://localhost:3000/pdf', {
           body: payload,
           method: 'POST'
