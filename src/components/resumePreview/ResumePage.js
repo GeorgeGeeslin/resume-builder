@@ -93,10 +93,10 @@ const ResumePage = (props) => {
         if (contentHeight > pageHeight) {
             removePageBreak();
             removeResumeOverflow();
-        baseInfoChange({
-            payload: ((pageHeight * 2) + leeway) + "px",
-            name: "resumeHeight"
-        });
+            baseInfoChange({
+                payload: ((pageHeight * 2) + leeway) + "px",
+                name: "resumeHeight"
+            });
 
             const node = document.getElementById('ResumeContent');
             setPageBreakOffsets(node, pageHeight);

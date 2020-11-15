@@ -256,6 +256,9 @@ export const ThemeWindow = styled.div`
     margin-top: 1em;
     margin-bottom: 1em;
     transition all 150ms ease-in-out;
+    img {
+        width: 3in;
+    }
     &:hover {
         transform: scale(1.05);
         img {

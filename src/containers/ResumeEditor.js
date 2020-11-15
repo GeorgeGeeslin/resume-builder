@@ -4,8 +4,8 @@ import ResumeInput from './ResumeInput';
 import ResumePreview from './ResumePreview';
 import PageCountWarning from '../components/PageCountWarning';
 import { ThemeModal, ThemeModalContent, ThemeWindow } from '../components/ui/elements';
-import singleColumnImage from '../images/single-column-placeholder-sm.png';
-import defaultImage from '../images/default-placeholder-sm.jpg';
+import singleColumnImage from '../images/single-column.png';
+import defaultImage from '../images/default.png';
 
 // TODO extract modal stuff into seperate component
 
