@@ -6,7 +6,10 @@ const ResumePage = (props) => {
 
     const context = useContext(Context);
     const {baseInfoChange} = context;
-    const {work} = context.resumeContent
+    const {resumeHeight} = context.resumeContent;
+    const work = context.resumeContent.work;
+    const education = context.resumeContent.education;
+    const skills = context.resumeContent.skills;
 
     const [contentHeight, setContentHeight] = useState();
     const [contentOffset, setContentOffset] = useState();
@@ -18,7 +21,7 @@ const ResumePage = (props) => {
             children.forEach(child => {
                 if (child.nodeType === 1) {
                     let offsetTop = child.offsetTop;
-                    if (child.offsetTop - contentOffset < pageHeight - 18) {
+                    if (child.offsetTop - contentOffset < pageHeight - 58) {
                         // Element begins above the pagebreak, but it might not end there. Find child elements below the page break.
                         setPageBreakOffsets(child, pageHeight);
                     } else {
@@ -36,7 +39,7 @@ const ResumePage = (props) => {
 
             children.forEach(child => {
                 if (child.nodeType === 1) {
-                    if (child.offsetTop - contentOffset < overflowHeight - 14) {
+                    if (child.offsetTop - contentOffset < overflowHeight) {
                         // Element begins above the pagebreak, but it might not end there. Find child elements below the page break.
                         setResumeOverFlow(child, overflowHeight);
                     } else {
@@ -72,8 +75,9 @@ const ResumePage = (props) => {
         }
     }
 
-    const leeway = 45 + 12;    // Resume Content padding + PageBreak height
-    const pageHeight = 890;
+    const leeway = 45;    // PageBreak :before margin.
+    const pageHeight = 1000;
+    const innerPageHeight = pageHeight - 48 - 48; // Height - padding of ResumeContent.
 
     useEffect(() => {
         setContentHeight(document.getElementById('contentHolder').clientHeight);
@@ -81,26 +85,29 @@ const ResumePage = (props) => {
     })
 
     useEffect(() => {
+        console.log({contentHeight})
+        console.log({contentOffset})
+        // console.log({innerPageHeight})
 
-        // const pageCountLocal = Math.ceil((contentHeight - contentOffset + (leeway + 10)) / pageHeight);
+        const pageCountLocal = Math.ceil((contentHeight - contentOffset + (leeway + 12)) / innerPageHeight);
 
-        //TODO: Activate warning when resume enters 3 page territory.
-        // baseInfoChange({
-        //     payload: pageCountLocal,
-        //     name: "pageCount"
-        // });
+        //Activate warning when resume enters 3 page territory.
+        baseInfoChange({
+            payload: pageCountLocal,
+            name: "pageCount"
+        });
         
-        if (contentHeight > pageHeight) {
+        if (contentHeight > innerPageHeight) {
             removePageBreak();
             removeResumeOverflow();
             baseInfoChange({
-                payload: ((pageHeight * 2) + leeway) + "px",
+                payload: ((pageHeight * 2) + 10) + "px",
                 name: "resumeHeight"
             });
 
             const node = document.getElementById('ResumeContent');
             setPageBreakOffsets(node, pageHeight);
-            setResumeOverFlow(node, 1895 /* 2 pages plus pagebreak pluss extra leeway*/); // hide all text past two pages.
+            setResumeOverFlow(node, 2000 /* 2 pages plus pagebreak pluss extra leeway*/); // hide all text past two pages.
 
         } else {
             removePageBreak();
@@ -111,12 +118,12 @@ const ResumePage = (props) => {
                 name: "resumeHeight"
             })
         }     
-    }, [contentHeight]);
+    }, [contentHeight, work, education, skills]);
 
     return (
         <div>
             {props.children}
-            <PageBreak contentHeight={contentHeight} pageHeight={pageHeight} leeway={leeway}/>
+            <PageBreak resumeHeight={resumeHeight} contentHeight={contentHeight} pageHeight={innerPageHeight}/>
         </div>
     )
 };

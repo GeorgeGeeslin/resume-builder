@@ -164,7 +164,7 @@ const App = () => {
     const fontImportSecondary = "@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;531;600;700;800;900&display=swap');";
     const fontFamily = `"font-family: 'Roboto', sans-serif;`;
     const fontFamilySecondary = `font-family: 'Roboto Slab', serif;`;
-    const bodyStyle = fontFamily + `background-color: white; width: 8.5in; height: 11in; max-height: 11in;"`;
+    const bodyStyle = fontFamily + `font-size: 12px; background-color: white; width: 8.5in; height: 11in; max-height: 11in;"`;
     const workDescLineHeight = '<style> .workDesc ul li {line-height: 1.5rem;} .workDesc ol li {line-height: 1.5rem;} .workDesc p {line-height: 1.5rem;}</style>'
 
     let htmlString = document.getElementById("ResumeContent").outerHTML.toString();

@@ -22,14 +22,15 @@ export const PreviewBox = styled.div`
 
 //TODO: May have to extract this to stylesheet for media queries
 export const PreviewWrapper = styled.div`
-    box-sizing: border-box;
+    // box-sizing: border-box;
     background-color: #DFE1E6;
-    font-size: 12px;
-    min-width: 9in;
+    font-size: 11px;
+    min-width: 8.5in;
 `;
 
 export const ResumeContent = styled.div`
     height: ${props => props.theme.height};
+    box-sizing: border-box;
     padding: 0.5in;
     min-height: 850px;
     min-width: 8.5in;
@@ -50,8 +51,9 @@ export const PageBreakOverlay = styled.div`
         position: relative;
         top: -0.5in;
         content: "";
-        background-color: white;
+        background-color: blue;
         padding-top: 0.5in;
+        opacity: 0.3;
     //    z-index: -1;
     }
 `;
