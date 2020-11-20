@@ -17,11 +17,11 @@ $small-desktop: 1024px;
 $medium-desktop: 1500px;
 $large-desktop: 1800px;
 
-// @mixin mobile {
-//     @media (max-width: #{$tablet}) {
-//         @content;
-//     }
-// }
+@mixin mobile {
+    @media (max-width: #{$tablet}) {
+        @content;
+    }
+}
   
 // @mixin non-mobile {
 //     @media (min-width: #{$tablet + 1px}) {
@@ -147,5 +147,61 @@ $transitionTime: 0.1s;
     li {
         line-height: 15px;
         padding-bottom: 2px;
+    }
+}
+
+
+//TODO move media queries and this crap into styled-components
+#resumeInput {
+    border-top: 1px solid #444;
+    border-right: 1px solid #444;
+    padding: 1em;
+    overflow-y: auto;
+    height: 100vh;
+    width: 50%;
+
+    @include large-desktop {
+        width: 45%;
+    }
+
+    @include medium-desktop {
+        width: 40%;
+    }
+
+    @include small-desktop {
+        width: 30%;
+    }
+
+    @include tablet {
+        width: 30%;
+    }
+
+    @include mobile {
+        width: 30%;
+    }
+}
+
+#resumePreview {
+    border-top: 1px solid #444;
+    width: 55%;
+
+    @include large-desktop {
+        width: 55%;
+    }
+
+    @include medium-desktop {
+        width: 60%;
+    }
+
+    @include small-desktop {
+        width: 70%;
+    }
+
+    @include tablet {
+        width: 70%;
+    }
+
+    @include mobile {
+        width: 70%;
     }
 }

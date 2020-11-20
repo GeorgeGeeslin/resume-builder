@@ -13,7 +13,7 @@ const ResumePreview = () => {
     const {theme, resumeHeight} = context.resumeContent;
 
     return (
-        <div style={{width: "65%", borderTop: '1px solid #444'}}>
+        <div id="resumePreview">
             <PreviewBox>
                 <PreviewWrapper>
                     <ResumePage>
