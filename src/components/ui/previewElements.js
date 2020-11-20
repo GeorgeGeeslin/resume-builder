@@ -51,10 +51,8 @@ export const PageBreakOverlay = styled.div`
         position: relative;
         top: -0.5in;
         content: "";
-        background-color: blue;
         padding-top: 0.5in;
-        opacity: 0.3;
-    //    z-index: -1;
+        opacity: 0;
     }
 `;
 
