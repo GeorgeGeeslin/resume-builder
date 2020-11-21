@@ -1,13 +1,23 @@
 import React, {useContext} from 'react';
 import Context from '../context/Context';
 import { Navbar, NavButton, Logo, FlexGroup, IconButton, IconBar } from './ui/elements';
-import {FaPaintRoller, FaFileDownload, FaCloudUploadAlt, FaSave, FaFilePdf, FaExpandArrowsAlt, FaSignInAlt} from 'react-icons/fa';
+import {FaPaintRoller, FaFileDownload, FaCloudUploadAlt, FaSave, FaFilePdf, FaExpandArrowsAlt, FaSignInAlt, FaSignOutAlt} from 'react-icons/fa';
 import { IconContext } from "react-icons";
-// import ReactTooltip from "react-tooltip";
+import { useAuth0 } from "@auth0/auth0-react";
 
+//TODO break Iconbar stuff out into its own component 
 const Nav = () => {
+    const {
+        user,
+        isAuthenticated,
+        loginWithRedirect,
+        logout,
+      } = useAuth0();
 
-    //TODO break Iconbar stuff out into its own component 
+    const logoutWithRedirect = () =>
+    logout({
+    returnTo: window.location.origin,
+    });
 
     const context = useContext(Context);
     const {themeModal} = context.resumeContent;
@@ -41,7 +51,18 @@ const Nav = () => {
                     </IconContext.Provider>  
                 </IconBar>
                 <NavButton>My Resumes</NavButton>
-                <NavButton><FaSignInAlt style={{marginRight: '0.5em', position: 'relative', top:'2px'}}/>Login</NavButton>
+                {!isAuthenticated &&
+                    <NavButton onClick={() => loginWithRedirect({})}>
+                        <FaSignInAlt style={{marginRight: '0.5em', position: 'relative', top:'2px'}}/>
+                        Log In
+                    </NavButton>
+                }
+                {isAuthenticated &&
+                    <NavButton onClick={() => logoutWithRedirect({})}>
+                        <FaSignOutAlt style={{marginRight: '0.5em', position: 'relative', top:'2px'}}/>
+                        Log Out
+                    </NavButton>
+                }
             </FlexGroup>
 
         </Navbar>
