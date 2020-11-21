@@ -160,6 +160,7 @@ const App = () => {
 
   const requestPDF = () => {
     //TODO: Make font type selectable
+    //TODO: deploy endpoint and update url.
     const fontImport = "@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');";
     const fontImportSecondary = "@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;531;600;700;800;900&display=swap');";
     const fontFamily = `"font-family: 'Roboto', sans-serif;`;
