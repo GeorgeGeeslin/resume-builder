@@ -8,7 +8,6 @@ const PageBreak = ({resumeHeight, contentHeight, pageHeight}) => {
 
     // const position = -1 * (pageHeight + 108)
     const resumeHeightInt = parseInt(resumeHeight.slice(0,-2));
-    // console.log(resumeHeight)
 
     const position = - 1 * ((resumeHeightInt / 2) +5) + "px"
 

@@ -14,17 +14,16 @@ const PersonalInfoInput = () => {
     const {facebook, twitter, linkedin, github, portfolio, otherLink} = context.resumeContent.links;
     const {address, desired_position, links} = context.resumeContent.sections;
 
-    let stateOptions = statesAndTerritories.map(item => {
+    let stateOptions = statesAndTerritories.map((item, index) => {
         const indexOf = item.indexOf('-');
         const value = item.slice(indexOf + 2);
-        const selected = item.includes(`- ${state}`);
 
         return (
-            <option value={value} >{item}</option>
+            <option key={index} value={value} >{item}</option>
         );
     });
 
-    stateOptions.unshift(<option value="">Select a State</option>);
+    stateOptions.unshift(<option key='default' value="">Select a State</option>);
   
     return (
         <Grouper>

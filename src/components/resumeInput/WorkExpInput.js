@@ -10,13 +10,13 @@ const WorkExpInput = ({employer, title, dates, experience, index, arrayInfoChang
     const key = 'work'
     const parentIndex = index;
 
-    let stateOptions = statesAndTerritories.map(state => {
+    let stateOptions = statesAndTerritories.map((state, index) => {
         const hyphen = state.indexOf("-");
         const abbr = state.slice(hyphen + 2);
-        return (<option value={abbr}>{state}</option>);
+        return (<option key={index} value={abbr}>{state}</option>);
     });
 
-    stateOptions.unshift(<option value=""></option>);
+    stateOptions.unshift(<option key="default" value=""></option>);
 
     return (
         <ItemGrouper>

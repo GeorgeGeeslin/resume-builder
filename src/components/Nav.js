@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import Context from '../context/Context';
 import { Navbar, NavButton, Logo, FlexGroup, IconButton, IconBar } from './ui/elements';
-import {FaPaintRoller, FaFileDownload, FaCloudUploadAlt, FaSave, FaFilePdf, FaExpandArrowsAlt, FaSignInAlt} from 'react-icons/fa';
+import {FaPaintRoller, FaFileDownload, FaSave, FaExpandArrowsAlt, FaSignInAlt} from 'react-icons/fa';
 import { IconContext } from "react-icons";
 // import ReactTooltip from "react-tooltip";
 

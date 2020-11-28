@@ -20,7 +20,6 @@ const ResumePage = (props) => {
 
             children.forEach(child => {
                 if (child.nodeType === 1) {
-                    let offsetTop = child.offsetTop;
                     if (child.offsetTop - contentOffset < pageHeight - 58) {
                         // Element begins above the pagebreak, but it might not end there. Find child elements below the page break.
                         setPageBreakOffsets(child, pageHeight);
@@ -85,9 +84,6 @@ const ResumePage = (props) => {
     })
 
     useEffect(() => {
-        console.log({contentHeight})
-        console.log({contentOffset})
-        // console.log({innerPageHeight})
 
         const pageCountLocal = Math.ceil((contentHeight - contentOffset + (leeway + 12)) / innerPageHeight);
 

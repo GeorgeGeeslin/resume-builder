@@ -24,13 +24,13 @@ const App = () => {
     dispatchInput({type: "baseObjectInfoChange", key, field: name, payload});
   };
 
-  const plainNestedArrayInfoChange = (e) => {
-    const {key, name, payload, parent, parentIndex, index} =e;
-    dispatchInput({
-      type: "plainNestedArrayInfoChange", key, field:name, payload, 
-      parent, parentIndex, index
-    });
-  }
+  // const plainNestedArrayInfoChange = (e) => {
+  //   const {key, name, payload, parent, parentIndex, index} =e;
+  //   dispatchInput({
+  //     type: "plainNestedArrayInfoChange", key, field:name, payload, 
+  //     parent, parentIndex, index
+  //   });
+  // }
 
   const arrayInfoChange = (e) => {
     const { key, index, name, payload } = e;
@@ -91,7 +91,7 @@ const App = () => {
   };
 
   const addToSkillArray = (e) => {
-    const {parent, key, inputKey, payload} = e;
+    const {parent, key, /*inputKey,*/ payload} = e;
 
     if (payload.trim() !== "") {
       let obj = stateInput[parent];
@@ -161,9 +161,9 @@ const App = () => {
   const requestPDF = () => {
     //TODO: Make font type selectable
     const fontImport = "@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');";
-    const fontImportSecondary = "@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;531;600;700;800;900&display=swap');";
+    // const fontImportSecondary = "@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;531;600;700;800;900&display=swap');";
     const fontFamily = `"font-family: 'Roboto', sans-serif;`;
-    const fontFamilySecondary = `font-family: 'Roboto Slab', serif;`;
+    // const fontFamilySecondary = `font-family: 'Roboto Slab', serif;`;
     const bodyStyle = fontFamily + `font-size: 12px; background-color: white; width: 8.5in; height: 11in; max-height: 11in;"`;
     const workDescLineHeight = '<style> .workDesc ul li {line-height: 1.5rem;} .workDesc ol li {line-height: 1.5rem;} .workDesc p {line-height: 1.5rem;}</style>'
 
@@ -171,12 +171,15 @@ const App = () => {
     htmlString = `<html><head><style>${fontImport}</style>${workDescLineHeight}</head><body style=${bodyStyle}>` + htmlString + "</body></html>";
     const payload = JSON.stringify({data: htmlString});
 
-      fetch('http://localhost:3000/pdf', {
-          body: payload,
-          method: 'POST'
-      })
-      .then (response => response.json())
-      .then(data => createPDF(data.pdf))
+    // const url = 'http://localhost:3000/pdf';
+    const url = 'https://6z2s9prx45.execute-api.us-east-1.amazonaws.com/dev/pdf';
+    
+    fetch(url, {
+        body: payload,
+        method: 'POST'
+    })
+    .then (response => response.json())
+    .then(data => createPDF(data.pdf))
   }
 
   return (

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
-import {PreviewBox, PreviewWrapper, ResumeContent, PreviewNav, IconBar, PreviewNavButton} from '../components/ui/previewElements';
+import {PreviewBox, PreviewWrapper, ResumeContent} from '../components/ui/previewElements';
 import ResumePage from '../components/resumePreview/ResumePage';
 
 //Themes 
