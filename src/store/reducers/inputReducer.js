@@ -18,7 +18,7 @@ export const initialState = {
         facebook: '',
         twitter: '',
         linkedin: '',
-        github: 'www.github.com/georgegeeslin.com',
+        github: 'https://github.com/GeorgeGeeslin',
         portfolio:'www.georgegeeslin.com',
         otherLink: ''
     },
