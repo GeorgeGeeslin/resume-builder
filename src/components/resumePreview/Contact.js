@@ -15,7 +15,7 @@ const Contact = ({street1, street2, city, state, zip, phone, email, linkedin, gi
 
     // include http protocol so that link is NOT a relative link, browser should redirect to https if needed.
     let absoluteUrl = "";
-    if (url.slice(0,4) === "http") {
+    if (url.slice(0,7) === "http://") {
         absoluteUrl = url;
     } else {
         absoluteUrl = "http://" + url;

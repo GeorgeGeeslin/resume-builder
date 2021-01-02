@@ -11,7 +11,7 @@ const Nav = () => {
 
     const context = useContext(Context);
     const {themeModal} = context.resumeContent;
-    const {baseInfoChange, requestPDF} = context;
+    const {baseInfoChange, requestPDF, lambdatest} = context;
 
     return (
         <Navbar>
@@ -32,7 +32,7 @@ const Nav = () => {
                             <FaSave /> 
                         </IconButton>{/* save/upload */}
                         <IconButton data-tip={`Download Resume`} data-background-color='#36B37E'
-                            onClick={requestPDF}>
+                            onClick={lambdatest}>
                             <FaFileDownload />
                         </IconButton> {/* download resume */}
                         <IconButton data-tip={`Preview Resume`} data-background-color='#36B37E'>
