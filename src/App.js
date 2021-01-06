@@ -1,12 +1,12 @@
 import React, { useReducer } from 'react';
-import ReactTooltip from "react-tooltip";
+// import ReactTooltip from "react-tooltip";
 import Context from './context/Context';
 import * as InputReducer from './store/reducers/inputReducer';
-import ResumeEditor from './containers/ResumeEditor';
-import Nav from './components/Nav';
+// import ResumeEditor from './containers/ResumeEditor';
+// import Nav from './components/Nav';
+import Routes from './Routes';
 import './App.scss';
 import {highlighterButtonParent, toggleSectionVisability} from './components/ui/elements';
-// import {selectFont} from './components/ui/fonts';
 
 const App = () => {
 
@@ -234,9 +234,7 @@ const App = () => {
       requestPDF,
       lambdatest
     }}>
-      <Nav />
-      <ResumeEditor />
-      <ReactTooltip /> 
+      <Routes /> 
     </Context.Provider>
   );
 }

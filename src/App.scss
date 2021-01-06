@@ -150,7 +150,6 @@ $transitionTime: 0.1s;
     }
 }
 
-
 //TODO move media queries and this crap into styled-components
 #resumeInput {
     border-top: 1px solid #444;
@@ -205,3 +204,16 @@ $transitionTime: 0.1s;
         width: 70%;
     }
 }
+
+.rotate { 
+    animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
