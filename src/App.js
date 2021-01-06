@@ -1,5 +1,6 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState, useEffect } from 'react';
 // import ReactTooltip from "react-tooltip";
+import { Auth } from "aws-amplify";
 import Context from './context/Context';
 import * as InputReducer from './store/reducers/inputReducer';
 // import ResumeEditor from './containers/ResumeEditor';
@@ -7,10 +8,28 @@ import * as InputReducer from './store/reducers/inputReducer';
 import Routes from './Routes';
 import './App.scss';
 import {highlighterButtonParent, toggleSectionVisability} from './components/ui/elements';
+import { onError } from "./libs/errorLib";
 
 const App = () => {
 
   const [stateInput, dispatchInput] = useReducer(InputReducer.InputReducer, InputReducer.initialState);
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
+
+  useEffect(() => {
+    onLoad();
+  }, []);
+
+  async function onLoad() {
+    try {
+      await Auth.currentSession();
+      baseInfoChange({payload: true, name: 'userHasAuthenticated'});
+    } catch(err) {
+      if (err !== 'No current user') {
+        onError(err);
+      }
+    }
+    setIsAuthenticating(false);
+  };
 
   //TODO: App.js has become the place where all the major functions that need to be made avalible throughout the app via Context live. 
   // Should probably stick these in some files and export them for better organization. 

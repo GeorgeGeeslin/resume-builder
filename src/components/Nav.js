@@ -1,9 +1,10 @@
 import React, {useContext} from 'react';
 import Context from '../context/Context';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Navbar, NavButton, Logo, FlexGroup, IconButton, IconBar } from './ui/elements';
 import {FaPaintRoller, FaFileDownload, FaSave, FaExpandArrowsAlt, FaSignInAlt} from 'react-icons/fa';
 import { IconContext } from "react-icons";
+import { Auth } from 'aws-amplify';
 // import ReactTooltip from "react-tooltip";
 
 const Nav = () => {
@@ -11,8 +12,16 @@ const Nav = () => {
   //TODO break Iconbar stuff out into its own component 
 
   const context = useContext(Context);
-  const {themeModal} = context.resumeContent;
+  const {themeModal, userHasAuthenticated} = context.resumeContent;
   const {baseInfoChange, requestPDF, lambdatest} = context;
+
+  const history = useHistory();
+
+  async function handleLogout() {
+    await Auth.signOut();
+    baseInfoChange({payload: false, name: 'userHasAuthenticated'});
+    history.push("/login");
+  };
 
   return (
     <Navbar>
@@ -42,9 +51,13 @@ const Nav = () => {
           </IconContext.Provider>  
         </IconBar>
         <NavButton>My Resumes</NavButton>
-        <Link to="/login">
-          <NavButton><FaSignInAlt style={{marginRight: '0.5em', position: 'relative', top:'2px'}}/>Login</NavButton>
-        </Link>
+        { userHasAuthenticated ? (
+          <NavButton onClick={handleLogout}>Logout</NavButton>
+        ) : (
+          <Link to="/login">
+            <NavButton><FaSignInAlt style={{marginRight: '0.5em', position: 'relative', top:'2px'}}/>Login</NavButton>
+          </Link>
+        )}        
       </FlexGroup>
 
     </Navbar>
