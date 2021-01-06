@@ -12,4 +12,4 @@ export function useFormFields(initialState) {
       });
     }
   ];
-}hooks
+}

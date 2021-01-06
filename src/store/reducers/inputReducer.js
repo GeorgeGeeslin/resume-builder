@@ -1,6 +1,7 @@
 
 export const initialState = {
-    username: 'george.geeslin@gmail.com',
+    username: 'george.geeslin@gmail.com', // will have this?
+    userHasAuthenticated: false,
     themeModal: false,
     // TODO: below are resume only items. May need to extract other items into another reducer. 
     theme: 'default',
