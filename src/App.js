@@ -9,6 +9,7 @@ import Routes from './Routes';
 import './App.scss';
 import {highlighterButtonParent, toggleSectionVisability} from './components/ui/elements';
 import { onError } from "./libs/errorLib";
+import { API } from "aws-amplify";
 
 const App = () => {
 
@@ -177,6 +178,7 @@ const App = () => {
     document.body.removeChild(link)
   };
 
+  //TODO: Delete this function and remove from Nav component.
   const lambdatest = async () => {
     const url = 'http://localhost:3002/test';
 
@@ -193,8 +195,8 @@ const App = () => {
     } catch (error) {
       console.log(error)
     }
-    
-  }
+  };
+
 
   const requestPDF = async () => {
     //TODO: Make font type selectable
@@ -233,6 +235,28 @@ const App = () => {
     }
   };
 
+  async function handleCreate() {
+    let htmlString = document.getElementById("ResumeContent").outerHTML.toString();
+    // htmlString = `<html><head><style>${fontImport}</style>${workDescLineHeight}</head><body style=${bodyStyle}>` + htmlString + "</body></html>";
+    // const payload = JSON.stringify({"content": htmlString});
+    
+    try {
+      await createResume(htmlString);
+    } catch(err) {
+      onError(err);
+    }
+  };
+
+  function createResume(resume) {
+
+    // console.log(resume)
+
+    return API.post("resume", "/resume", {
+      body: {content: resume}
+    });
+  }
+
+
   return (
     <Context.Provider value={{
       resumeContent: stateInput,
@@ -251,7 +275,8 @@ const App = () => {
       addToCoursework,
       deleteCoursework,
       requestPDF,
-      lambdatest
+      lambdatest,
+      handleCreate
     }}>
       <Routes /> 
     </Context.Provider>
