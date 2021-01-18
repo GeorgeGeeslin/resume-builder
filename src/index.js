@@ -1,19 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './index.css';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { Auth0Provider } from "@auth0/auth0-react";
+import { Amplify } from 'aws-amplify';
+import config from './config';
+
+Amplify.configure({
+  Auth: {
+    mandatorySignIn: true,
+    region: config.cognito.REGION,
+    userPoolId: config.cognito.USER_POOL_ID,
+    identityPoolId: config.cognito.IDENTITY_POOL_ID,
+    userPoolWebClientId: config.cognito.APP_CLIENT_ID
+  },
+  Storage: {
+    region: config.s3.REGION,
+    bucket: config.s3.BUCKET,
+    identityPoolId: config.cognito.IDENTITY_POOL_ID
+  },
+  API: {
+    endpoints: [
+      {
+        name: "resume",
+        endpoint: config.apiGateway.URL,
+        region: config.apiGateway.REGION
+      },
+    ]
+  }
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <Auth0Provider
-      domain="ggeeslin.us.auth0.com"
-      clientId="E3vTTEIEslqI7G5dnHSK7n3fxNJ3nGaT"
-      redirectUri={window.location.origin}
-    >
+    <Router>
       <App />
-    </Auth0Provider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

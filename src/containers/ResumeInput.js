@@ -5,7 +5,6 @@ import WorkExpInputGroup from '../components/resumeInput/WorkExpInputGroup';
 import EduInput from '../components/resumeInput/EduInput';
 import EduInputGroup from '../components/resumeInput/EduInputGroup';
 import PersonalInfoInput from '../components/resumeInput/PersonalInfoInput';
-import SkillInput from '../components/resumeInput/SkillInput';
 import Skillwrapper from '../components/resumeInput/Skillwrapper';
 
 const ResumeInput = () => {

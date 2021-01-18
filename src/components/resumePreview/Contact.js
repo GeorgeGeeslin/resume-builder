@@ -11,9 +11,18 @@ const Contact = ({street1, street2, city, state, zip, phone, email, linkedin, gi
     const cityStateZip = city ? concatLine(', ', city, stateZip) : stateZip;
 
     const urls = [linkedin, github, twitter, facebook, portfolio, otherLink];
-    const urlLinks = urls.map((url, index) => (
-        <p key={index}><a href={url}>{url}</a></p>
-    ))
+    const urlLinks = urls.map((url, index) => {
+
+    // include http protocol so that link is NOT a relative link, browser should redirect to https if needed.
+    let absoluteUrl = "";
+    if (url.slice(0,7) === "http://") {
+        absoluteUrl = url;
+    } else {
+        absoluteUrl = "http://" + url;
+    }
+
+       return  <p key={index}><a href={absoluteUrl} target="_blank">{url}</a></p>
+    })
 
     return(
         <div>

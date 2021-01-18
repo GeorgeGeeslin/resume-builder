@@ -6,9 +6,6 @@ const Edu = ({index, school, degree, major, dates, coursework, current, gpa}) =>
     const line1 = concatLine(' in ', degree, major,);
 
     const dateDisplay = concatDateRage(dates, current);
-    const gpaDisplay = gpa ? `GPA: ${gpa}` : '';
-
-
 
     return (
         <div>
