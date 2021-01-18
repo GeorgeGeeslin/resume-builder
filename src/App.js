@@ -164,11 +164,7 @@ const App = () => {
     dispatchInput({type: 'deleteSkill', parent, key, index});
   };
 
-
-  //Get font selection for Resume Output... this needs to effect preview and downloads
-  //selectFont
-
-  // Download the PDF
+  // Create PDF from base64 string and open download link.
   const createPDF = (b64) => {
     // Force a download by creating a downloadlink and then clicking and removing it.
     const link = document.createElement('a');
@@ -178,27 +174,8 @@ const App = () => {
     document.body.removeChild(link)
   };
 
-  //TODO: Delete this function and remove from Nav component.
-  const lambdatest = async () => {
-    const url = 'http://localhost:3002/test';
-
-    const options = {
-      method: 'GET',
-      mode: 'cors',
-      // headers: {'Content-Type': 'application/json'},
-    };
-
-    try {
-      let response = await fetch(url, options);
-
-      console.log(response)
-    } catch (error) {
-      console.log(error)
-    }
-  };
-
-
-  const requestPDF = async () => {
+  // Post HTML string to Lambda and return base64 encoded PDF.
+  async function downloadResume() {
     //TODO: Make font type selectable
     const fontImport = "@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');";
     // const fontImportSecondary = "@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;531;600;700;800;900&display=swap');";
@@ -209,53 +186,13 @@ const App = () => {
 
     let htmlString = document.getElementById("ResumeContent").outerHTML.toString();
     htmlString = `<html><head><style>${fontImport}</style>${workDescLineHeight}</head><body style=${bodyStyle}>` + htmlString + "</body></html>";
-    const payload = JSON.stringify({"data": htmlString});
 
-    // const url = 'http://localhost:3000/pdf';
-    const url = 'https://6z2s9prx45.execute-api.us-east-1.amazonaws.com/dev/pdf';
-
-    const options = {
-        body: payload,
-        method: 'POST',
-        mode: 'cors',
-        headers: {'Content-Type': 'application/json'},
-    };
-    
-    try {
-
-      let response = await fetch(url,options);
-
-      response = await response.json();
-      console.log(response);
-
-      // createPDF(response.pdf);
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  async function handleCreate() {
-    let htmlString = document.getElementById("ResumeContent").outerHTML.toString();
-    // htmlString = `<html><head><style>${fontImport}</style>${workDescLineHeight}</head><body style=${bodyStyle}>` + htmlString + "</body></html>";
-    // const payload = JSON.stringify({"content": htmlString});
-    
-    try {
-      await createResume(htmlString);
-    } catch(err) {
-      onError(err);
-    }
-  };
-
-  function createResume(resume) {
-
-    // console.log(resume)
-
-    return API.post("resume", "/resume", {
-      body: {content: resume}
+    const pdfString = await API.post("resume", "/resume/download", {
+      body: {data: htmlString}
     });
-  }
 
+    createPDF(pdfString);
+  };
 
   return (
     <Context.Provider value={{
@@ -274,9 +211,7 @@ const App = () => {
       deleteSkill,
       addToCoursework,
       deleteCoursework,
-      requestPDF,
-      lambdatest,
-      handleCreate
+      downloadResume
     }}>
       <Routes /> 
     </Context.Provider>
