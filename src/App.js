@@ -195,6 +195,35 @@ const App = () => {
     createPDF(pdfString);
   };
 
+  async function saveResume(resume) {
+
+    const result = await API.post("resume", "/resume", {
+      body: resume
+    });
+
+    console.log("save")
+    console.log(result)
+    baseInfoChange({payload: result.resumeId, name: "resumeId"});
+  };
+
+  async function updateResume(resumeId, resume) {
+
+    const result = await API.put("resume", `/resume/${resumeId}`, {
+      body: resume
+    });
+
+    console.log("update")
+    console.log(result);
+  };
+
+  const saveOrUpdate = (resumeId, resume) => {
+    if (!resumeId) {
+      saveResume(resume);
+    } else {
+      updateResume(resumeId, resume);
+    }
+  };
+
   return (
     <Context.Provider value={{
       resumeContent: stateInput,
@@ -212,7 +241,8 @@ const App = () => {
       deleteSkill,
       addToCoursework,
       deleteCoursework,
-      downloadResume
+      downloadResume,
+      saveOrUpdate
     }}>
       <Routes /> 
     </Context.Provider>

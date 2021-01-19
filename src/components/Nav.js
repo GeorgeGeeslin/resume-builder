@@ -13,8 +13,9 @@ const Nav = () => {
   //TODO break Iconbar stuff out into its own component 
 
   const context = useContext(Context);
-  const {themeModal, userHasAuthenticated} = context.resumeContent;
-  const {baseInfoChange, downloadResume} = context;
+  const {themeModal, userHasAuthenticated, resumeName, resumeId} = context.resumeContent;
+  const {baseInfoChange, downloadResume, saveOrUpdate} = context;
+  const appState = context.resumeContent;
 
   const history = useHistory();
 
@@ -38,14 +39,15 @@ const Nav = () => {
                 }
             )}>
               <FaPaintRoller />
-            </IconButton> {/* themes */}
-            <IconButton data-tip={`Save Resume`} data-background-color='#36B37E'>
+            </IconButton>
+            <IconButton data-tip={`Save Resume`} data-background-color='#36B37E' 
+              onClick={(e) => saveOrUpdate(resumeId, {appState,resumeName})}
+            >
               <FaSave /> 
-            </IconButton>{/* save/upload */}
-            <IconButton data-tip={`Download Resume`} data-background-color='#36B37E'
-              onClick={downloadResume}>
+            </IconButton>
+            <IconButton data-tip={`Download Resume`} data-background-color='#36B37E' onClick={downloadResume}>
               <FaFileDownload />
-            </IconButton> {/* download resume */}
+            </IconButton>
             <IconButton data-tip={`Preview Resume`} data-background-color='#36B37E'>
               <FaExpandArrowsAlt />
             </IconButton> {/* pdf modal view */}

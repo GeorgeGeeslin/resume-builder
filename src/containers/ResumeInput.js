@@ -5,6 +5,7 @@ import WorkExpInputGroup from '../components/resumeInput/WorkExpInputGroup';
 import EduInput from '../components/resumeInput/EduInput';
 import EduInputGroup from '../components/resumeInput/EduInputGroup';
 import PersonalInfoInput from '../components/resumeInput/PersonalInfoInput';
+import ResumeInfo from "../components/resumeInput/ResumeInfo";
 import Skillwrapper from '../components/resumeInput/Skillwrapper';
 
 const ResumeInput = () => {
@@ -38,6 +39,7 @@ const ResumeInput = () => {
 
     return (
         <div id="resumeInput">
+            <ResumeInfo />
             <PersonalInfoInput />
             <WorkExpInputGroup workExpInputArray={workExpInputArray} addArrayItem={addArrayItem}/>
             <EduInputGroup eduInputArray={eduInputArray} addArrayItem={addArrayItem} />
