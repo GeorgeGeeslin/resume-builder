@@ -10,6 +10,8 @@ import './App.scss';
 import {highlighterButtonParent, toggleSectionVisability} from './components/ui/elements';
 import { onError } from "./libs/errorLib";
 import { API } from "aws-amplify";
+import * as htmlToImage from 'html-to-image';
+import { toPng, toSvg } from 'html-to-image';
 
 const App = () => {
 
@@ -166,9 +168,13 @@ const App = () => {
 
   // Create PDF from base64 string and open download link.
   const createPDF = (b64) => {
+    //TODO: Does not save with .pdf file extention
+    //Also, make open browser's pdf view like lucidchart.
+
     // Force a download by creating a downloadlink and then clicking and removing it.
     const link = document.createElement('a');
     link.href = 'data:application/octet-stream;base64,' + b64;
+    // link.href = 'data:application/pdf;base64,' + b64
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link)
@@ -196,31 +202,42 @@ const App = () => {
   };
 
   async function saveResume(resume) {
-
     const result = await API.post("resume", "/resume", {
       body: resume
     });
 
-    console.log("save")
-    console.log(result)
+    console.log(result);
     baseInfoChange({payload: result.resumeId, name: "resumeId"});
   };
 
   async function updateResume(resumeId, resume) {
-
     const result = await API.put("resume", `/resume/${resumeId}`, {
       body: resume
     });
 
-    console.log("update")
     console.log(result);
   };
 
-  const saveOrUpdate = (resumeId, resume) => {
+  async function saveOrUpdate(resumeId, resume) {
+    const thumbnail = await createThumbnail();
+    resume.thumbnail = thumbnail;
+
     if (!resumeId) {
       saveResume(resume);
     } else {
       updateResume(resumeId, resume);
+    }
+  };
+
+  async function createThumbnail() {
+    const node = document.getElementById("ResumeContent");
+
+    try {
+      const dataUrl = await htmlToImage.toPng(node);
+      return dataUrl;
+
+    } catch (err) {
+      console.log(err);
     }
   };
 

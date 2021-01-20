@@ -3,8 +3,9 @@ export const initialState = {
     // username: 'george.geeslin@gmail.com', // will have this?
     userHasAuthenticated: false,
     themeModal: false,
-    resumeId: null,
-    resumeName: "Full Stack Dev",
+    resumeId: "RESUME#542168c0-5add-11eb-80de-ddf9377b68d3",
+    // resumeId: null,
+    resumeName: "Full Stack",
     // TODO: below are resume only items. May need to extract other items into another reducer. 
     theme: 'default',
     font: 'Roboto',
