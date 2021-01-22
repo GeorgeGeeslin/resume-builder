@@ -1,16 +1,13 @@
-
+/*
 export const initialState = {
-    // username: 'george.geeslin@gmail.com', // will have this?
     userHasAuthenticated: false,
     themeModal: false,
     resumeId: "RESUME#542168c0-5add-11eb-80de-ddf9377b68d3",
-    // resumeId: null,
-    resumeName: "Full Stack",
-    // TODO: below are resume only items. May need to extract other items into another reducer. 
     theme: 'default',
     font: 'Roboto',
     pageCount: 1, //make this do something or remove it. was for disabling 3rd page (page break logic supports only 2 pages)
     resumeHeight: "1px",
+    resumeName: "Full Stack",
     name: 'George Geeslin',  
     phone: '325-518-9738', 
     email: 'george.geeslin@gmail.com', 
@@ -87,20 +84,20 @@ export const initialState = {
         links: true,
     },
 };
+*/
 
-
-/*
 export const initialState = {
-    username: '',
+    userHasAuthenticated: false,
     themeModal: false,
-    theme: 'default', 
+    resumeId: null,
+    theme: 'default',
     font: 'Roboto',
-    pageCount: 1,
-    resumeHeight: 890,
-    //content
-    name: "",
-    phone:"",
-    email:"",
+    pageCount: 1, //make this do something or remove it. was for disabling 3rd page (page break logic supports only 2 pages)
+    resumeHeight: "1px",
+    resumeName: "",
+    name: "",  
+    phone: "", 
+    email: "", 
     desired_position: {
         role:"",
         profile:""
@@ -114,8 +111,8 @@ export const initialState = {
         otherLink:""
     },
     address: {
-        // street1:"",
-        // street2:"",
+        street1:"",
+        street2:"",
         city:"",
         state:"",
         zip:"",
@@ -135,7 +132,7 @@ export const initialState = {
         links: true, 
     }
 };
-*/
+
 
 export const InputReducer = (state = initialState, action) => {
     let key = action.key;
@@ -271,6 +268,12 @@ export const InputReducer = (state = initialState, action) => {
             nestedArray = obj[action.targetKey];
             nestedArray.splice(action.index,1);
             
+            return {
+                ...state
+            }
+
+        case 'loadAppState':
+            state = action.savedState
             return {
                 ...state
             }

@@ -3,15 +3,13 @@ import React, { useReducer, useState, useEffect } from 'react';
 import { Auth } from "aws-amplify";
 import Context from './context/Context';
 import * as InputReducer from './store/reducers/inputReducer';
-// import ResumeEditor from './containers/ResumeEditor';
-// import Nav from './components/Nav';
 import Routes from './Routes';
 import './App.scss';
 import {highlighterButtonParent, toggleSectionVisability} from './components/ui/elements';
 import { onError } from "./libs/errorLib";
 import { API } from "aws-amplify";
 import * as htmlToImage from 'html-to-image';
-import { toPng, toSvg } from 'html-to-image';
+// import { toPng } from 'html-to-image';
 
 const App = () => {
 
@@ -32,6 +30,57 @@ const App = () => {
       }
     }
     setIsAuthenticating(false);
+  };
+
+  async function getAppState() {
+    try {
+      const appState = await API.get("resume", `/meta`);
+      console.log(appState)
+      if (appState.length === 0) {
+        createUserMeta();
+      } else {
+        const last = appState.length - 1;
+        const savedState = appState[last].appState
+        console.log(savedState)
+        loadAppState(savedState);
+      }
+
+    } catch(err) {
+      onError(err);
+    }
+  }
+
+  async function createUserMeta() {
+    let payload = {appState: stateInput}
+    try {
+      const result = await API.post("resume", "/meta", {
+        body: payload
+      });
+      console.log(result);
+    } catch(err) {
+      onError(err);
+    }
+  };
+
+  async function updateUserMeta() {
+    let payload = {appState: stateInput}
+    try {
+      const result = await API.put("resume", "/meta", {
+        body: payload  
+      });
+      console.log(result);
+    } catch (err) {
+      onError(err)
+    }
+  }
+
+  const loadAppState = (savedState) => {
+    console.log(savedState)
+    if (savedState) {
+      dispatchInput({type: 'loadAppState', savedState});
+    } else {
+      console.log("No Saved State!!")
+    }
   };
 
   //TODO: App.js has become the place where all the major functions that need to be made avalible throughout the app via Context live. 
@@ -202,20 +251,29 @@ const App = () => {
   };
 
   async function saveResume(resume) {
-    const result = await API.post("resume", "/resume", {
-      body: resume
-    });
-
-    console.log(result);
-    baseInfoChange({payload: result.resumeId, name: "resumeId"});
+    try {
+      const result = await API.post("resume", "/resume", {
+        body: resume
+      });
+  
+      console.log(result);
+      baseInfoChange({payload: result.resumeId, name: "resumeId"});
+    } catch (err) {
+      onError(err);
+    }
   };
 
   async function updateResume(resumeId, resume) {
-    const result = await API.put("resume", `/resume/${resumeId}`, {
-      body: resume
-    });
+    try {
+      const result = await API.put("resume", `/resume/${resumeId}`, {
+        body: resume
+      });
+  
+      console.log(result);
+    } catch (err) {
+      onError(err);
+    }
 
-    console.log(result);
   };
 
   async function saveOrUpdate(resumeId, resume) {
@@ -224,8 +282,10 @@ const App = () => {
 
     if (!resumeId) {
       saveResume(resume);
+      updateUserMeta();
     } else {
       updateResume(resumeId, resume);
+      updateUserMeta();
     }
   };
 
@@ -237,7 +297,7 @@ const App = () => {
       return dataUrl;
 
     } catch (err) {
-      console.log(err);
+      onError(err);
     }
   };
 
@@ -259,7 +319,8 @@ const App = () => {
       addToCoursework,
       deleteCoursework,
       downloadResume,
-      saveOrUpdate
+      saveOrUpdate,
+      getAppState
     }}>
       <Routes /> 
     </Context.Provider>
