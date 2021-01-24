@@ -1,21 +1,27 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import Home from "./containers/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import MyResumes from "./components/MyResumes";
+import AuthenticatedRoute from "./components/AuthenticatedRoute";
+import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
 export default function Routes() {
   return (
     <Switch>
-      <Route exact path="/">
+      <AuthenticatedRoute exact path="/">
         <Home />
-      </Route>
-      <Route exact path="/login">
+      </AuthenticatedRoute>
+      <UnauthenticatedRoute exact path="/login">
           <Login />
-      </Route>
-      <Route exact path="/signup">
+      </UnauthenticatedRoute>
+      <UnauthenticatedRoute exact path="/signup">
         <Signup />
-      </Route>
+      </UnauthenticatedRoute>
+      <AuthenticatedRoute exact path="/resumes">
+        <MyResumes />
+      </AuthenticatedRoute>
     </Switch>
   );
 }

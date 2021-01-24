@@ -35,13 +35,13 @@ const App = () => {
   async function getAppState() {
     try {
       const appState = await API.get("resume", `/meta`);
-      console.log(appState)
+      // console.log(appState)
       if (appState.length === 0) {
         createUserMeta();
       } else {
         const last = appState.length - 1;
         const savedState = appState[last].appState
-        console.log(savedState)
+        // console.log(savedState)
         loadAppState(savedState);
       }
 
@@ -56,7 +56,7 @@ const App = () => {
       const result = await API.post("resume", "/meta", {
         body: payload
       });
-      console.log(result);
+      // console.log(result);
     } catch(err) {
       onError(err);
     }
@@ -68,18 +68,18 @@ const App = () => {
       const result = await API.put("resume", "/meta", {
         body: payload  
       });
-      console.log(result);
+      // console.log(result);
     } catch (err) {
       onError(err)
     }
   }
 
   const loadAppState = (savedState) => {
-    console.log(savedState)
+    // console.log(savedState)
     if (savedState) {
       dispatchInput({type: 'loadAppState', savedState});
     } else {
-      console.log("No Saved State!!")
+      // console.log("No Saved State!!")
     }
   };
 
@@ -256,7 +256,7 @@ const App = () => {
         body: resume
       });
   
-      console.log(result);
+      // console.log(result);
       baseInfoChange({payload: result.resumeId, name: "resumeId"});
     } catch (err) {
       onError(err);
@@ -269,7 +269,7 @@ const App = () => {
         body: resume
       });
   
-      console.log(result);
+      // console.log(result);
     } catch (err) {
       onError(err);
     }

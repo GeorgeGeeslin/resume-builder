@@ -53,7 +53,9 @@ const Nav = () => {
             </IconButton> {/* pdf modal view */}
           </IconContext.Provider>  
         </IconBar>
-        <NavButton>My Resumes</NavButton>
+        <Link to="/resumes">
+          <NavButton>My Resumes</NavButton>
+        </Link>
         { userHasAuthenticated ? (
           <NavButton onClick={handleLogout}>Logout</NavButton>
         ) : (
