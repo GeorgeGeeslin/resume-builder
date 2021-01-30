@@ -306,6 +306,16 @@ export const WarningMessage = styled.div`
   text-align: center;
 `;
 
+export const SavedResumeCard = styled.div`
+  box-shadow: 0 1px 3px rgba(0,0,0,0.45), 0 1px 2px rgba(0,0,0,0.55);
+`;
+
+export const ResumeThumbnail = styled.img`
+
+`;
+
+
+
 
 // Not exported directly, dependent on Skill functions in this file.
 const SkillChip = styled.div`

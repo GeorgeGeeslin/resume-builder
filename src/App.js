@@ -40,7 +40,7 @@ const App = () => {
         createUserMeta();
       } else {
         const last = appState.length - 1;
-        const savedState = appState[last].appState
+        const savedState = appState[last].appState ? appState[last].appState : InputReducer.initialState
         // console.log(savedState)
         loadAppState(savedState);
       }
@@ -62,8 +62,8 @@ const App = () => {
     }
   };
 
-  async function updateUserMeta() {
-    let payload = {appState: stateInput}
+  async function updateUserMeta(appState) {
+    let payload = {appState}
     try {
       const result = await API.put("resume", "/meta", {
         body: payload  
@@ -251,6 +251,7 @@ const App = () => {
   };
 
   async function saveResume(resume) {
+    console.log("save")
     try {
       const result = await API.post("resume", "/resume", {
         body: resume
@@ -264,6 +265,7 @@ const App = () => {
   };
 
   async function updateResume(resumeId, resume) {
+    console.log("update")
     try {
       const result = await API.put("resume", `/resume/${resumeId}`, {
         body: resume
@@ -281,11 +283,13 @@ const App = () => {
     resume.thumbnail = thumbnail;
 
     if (!resumeId) {
+      console.log("SAVE RESUME!")
       saveResume(resume);
-      updateUserMeta();
+      updateUserMeta(stateInput);
     } else {
+      console.log("UPDATE RESUME!")
       updateResume(resumeId, resume);
-      updateUserMeta();
+      updateUserMeta(stateInput);
     }
   };
 
@@ -300,6 +304,14 @@ const App = () => {
       onError(err);
     }
   };
+
+  const newResume = () => {
+    const confirm = window.confirm("Create a new resume? All unsaved changes will be lost.")
+
+    if (confirm) {
+      loadAppState(InputReducer.initialState);
+    }
+  }
 
   return (
     <Context.Provider value={{
@@ -320,7 +332,9 @@ const App = () => {
       deleteCoursework,
       downloadResume,
       saveOrUpdate,
-      getAppState
+      getAppState,
+      updateUserMeta,
+      newResume
     }}>
       <Routes /> 
     </Context.Provider>

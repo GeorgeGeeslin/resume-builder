@@ -88,6 +88,7 @@ export const initialState = {
 
 export const initialState = {
     userHasAuthenticated: false,
+    unsavedChange: false,
     themeModal: false,
     resumeId: null,
     theme: 'default',

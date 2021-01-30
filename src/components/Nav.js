@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import Context from '../context/Context';
 import { Link, useHistory } from "react-router-dom";
 import { Navbar, NavButton, Logo, FlexGroup, IconButton, IconBar } from './ui/elements';
-import {FaPaintRoller, FaFileDownload, FaSave, FaExpandArrowsAlt, FaSignInAlt} from 'react-icons/fa';
+import {FaPaintRoller, FaFileDownload, FaSave, FaPlus, FaSignInAlt} from 'react-icons/fa';
 import { IconContext } from "react-icons";
 import { Auth } from 'aws-amplify';
 // import ReactTooltip from "react-tooltip";
@@ -14,7 +14,7 @@ const Nav = () => {
 
   const context = useContext(Context);
   const {themeModal, userHasAuthenticated, resumeName, resumeId} = context.resumeContent;
-  const {baseInfoChange, downloadResume, saveOrUpdate} = context;
+  const {baseInfoChange, downloadResume, saveOrUpdate, newResume} = context;
   const appState = context.resumeContent;
 
   const history = useHistory();
@@ -27,10 +27,17 @@ const Nav = () => {
 
   return (
     <Navbar>
-      <Logo>Lonestar Resumes</Logo>
+      <Link to="/">
+        <Logo>Lonestar Resumes</Logo>
+      </Link>
       <FlexGroup style={{alignItems: 'center'}}>
         <IconBar> 
           <IconContext.Provider value={{color: 'white'}}>
+            <IconButton data-tip={`Save Resume`} data-background-color='#36B37E' 
+              onClick={(e) => saveOrUpdate(resumeId, {appState,resumeName})}
+            >
+              <FaSave /> 
+            </IconButton>
             <IconButton data-tip={`Select Theme`} data-background-color='#36B37E'
               onClick={(e) => baseInfoChange(
                 {
@@ -39,20 +46,16 @@ const Nav = () => {
                 }
             )}>
               <FaPaintRoller />
-            </IconButton>
-            <IconButton data-tip={`Save Resume`} data-background-color='#36B37E' 
-              onClick={(e) => saveOrUpdate(resumeId, {appState,resumeName})}
-            >
-              <FaSave /> 
-            </IconButton>
+            </IconButton>              
             <IconButton data-tip={`Download Resume`} data-background-color='#36B37E' onClick={downloadResume}>
               <FaFileDownload />
-            </IconButton>
-            <IconButton data-tip={`Preview Resume`} data-background-color='#36B37E'>
-              <FaExpandArrowsAlt />
-            </IconButton> {/* pdf modal view */}
+            </IconButton>          
           </IconContext.Provider>  
         </IconBar>
+        <NavButton onClick={newResume}>
+          <FaPlus style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
+          New
+        </NavButton>
         <Link to="/resumes">
           <NavButton>My Resumes</NavButton>
         </Link>

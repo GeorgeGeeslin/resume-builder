@@ -1,12 +1,20 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
+import Context from '../context/Context';
 import { API } from "aws-amplify";
+import { DateTime } from "luxon";
+import { FaFileDownload, FaTrashAlt } from "react-icons/fa";
 import { onError } from "../libs/errorLib";
-import { FlexGroup } from "./ui/elements";
+import { FlexGroup, SavedResumeCard} from "./ui/elements";
+import Nav from './Nav';
+import {initialState} from '../store/reducers/inputReducer';
 
 const MyResumes = () => {
 
+  const context = useContext(Context);
+  const {resumeId} = context.resumeContent;
+  const {updateUserMeta} = context;
+
   const [myResumes, setMyResumes] = useState([]);
-  // const [deletedResumes, setDeletedResumes] = useState([]);
 
   useEffect(() => {
     fetchResumes();
@@ -20,67 +28,56 @@ const MyResumes = () => {
     } catch (err) {
       onError(err)
     }
-  };
+  };   
 
-  // async function deleteResume(resumeId, index) {
-  //   try {
-  //     console.log(resumeId)
-
-  //     const result = await API.del("resume", `/resume/${resumeId}`);
-  //     console.log(result);
-
-  //     console.log(index)
-  //     console.log(myResumes)
-
-  //     let newResumes = myResumes;
-  //     newResumes.splice(index, 1);
-  //     // simply passing newResmues was not triggering re-render.
-  //     setMyResumes([...newResumes]);      
-
-  //   } catch (err) {
-  //     onError(err)
-  //   }
-  // }
-
-  // console.log(resumeId);
-  // let newResumes = myResumes;
-  // newResumes.splice(index, 1);    
-
-  async function handleDelete(resumeId, index) {
+  async function handleDelete(thisResumeId, index) {
     try {
-      console.log(resumeId);
       let newResumes = myResumes;
       newResumes.splice(index, 1);  
 
-      const result = await deleteResume(encodeURIComponent(resumeId));
-      console.log(result)
+      await deleteResume(encodeURIComponent(thisResumeId));
+      if (resumeId === thisResumeId) {
+        await updateUserMeta(initialState);
+      }
+
       setMyResumes([...newResumes]); 
     } catch (err) {
       onError(err);
     }
   }
 
-  function deleteResume(resumeId) {
-    return API.del("resume", `/resume/${resumeId}`);
+  function deleteResume(thisResumeId) {
+    return API.del("resume", `/resume/${thisResumeId}`);
   }
+
+  const timeStampConverter = (ts) => {
+    const dt = DateTime.fromMillis(ts);
+    const dateString = dt.toLocaleString(DateTime.DATETIME_MED);
+    return dateString;
+  };
 
   const resumeDisplay = myResumes.map((resume, index) => {
     return (
-      <FlexGroup key={index}>
-        <div>
-          <p>{resume.name}</p>
-          <p>{resume.resumeId}</p>
-          <p>{resume.created}</p>
-          <h1 onClick={() => handleDelete(resume.resumeId, index)} style={{cursor: "pointer"}}>X</h1>
-        </div>
-      </FlexGroup>
+
+        <SavedResumeCard key={index}>
+          <p>Name: {resume.resumeName}</p>
+          { resume.created !== resume.modified && <p>{timeStampConverter(resume.modified)}</p> }
+          <img style={{width: "192px", height:"230px", border: "1px solid black"}}src={resume.thumbnail} />
+          <p>Created:{timeStampConverter(resume.created)}</p>
+          <FaFileDownload /> 
+          <FaTrashAlt onClick={() => handleDelete(resume.resumeId, index)} style={{cursor: "pointer"}}/>
+        </SavedResumeCard>
+
     )
   });
 
   return (
-    <div>
+    <>
+      <Nav />
+      <div style={{display:'flex'}}>
       {resumeDisplay}
-    </div>
+      </div>
+    </>
   )
 };
 
