@@ -7,13 +7,13 @@ import defaultImage from '../images/default.png';
 const ThemeMenu = () => {
 
   const context = useContext(Context);
-  const {themeModal} = context.resumeContent
-  const {baseInfoChange} = context;
+  const {themeModal} = context.configState
+  const {baseInfoChange, configInfoChange} = context;
 
   const themeModalActive = themeModal ? 'block' : 'none';
 
   return (
-  <ThemeModal id="theme-modal" active={themeModalActive} onClick={(e) => baseInfoChange(
+  <ThemeModal id="theme-modal" active={themeModalActive} onClick={(e) => configInfoChange(
     {
       payload: !themeModal,
       name: 'themeModal'

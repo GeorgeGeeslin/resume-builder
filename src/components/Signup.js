@@ -21,8 +21,7 @@ const Signup = () => {
   });
 
   const context = useContext(Context);
-  const {baseInfoChange} = context;
-  const {userHasAuthenticated} = context.resumeContent;
+  const {configInfoChange} = context;
 
   const history = useHistory();
 
@@ -72,7 +71,7 @@ const Signup = () => {
       await Auth.confirmSignUp(fields.email, fields.confirmationCode);
       await Auth.signIn(fields.email, fields.password);
 
-      baseInfoChange({payload: true, name: 'userHasAuthenticated'});
+      configInfoChange({payload: true, name: 'userHasAuthenticated'});
       history.push("/");
 
     } catch(err) {

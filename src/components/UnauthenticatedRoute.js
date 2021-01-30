@@ -4,7 +4,7 @@ import { Route, Redirect} from "react-router-dom";
 
 export default function UnauthenticatedRoute({ children, ...rest }) {
   const context = useContext(Context);
-  const {userHasAuthenticated} = context.resumeContent;
+  const {userHasAuthenticated} = context.configState;
   return (
     <Route {...rest}>
       {!userHasAuthenticated ? (

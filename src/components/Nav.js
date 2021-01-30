@@ -13,15 +13,16 @@ const Nav = () => {
   //TODO break Iconbar stuff out into its own component 
 
   const context = useContext(Context);
-  const {themeModal, userHasAuthenticated, resumeName, resumeId} = context.resumeContent;
-  const {baseInfoChange, downloadResume, saveOrUpdate, newResume} = context;
+  const {resumeName, resumeId} = context.resumeContent;
+  const {themeModal, userHasAuthenticated} = context.configState;
+  const {configInfoChange, downloadResume, saveOrUpdate, newResume} = context;
   const appState = context.resumeContent;
 
   const history = useHistory();
 
   async function handleLogout() {
     await Auth.signOut();
-    baseInfoChange({payload: false, name: 'userHasAuthenticated'});
+    configInfoChange({payload: false, name: 'userHasAuthenticated'});
     history.push("/login");
   };
 
@@ -39,7 +40,7 @@ const Nav = () => {
               <FaSave /> 
             </IconButton>
             <IconButton data-tip={`Select Theme`} data-background-color='#36B37E'
-              onClick={(e) => baseInfoChange(
+              onClick={(e) => configInfoChange(
                 {
                   payload: !themeModal,
                   name: 'themeModal'

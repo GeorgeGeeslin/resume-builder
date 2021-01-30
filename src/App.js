@@ -1,20 +1,21 @@
 import React, { useReducer, useState, useEffect } from 'react';
-// import ReactTooltip from "react-tooltip";
 import { Auth } from "aws-amplify";
 import Context from './context/Context';
 import * as InputReducer from './store/reducers/inputReducer';
+import * as ConfigReducer from './store/reducers/configReducer';
+import {highlighterButtonParent, toggleSectionVisability} from './components/ui/elements';
 import Routes from './Routes';
 import './App.scss';
-import {highlighterButtonParent, toggleSectionVisability} from './components/ui/elements';
 import { onError } from "./libs/errorLib";
 import { API } from "aws-amplify";
 import * as htmlToImage from 'html-to-image';
-// import { toPng } from 'html-to-image';
 
 const App = () => {
 
-  const [stateInput, dispatchInput] = useReducer(InputReducer.InputReducer, InputReducer.initialState);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
+
+  const [resumeContent, dispatchResumeContent] = useReducer(InputReducer.InputReducer, InputReducer.initialState);
+  const [configState, dispatchConfigState] = useReducer(ConfigReducer.ConfigReducer, ConfigReducer.initialState);
 
   useEffect(() => {
     onLoad();
@@ -23,7 +24,7 @@ const App = () => {
   async function onLoad() {
     try {
       await Auth.currentSession();
-      baseInfoChange({payload: true, name: 'userHasAuthenticated'});
+      configInfoChange({payload: true, name: 'userHasAuthenticated'});
     } catch(err) {
       if (err !== 'No current user') {
         onError(err);
@@ -51,7 +52,7 @@ const App = () => {
   }
 
   async function createUserMeta() {
-    let payload = {appState: stateInput}
+    let payload = {appState: resumeContent}
     try {
       const result = await API.post("resume", "/meta", {
         body: payload
@@ -74,145 +75,10 @@ const App = () => {
     }
   }
 
-  const loadAppState = (savedState) => {
-    // console.log(savedState)
-    if (savedState) {
-      dispatchInput({type: 'loadAppState', savedState});
-    } else {
-      // console.log("No Saved State!!")
-    }
-  };
-
-  //TODO: App.js has become the place where all the major functions that need to be made avalible throughout the app via Context live. 
-  // Should probably stick these in some files and export them for better organization. 
-  const baseInfoChange = (e) => {
-    const {name, payload} = e;
-    dispatchInput({type: 'baseInfoChange', field: name, payload});
-  };
-
-  const baseObjectInfoChange = (e) => {
-    const {key, name, payload} = e;
-    dispatchInput({type: "baseObjectInfoChange", key, field: name, payload});
-  };
-
-  // const plainNestedArrayInfoChange = (e) => {
-  //   const {key, name, payload, parent, parentIndex, index} =e;
-  //   dispatchInput({
-  //     type: "plainNestedArrayInfoChange", key, field:name, payload, 
-  //     parent, parentIndex, index
-  //   });
-  // }
-
-  const arrayInfoChange = (e) => {
-    const { key, index, name, payload } = e;
-    dispatchInput({type: "arrayInfoChange", field: name, key, index, payload});
-  };
-
-  const nestedArrayInfoChange = (e) => {
-    const parent = e.target.getAttribute('data-parent');
-    const parentIndex = e.target.getAttribute('data-parent-index');
-    const key = e.target.getAttribute('data-key');
-    const index = e.target.getAttribute('data-index');
-    dispatchInput(
-      { 
-        type: "nestedArrayInfoChange",
-        field: e.target.name,
-        payload: e.target.value,
-        parent,
-        parentIndex,
-        key,
-        index
-      }
-    )
-  };
-
-  const deleteNestedArrayItem = (e) => {
-    const { parent, parentIndex, key, index } = e;
-    dispatchInput({type: "deleteNestedArrayItem", parent, parentIndex, key, index});
-  }
-
-  const addArrayItem = (e) => {
-    const { newObj, key } = e;
-    dispatchInput({type: 'addArrayItem', newObj, key})
-  };
-
-  const deleteArrayItem = (e) => {
-    const { key, index } = e;
-    dispatchInput({type: 'deleteArrayItem', key, index});
-  };
-
-  const addNestedArrayItem = (e) => {
-    const { parent, parentIndex, key } = e;
-    let payload;
-    switch(key) {
-      case 'dates':
-        payload = {start: '', end: ''};
-        break;
-      default: 
-        payload = '';
-        break;
-    };
-    
-    let array = [...stateInput[parent]];
-    let nestedArray = array[parentIndex][key];
-    nestedArray.push(payload);
-    array[key] = nestedArray;
-    
-    dispatchInput({type: 'addNestedArrayItem', array});
-  };
-
-  const addToSkillArray = (e) => {
-    const {parent, key, /*inputKey,*/ payload} = e;
-
-    if (payload.trim() !== "") {
-      let obj = stateInput[parent];
-      let array = obj[key];
-      array.push(payload);
-
-      //This might be needed to clear string when there are double renders. 
-      // I unwired it from the component though so add it back there too if needed.
-      // obj[inputKey] = ""; 
-
-      dispatchInput({type: 'addToSkillArray', obj});
-    }
-  };
-
-  const addToCoursework = (e) => {
-    const {parent, index, targetKey, payload} = e;
-
-    if (payload.trim() !== "") {
-      let array = stateInput[parent];
-      let obj = array[index];
-      let nestedArray = obj[targetKey];
-      nestedArray.push(payload);
-
-      dispatchInput({type: 'addToCoursework', obj});
-    }
-  };
-
-  const deleteCoursework = (e) => {
-    const {parent, parentIndex, index, targetKey} = e;
-    dispatchInput({type: 'deleteCoursework', parent, parentIndex, index, targetKey});
-  }
-
-  const toggleBaseSection = (e) => {
-    const {target, key} = e;
-    let sections = stateInput.sections;
-    sections[key] = !sections[key];
-    const parent = highlighterButtonParent(target);
-    toggleSectionVisability(parent, sections[key]);
-    dispatchInput({type: 'toggleBaseSection', sections});
-  };
-
   const inputEnterKey = (e, callback, args) => {
     if (e.keyCode === 13) {
       return callback(args);
     }
-  };
-
-  const deleteSkill = (e) => {
-    const {parent, key, index} = e;
-    dispatchInput({type: 'deleteSkill', parent, key, index});
   };
 
   // Create PDF from base64 string and open download link.
@@ -285,11 +151,11 @@ const App = () => {
     if (!resumeId) {
       console.log("SAVE RESUME!")
       saveResume(resume);
-      updateUserMeta(stateInput);
+      updateUserMeta(resumeContent);
     } else {
       console.log("UPDATE RESUME!")
       updateResume(resumeId, resume);
-      updateUserMeta(stateInput);
+      updateUserMeta(resumeContent);
     }
   };
 
@@ -309,13 +175,144 @@ const App = () => {
     const confirm = window.confirm("Create a new resume? All unsaved changes will be lost.")
 
     if (confirm) {
-      loadAppState(InputReducer.initialState);
+      loadAppState({...InputReducer.initialState});
     }
   }
 
+  const loadAppState = (savedState) => {
+    // console.log(savedState)
+    if (savedState) {
+      dispatchResumeContent({type: 'loadAppState', savedState});
+    } else {
+      // console.log("No Saved State!!")
+    }
+  };
+  
+  const baseInfoChange = (e) => {
+    const {name, payload} = e;
+    dispatchResumeContent({type: 'baseInfoChange', field: name, payload});
+  };
+  
+  const baseObjectInfoChange = (e) => {
+    const {key, name, payload} = e;
+    dispatchResumeContent({type: "baseObjectInfoChange", key, field: name, payload});
+  };
+  
+  const arrayInfoChange = (e) => {
+    const { key, index, name, payload } = e;
+    dispatchResumeContent({type: "arrayInfoChange", field: name, key, index, payload});
+  };
+  
+  const deleteNestedArrayItem = (e) => {
+    const { parent, parentIndex, key, index } = e;
+    dispatchResumeContent({type: "deleteNestedArrayItem", parent, parentIndex, key, index});
+  }
+  
+  const addArrayItem = (e) => {
+    const { newObj, key } = e;
+    dispatchResumeContent({type: 'addArrayItem', newObj, key})
+  };
+  
+  const deleteArrayItem = (e) => {
+    const { key, index } = e;
+    dispatchResumeContent({type: 'deleteArrayItem', key, index});
+  };
+  
+  const addNestedArrayItem = (e) => {
+    const { parent, parentIndex, key } = e;
+    let payload;
+    switch(key) {
+      case 'dates':
+        payload = {start: '', end: ''};
+        break;
+      default: 
+        payload = '';
+        break;
+    };
+    
+    let array = [...resumeContent[parent]];
+    let nestedArray = array[parentIndex][key];
+    nestedArray.push(payload);
+    array[key] = nestedArray;
+    
+    dispatchResumeContent({type: 'addNestedArrayItem', array});
+  };
+  
+  const addToSkillArray = (e) => {
+    const {parent, key, /*inputKey,*/ payload} = e;
+  
+    if (payload.trim() !== "") {
+      let obj = resumeContent[parent];
+      let array = obj[key];
+      array.push(payload);
+  
+      //This might be needed to clear string when there are double renders. 
+      // I unwired it from the component though so add it back there too if needed.
+      // obj[inputKey] = ""; 
+  
+      dispatchResumeContent({type: 'addToSkillArray', obj});
+    }
+  };
+  
+  const addToCoursework = (e) => {
+    const {parent, index, targetKey, payload} = e;
+  
+    if (payload.trim() !== "") {
+      let array = resumeContent[parent];
+      let obj = array[index];
+      let nestedArray = obj[targetKey];
+      nestedArray.push(payload);
+  
+      dispatchResumeContent({type: 'addToCoursework', obj});
+    }
+  };
+  
+  const deleteCoursework = (e) => {
+    const {parent, parentIndex, index, targetKey} = e;
+    dispatchResumeContent({type: 'deleteCoursework', parent, parentIndex, index, targetKey});
+  }
+  
+  const toggleBaseSection = (e) => {
+    const {target, key} = e;
+    let sections = resumeContent.sections;
+    sections[key] = !sections[key];
+    const parent = highlighterButtonParent(target);
+    toggleSectionVisability(parent, sections[key]);
+    dispatchResumeContent({type: 'toggleBaseSection', sections});
+  };
+  
+  const deleteSkill = (e) => {
+    const {parent, key, index} = e;
+    dispatchResumeContent({type: 'deleteSkill', parent, key, index});
+  };
+  
+  const nestedArrayInfoChange = (e) => {
+    const parent = e.target.getAttribute('data-parent');
+    const parentIndex = e.target.getAttribute('data-parent-index');
+    const key = e.target.getAttribute('data-key');
+    const index = e.target.getAttribute('data-index');
+    dispatchResumeContent(
+      { 
+        type: "nestedArrayInfoChange",
+        field: e.target.name,
+        payload: e.target.value,
+        parent,
+        parentIndex,
+        key,
+        index
+      }
+    )
+  };
+
+  const configInfoChange = (e) => {
+    const {name, payload} = e;
+    dispatchConfigState({type: 'configInfoChange', field: name, payload});
+  }
+  
   return (
     <Context.Provider value={{
-      resumeContent: stateInput,
+      resumeContent,
+      configState,
       baseInfoChange,
       baseObjectInfoChange,
       arrayInfoChange,
@@ -326,10 +323,11 @@ const App = () => {
       addNestedArrayItem,
       toggleBaseSection,
       addToSkillArray,
-      inputEnterKey,
       deleteSkill,
       addToCoursework,
       deleteCoursework,
+      configInfoChange,
+      inputEnterKey,
       downloadResume,
       saveOrUpdate,
       getAppState,
