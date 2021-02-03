@@ -6,7 +6,7 @@ import { FaFileDownload, FaTrashAlt } from "react-icons/fa";
 import { onError } from "../libs/errorLib";
 import { FlexGroup, SavedResumeCard} from "./ui/elements";
 import Nav from './Nav';
-import {initialState} from '../store/reducers/inputReducer';
+import {initialState} from '../store/reducers/resumeReducer';
 
 const MyResumes = () => {
 

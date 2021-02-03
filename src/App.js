@@ -1,20 +1,22 @@
 import React, { useReducer, useState, useEffect } from 'react';
 import { Auth } from "aws-amplify";
 import Context from './context/Context';
-import * as InputReducer from './store/reducers/inputReducer';
+import * as ResumeReducer from './store/reducers/resumeReducer';
 import * as ConfigReducer from './store/reducers/configReducer';
-import {highlighterButtonParent, toggleSectionVisability} from './components/ui/elements';
+import * as ResumeDispatcher from './store/dispatchers/resumeDispatcher';
+import { highlighterButtonParent, toggleSectionVisability } from './components/ui/elements';
 import Routes from './Routes';
 import './App.scss';
 import { onError } from "./libs/errorLib";
 import { API } from "aws-amplify";
 import * as htmlToImage from 'html-to-image';
 
+
 const App = () => {
 
   const [isAuthenticating, setIsAuthenticating] = useState(true);
 
-  const [resumeContent, dispatchResumeContent] = useReducer(InputReducer.InputReducer, InputReducer.initialState);
+  const [resumeContent, dispatchResumeContent] = useReducer(ResumeReducer.ResumeReducer, ResumeReducer.initialState);
   const [configState, dispatchConfigState] = useReducer(ConfigReducer.ConfigReducer, ConfigReducer.initialState);
 
   useEffect(() => {
@@ -41,7 +43,7 @@ const App = () => {
         createUserMeta();
       } else {
         const last = appState.length - 1;
-        const savedState = appState[last].appState ? appState[last].appState : InputReducer.initialState
+        const savedState = appState[last].appState ? appState[last].appState : ResumeReducer.initialState
         // console.log(savedState)
         loadAppState(savedState);
       }
@@ -175,9 +177,9 @@ const App = () => {
     const confirm = window.confirm("Create a new resume? All unsaved changes will be lost.")
 
     if (confirm) {
-      loadAppState({...InputReducer.initialState});
+      loadAppState({...ResumeReducer.initialState});
     }
-  }
+  };
 
   const loadAppState = (savedState) => {
     // console.log(savedState)
@@ -270,7 +272,7 @@ const App = () => {
   const deleteCoursework = (e) => {
     const {parent, parentIndex, index, targetKey} = e;
     dispatchResumeContent({type: 'deleteCoursework', parent, parentIndex, index, targetKey});
-  }
+  };
   
   const toggleBaseSection = (e) => {
     const {target, key} = e;
@@ -307,7 +309,7 @@ const App = () => {
   const configInfoChange = (e) => {
     const {name, payload} = e;
     dispatchConfigState({type: 'configInfoChange', field: name, payload});
-  }
+  };
   
   return (
     <Context.Provider value={{
@@ -337,6 +339,6 @@ const App = () => {
       <Routes /> 
     </Context.Provider>
   );
-}
+};
 
 export default App;
