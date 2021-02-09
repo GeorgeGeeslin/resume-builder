@@ -126,7 +126,7 @@ const App = () => {
       });
   
       // console.log(result);
-      baseInfoChange({payload: result.resumeId, name: "resumeId"});
+      configInfoChange({payload: result.resumeId, name: "resumeId"});
     } catch (err) {
       onError(err);
     }

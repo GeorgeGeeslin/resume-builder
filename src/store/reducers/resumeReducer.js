@@ -1,8 +1,4 @@
 export const initialState = {
-    // userHasAuthenticated: false,
-    // unsavedChange: false,
-    // themeModal: false,
-    resumeId: null,
     theme: 'default',
     font: 'Roboto',
     pageCount: 1, //make this do something or remove it. was for disabling 3rd page (page break logic supports only 2 pages)

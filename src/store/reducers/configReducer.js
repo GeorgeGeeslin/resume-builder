@@ -1,7 +1,8 @@
 export const initialState = {
   userHasAuthenticated: false,
   // unsavedChange: false,    // TODO: implement unsaved changes warnings
-  themeModal: false,  
+  themeModal: false,
+  resumeId: null  
 };
 
 export const ConfigReducer = (state = initialState, action) => {
