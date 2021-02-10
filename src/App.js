@@ -35,17 +35,24 @@ const App = () => {
     setIsAuthenticating(false);
   };
 
-  async function getAppState() {
+  async function getLastState() {
+    // gets the last saved state from dynamodb (resumeId: META#)
+    // if no META# record exists then create one with a default state. 
+
+    console.log("getLastState()")
+
     try {
-      const appState = await API.get("resume", `/meta`);
-      // console.log(appState)
-      if (appState.length === 0) {
+      const meta = await API.get("resume", `/meta`);
+      console.log(meta)
+      if (meta.length === 0) {
         createUserMeta();
       } else {
-        const last = appState.length - 1;
-        const savedState = appState[last].appState ? appState[last].appState : ResumeReducer.initialState
-        // console.log(savedState)
-        loadAppState(savedState);
+        const last = meta.length - 1;
+        const resumeContent = meta[last].resumeContent ? meta[last].resumeContent : ResumeReducer.initialState
+        const resumeId = meta[last].lastResume ? meta[last].lastResume : ConfigReducer.initialState.resumeId
+        // console.log(resumeId)
+        // console.log(resumeContent)
+        loadAppState(resumeId, resumeContent);
       }
 
     } catch(err) {
@@ -53,29 +60,29 @@ const App = () => {
     }
   }
 
+  // TODO: Ready to move
   async function createUserMeta() {
-    let payload = {appState: resumeContent}
+    let payload = {lastResume: null, resumeContent}
     try {
-      const result = await API.post("resume", "/meta", {
+      await API.post("resume", "/meta", {
         body: payload
       });
-      // console.log(result);
     } catch(err) {
       onError(err);
     }
   };
 
-  async function updateUserMeta(appState) {
-    let payload = {appState}
+  // TODO: Ready to move
+  async function updateUserMeta(resumeId, resumeContent) {
+    let payload = {lastResume: resumeId, resumeContent}
     try {
-      const result = await API.put("resume", "/meta", {
+      await API.put("resume", "/meta", {
         body: payload  
       });
-      // console.log(result);
     } catch (err) {
       onError(err)
     }
-  }
+  };
 
   const inputEnterKey = (e, callback, args) => {
     if (e.keyCode === 13) {
@@ -118,49 +125,50 @@ const App = () => {
     createPDF(pdfString);
   };
 
+  //TODO: Ready to move.
   async function saveResume(resume) {
-    console.log("save")
     try {
       const result = await API.post("resume", "/resume", {
         body: resume
       });
   
-      // console.log(result);
       configInfoChange({payload: result.resumeId, name: "resumeId"});
     } catch (err) {
       onError(err);
     }
   };
 
+  //TODO: Ready to move.
   async function updateResume(resumeId, resume) {
     console.log("update")
+    console.log(resumeId)
     try {
-      const result = await API.put("resume", `/resume/${resumeId}`, {
+      await API.put("resume", `/resume/${encodeURIComponent(resumeId)}`, {
         body: resume
       });
-  
-      // console.log(result);
     } catch (err) {
       onError(err);
     }
-
   };
 
+  //TODO: Ready to move.
   async function saveOrUpdate(resumeId, resume) {
     const thumbnail = await createThumbnail();
     resume.thumbnail = thumbnail;
 
-    if (!resumeId) {
+    if (!resumeId || resumeId === "new") {
       console.log("SAVE RESUME!")
+      console.log(resume)
       saveResume(resume);
-      updateUserMeta(resumeContent);
     } else {
       console.log("UPDATE RESUME!")
+      console.log(resumeId)
       updateResume(resumeId, resume);
-      updateUserMeta(resumeContent);
+      updateUserMeta(resumeId, resumeContent);
     }
   };
 
+  //TODO: Move?
   async function createThumbnail() {
     const node = document.getElementById("ResumeContent");
 
@@ -173,21 +181,31 @@ const App = () => {
     }
   };
 
+  //TODO: Can move?
   const newResume = () => {
     const confirm = window.confirm("Create a new resume? All unsaved changes will be lost.")
 
     if (confirm) {
-      loadAppState({...ResumeReducer.initialState});
+      loadAppState("new", {...ResumeReducer.initialState});
     }
   };
 
-  const loadAppState = (savedState) => {
-    // console.log(savedState)
-    if (savedState) {
-      dispatchResumeContent({type: 'loadAppState', savedState});
+  const loadAppState = (resumeId, resumeContent) => {
+    // load state (resumeId and resumeContent) into the reducer stores.
+        
+    if (resumeId) {
+      dispatchResumeContent({type: 'loadAppState', resumeContent});
+      configInfoChange({payload: resumeId, name: "resumeId"});      
+
     } else {
-      // console.log("No Saved State!!")
+      onError("No resumeId provided to loadAppState");
+      console.log("No Saved State!!")
     }
+  };
+
+  const configInfoChange = (e) => {
+    const {name, payload} = e;
+    dispatchConfigState({type: 'configInfoChange', field: name, payload});
   };
   
   const baseInfoChange = (e) => {
@@ -305,11 +323,6 @@ const App = () => {
       }
     )
   };
-
-  const configInfoChange = (e) => {
-    const {name, payload} = e;
-    dispatchConfigState({type: 'configInfoChange', field: name, payload});
-  };
   
   return (
     <Context.Provider value={{
@@ -332,9 +345,10 @@ const App = () => {
       inputEnterKey,
       downloadResume,
       saveOrUpdate,
-      getAppState,
+      getLastState,
       updateUserMeta,
-      newResume
+      newResume,
+      loadAppState
     }}>
       <Routes /> 
     </Context.Provider>

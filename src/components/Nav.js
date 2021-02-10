@@ -13,10 +13,10 @@ const Nav = () => {
   //TODO break Iconbar stuff out into its own component 
 
   const context = useContext(Context);
-  const {resumeName, resumeId} = context.resumeContent;
-  const {themeModal, userHasAuthenticated} = context.configState;
+  // const {resumeName} = context.resumeContent;
+  const {resumeId, themeModal, userHasAuthenticated} = context.configState;
   const {configInfoChange, downloadResume, saveOrUpdate, newResume} = context;
-  const appState = context.resumeContent;
+  const resumeContent = context.resumeContent;
 
   const history = useHistory();
 
@@ -35,7 +35,7 @@ const Nav = () => {
         <IconBar> 
           <IconContext.Provider value={{color: 'white'}}>
             <IconButton data-tip={`Save Resume`} data-background-color='#36B37E' 
-              onClick={(e) => saveOrUpdate(resumeId, {appState,resumeName})}
+              onClick={() => saveOrUpdate(resumeId, {resumeContent})}
             >
               <FaSave /> 
             </IconButton>

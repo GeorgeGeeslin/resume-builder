@@ -8,15 +8,18 @@ import ReactTooltip from "react-tooltip";
 export default function Home() {
 
   const context = useContext(Context);
-  const {getAppState} = context;
+  const {resumeId} = context.configState;
+  const resumeContent = context.resumeContent;
+  const {getLastState, updateUserMeta} = context;
 
   useEffect(() => {
-    onLoad();
-  }, []);
+    if (!resumeId) onLoad();
+    if (resumeId) updateUserMeta(resumeId, resumeContent); 
+  }, [resumeId]);
 
   async function onLoad() {
     try {
-      await getAppState();
+      await getLastState();
     } catch (err) {
       onError(err)
     }

@@ -1,12 +1,20 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
+import Context from '../context/Context';
 import ResumeInput from './ResumeInput';
 import ResumePreview from './ResumePreview';
 import PageCountWarning from '../components/PageCountWarning';
 import ThemeMenu from "../components/ThemeMenu";
 
-// TODO extract modal stuff into seperate component
-
 const ResumeEditor = () => {
+
+    // const context = useContext(Context);
+    // const {resumeId} = context.configState;
+    // const resumeContent = context.resumeContent;
+    // const {updateUserMeta} = context;
+
+    // useEffect(() => {
+    //     updateUserMeta(resumeId, resumeContent);
+    // }, [resumeId]);
 
     return (
         <div style={{display: 'flex', backgroundColor: '#DFE1E6'}}>

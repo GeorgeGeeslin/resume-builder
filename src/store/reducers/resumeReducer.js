@@ -182,7 +182,7 @@ export const ResumeReducer = (state = initialState, action) => {
             }
 
         case 'loadAppState':
-            state = action.savedState
+            state = action.resumeContent
             return {
                 ...state
             }
