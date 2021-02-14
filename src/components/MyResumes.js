@@ -52,7 +52,7 @@ const MyResumes = () => {
   }
 
   function deleteResume(thisResumeId) {
-    return API.del("resume", `/resume/${encodeURIComponent(thisResumeId)}`);
+    return API.del("resume", `/resume/${thisResumeId}`);
   }
 
   const timeStampConverter = (ts) => {

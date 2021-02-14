@@ -143,7 +143,7 @@ const App = () => {
     console.log("update")
     console.log(resumeId)
     try {
-      await API.put("resume", `/resume/${encodeURIComponent(resumeId)}`, {
+      await API.put("resume", `/resume/${resumeId}`, {
         body: resume
       });
     } catch (err) {
