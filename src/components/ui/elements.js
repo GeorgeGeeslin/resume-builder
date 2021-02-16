@@ -308,13 +308,49 @@ export const WarningMessage = styled.div`
 
 export const SavedResumeCard = styled.div`
   box-shadow: 0 1px 3px rgba(0,0,0,0.45), 0 1px 2px rgba(0,0,0,0.55);
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: 2em;
+  transition all 150ms ease-in-out;
+  .nameplate {
+    align-items: center;
+    background-color: #B3BAC5;
+    height: 40px;
+    cursor: pointer;
+  }
+  .nameplate-name {
+    text-align: center;
+    line-height: 40px;
+  }
+  .nameplate-options {
+    display: none;
+    opacity: 0;
+    font-size: 0.8em;
+  }
+  .nameplate-button {
+    background-color: #97A0AF;
+    border-radius: 10px;
+    padding: 0.5em;
+    transition all 150ms ease-in-out;
+    &:hover {
+      background-color: #7A869A;
+    }
+  }  
+  &:hover {
+    transform: scale(1.05);
+    .nameplate-name {
+      display: none;
+      opacity: 0;
+    }
+    .nameplate-options {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      opacity: 1;
+      height: 40px;
+    }
+  }
 `;
-
-export const ResumeThumbnail = styled.img`
-
-`;
-
-
 
 
 // Not exported directly, dependent on Skill functions in this file.

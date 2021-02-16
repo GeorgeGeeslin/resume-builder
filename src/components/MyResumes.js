@@ -74,14 +74,21 @@ const MyResumes = () => {
     return (
       <SavedResumeCard key={index}> 
       <Link to="/"  onClick={() => loadAppState(resumeId, resumeContent)}>
-          <p>Name: {name}</p>
-          <p>Created: {timeStampConverter(created)}</p>
-          { created !== modified && <p>Modified: {timeStampConverter(modified)}</p> }
-          <img style={{width: "192px", height:"230px", border: "1px solid black"}}src={thumbnail} />
-          <p>Created:{timeStampConverter(resume.created)}</p>
+          <img style={{width: "192px", height:"230px"}}src={`data:image/png;base64,${thumbnail}`} />
       </Link>
-      <FaFileDownload /> 
-      <FaTrashAlt onClick={() => handleDelete(resumeId, index)} style={{cursor: "pointer"}}/>
+      <div className="nameplate">
+        <div className="nameplate-name">
+          {name}
+        </div>
+        <div className="nameplate-options">
+            <div className="nameplate-button">
+              Download <FaFileDownload/> 
+            </div>
+            <div className="nameplate-button" onClick={() => handleDelete(resumeId, index)}>
+              Delete <FaTrashAlt/>
+            </div>
+          </div>
+      </div>
       </SavedResumeCard>
     )
   });
@@ -89,9 +96,11 @@ const MyResumes = () => {
   return (
     <>
       <Nav />
-      <div style={{display:'flex'}}>
-      {resumeDisplay}
-      </div>
+      <div>
+          <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center"}}>
+            {resumeDisplay}
+          </div>
+        </div>
     </>
   )
 };

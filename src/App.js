@@ -104,8 +104,7 @@ const App = () => {
     document.body.removeChild(link)
   };
 
-  // Post HTML string to Lambda and return base64 encoded PDF.
-  async function downloadResume() {
+  const resumeHTML = () => {
     //TODO: Make font type selectable
     //TODO: deploy endpoint and update url.
     const fontImport = "@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');";
@@ -118,11 +117,31 @@ const App = () => {
     let htmlString = document.getElementById("ResumeContent").outerHTML.toString();
     htmlString = `<html><head><style>${fontImport}</style>${workDescLineHeight}</head><body style=${bodyStyle}>` + htmlString + "</body></html>";
 
+    return htmlString;
+  };
+
+  // Post HTML string to Lambda and return base64 encoded PDF.
+  async function downloadResume() {
+
+    const htmlString = resumeHTML();
+
     const pdfString = await API.post("resume", "/resume/download", {
       body: {data: htmlString}
     });
 
     createPDF(pdfString);
+  };
+
+  //TODO: Can move?
+  async function resumeScreenshot() {
+
+    const htmlString = resumeHTML();
+
+    const pngString = await API.post("resume", "/resume/screenshot", {
+      body: {data: htmlString}
+    });
+
+    return pngString;
   };
 
   //TODO: Ready to move.
@@ -140,8 +159,6 @@ const App = () => {
 
   //TODO: Ready to move.
   async function updateResume(resumeId, resume) {
-    console.log("update")
-    console.log(resumeId)
     try {
       await API.put("resume", `/resume/${resumeId}`, {
         body: resume
@@ -153,12 +170,15 @@ const App = () => {
 
   //TODO: Ready to move.
   async function saveOrUpdate(resumeId, resume) {
-    const thumbnail = await createThumbnail();
+    // const thumbnail = await createThumbnail();
+    // resume.thumbnail = thumbnail;
+    const thumbnail = await resumeScreenshot();
     resume.thumbnail = thumbnail;
+
+  
 
     if (!resumeId || resumeId === "new") {
       console.log("SAVE RESUME!")
-      console.log(resume)
       saveResume(resume);
     } else {
       console.log("UPDATE RESUME!")
@@ -168,18 +188,6 @@ const App = () => {
     }
   };
 
-  //TODO: Move?
-  async function createThumbnail() {
-    const node = document.getElementById("ResumeContent");
-
-    try {
-      const dataUrl = await htmlToImage.toPng(node);
-      return dataUrl;
-
-    } catch (err) {
-      onError(err);
-    }
-  };
 
   //TODO: Can move?
   const newResume = () => {
