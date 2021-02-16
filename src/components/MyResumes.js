@@ -2,10 +2,10 @@ import React, {useEffect, useState, useContext} from "react";
 import Context from '../context/Context';
 import { Link } from "react-router-dom";
 import { API } from "aws-amplify";
-import { DateTime } from "luxon";
+// import { DateTime } from "luxon";
 import { FaFileDownload, FaTrashAlt } from "react-icons/fa";
 import { onError } from "../libs/errorLib";
-import { FlexGroup, SavedResumeCard} from "./ui/elements";
+import { SavedResumeCard} from "./ui/elements";
 import Nav from './Nav';
 import {initialState} from '../store/reducers/resumeReducer';
 
@@ -55,19 +55,19 @@ const MyResumes = () => {
     return API.del("resume", `/resume/${thisResumeId}`);
   }
 
-  const timeStampConverter = (ts) => {
-    const dt = DateTime.fromMillis(ts);
-    const dateString = dt.toLocaleString(DateTime.DATETIME_MED);
-    return dateString;
-  };
+  // const timeStampConverter = (ts) => {
+  //   const dt = DateTime.fromMillis(ts);
+  //   const dateString = dt.toLocaleString(DateTime.DATETIME_MED);
+  //   return dateString;
+  // };
 
   const resumeDisplay = myResumes.map((resume, index) => {
 
     const resumeId = resume.resumeId;
     const resumeContent = resume.resumeContent;
     const name = resumeContent.resumeName;
-    const created = resume.created;
-    const modified = resume.modified;
+    // const created = resume.created;
+    // const modified = resume.modified;
     const thumbnail = resume.thumbnail;
 
 
