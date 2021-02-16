@@ -41,6 +41,16 @@ export const Navbar = styled.nav`
   }
 `;
 
+export const ResumeNameWrapper = styled.div`
+  position: relative;
+  top: 10px;
+  width: 200px;
+  input {
+    background-color: #B3D4FF;
+    border: none;
+  }
+`
+
 export const NavButton = styled.button`
   display: block;
   border: none;

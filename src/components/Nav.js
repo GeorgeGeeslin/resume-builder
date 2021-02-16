@@ -1,16 +1,15 @@
 import React, {useContext} from 'react';
 import Context from '../context/Context';
 import { Link, useHistory } from "react-router-dom";
-import { Navbar, NavButton, Logo, FlexGroup, IconButton, IconBar } from './ui/elements';
+import { Navbar, NavButton, Logo, FlexGroup, IconButton, IconBar, ResumeNameWrapper } from './ui/elements';
 import {FaPaintRoller, FaFileDownload, FaSave, FaPlus, FaSignInAlt} from 'react-icons/fa';
 import { IconContext } from "react-icons";
 import { Auth } from 'aws-amplify';
 // import ReactTooltip from "react-tooltip";
+import ResumeName from './resumeInput/ResumeName';
 
 //TODO break Iconbar stuff out into its own component 
 const Nav = () => {
-
-  //TODO break Iconbar stuff out into its own component 
 
   const context = useContext(Context);
   // const {resumeName} = context.resumeContent;
@@ -28,9 +27,16 @@ const Nav = () => {
 
   return (
     <Navbar>
-      <Link to="/">
-        <Logo>Lonestar Resumes</Logo>
-      </Link>
+      <div style={{display: 'flex'}}>
+        <div style={{width: '300px', paddingRight: '1em'}}>
+          <Link to="/">
+            <Logo>Lonestar Resumes</Logo>
+          </Link>
+        </div>
+        <ResumeNameWrapper>
+          <ResumeName/>
+        </ResumeNameWrapper>
+      </div>
       <FlexGroup style={{alignItems: 'center'}}>
         <IconBar> 
           <IconContext.Provider value={{color: 'white'}}>

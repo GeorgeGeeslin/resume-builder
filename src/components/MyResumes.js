@@ -31,29 +31,33 @@ const MyResumes = () => {
     }
   };   
 
-  async function handleDelete(thisResumeId, index) {
+  async function handleDelete(thisResumeId, name, index) {
     try {
-      let newResumes = myResumes;
-      newResumes.splice(index, 1);  
+      const conf = window.confirm(`Delete resume: ${name}?`);
 
-      await deleteResume(thisResumeId);
-
-      if (resumeId === thisResumeId) {
-        console.log("delete active resume")
-        console.log(initialState)
-        await updateUserMeta(null, initialState);
-        loadAppState("new", initialState);
+      if (conf) {
+        let newResumes = myResumes;
+        newResumes.splice(index, 1);  
+  
+        await deleteResume(thisResumeId);
+  
+        if (resumeId === thisResumeId) {
+          console.log("delete active resume")
+          console.log(initialState)
+          await updateUserMeta(null, initialState);
+          loadAppState("new", initialState);
+        }
+  
+        setMyResumes([...newResumes]); 
       }
-
-      setMyResumes([...newResumes]); 
     } catch (err) {
       onError(err);
     }
-  }
+  };
 
   function deleteResume(thisResumeId) {
     return API.del("resume", `/resume/${thisResumeId}`);
-  }
+  };
 
   // const timeStampConverter = (ts) => {
   //   const dt = DateTime.fromMillis(ts);
@@ -84,7 +88,7 @@ const MyResumes = () => {
             <div className="nameplate-button">
               Download <FaFileDownload/> 
             </div>
-            <div className="nameplate-button" onClick={() => handleDelete(resumeId, index)}>
+            <div className="nameplate-button" onClick={() => handleDelete(resumeId, name, index)}>
               Delete <FaTrashAlt/>
             </div>
           </div>

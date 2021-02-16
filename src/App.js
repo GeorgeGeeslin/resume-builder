@@ -3,13 +3,12 @@ import { Auth } from "aws-amplify";
 import Context from './context/Context';
 import * as ResumeReducer from './store/reducers/resumeReducer';
 import * as ConfigReducer from './store/reducers/configReducer';
-import * as ResumeDispatcher from './store/dispatchers/resumeDispatcher';
+// import * as ResumeDispatcher from './store/dispatchers/resumeDispatcher';
 import { highlighterButtonParent, toggleSectionVisability } from './components/ui/elements';
 import Routes from './Routes';
 import './App.scss';
 import { onError } from "./libs/errorLib";
 import { API } from "aws-amplify";
-import * as htmlToImage from 'html-to-image';
 
 
 const App = () => {
@@ -194,7 +193,12 @@ const App = () => {
     const confirm = window.confirm("Create a new resume? All unsaved changes will be lost.")
 
     if (confirm) {
-      loadAppState("new", {...ResumeReducer.initialState});
+
+      // Looks hacky. Just an easy and fast way to deep clone an object.
+      // Otherwise data in nested objects will not be set back to their initial state. 
+      const  newResumeStr = JSON.stringify(ResumeReducer.initialState);
+
+      loadAppState("new", JSON.parse(newResumeStr));
     }
   };
 
