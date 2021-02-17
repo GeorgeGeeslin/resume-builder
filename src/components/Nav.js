@@ -59,6 +59,9 @@ const Nav = () => {
             </IconButton>          
           </IconContext.Provider>  
         </IconBar>
+        <NavButton onClick={() => saveOrUpdate('new', {resumeContent})}>
+          Save as new        
+        </NavButton>
         <NavButton onClick={newResume}>
           <FaPlus style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
           New

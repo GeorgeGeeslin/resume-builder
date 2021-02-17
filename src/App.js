@@ -187,7 +187,6 @@ const App = () => {
     }
   };
 
-
   //TODO: Can move?
   const newResume = () => {
     const confirm = window.confirm("Create a new resume? All unsaved changes will be lost.")
