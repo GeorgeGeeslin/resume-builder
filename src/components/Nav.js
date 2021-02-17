@@ -16,6 +16,7 @@ const Nav = () => {
   const {resumeId, themeModal, userHasAuthenticated} = context.configState;
   const {configInfoChange, downloadResume, saveOrUpdate, newResume} = context;
   const resumeContent = context.resumeContent;
+  const {resumeName} = context.resumeContent;
 
   const history = useHistory();
 
@@ -54,7 +55,7 @@ const Nav = () => {
             )}>
               <FaPaintRoller />
             </IconButton>              
-            <IconButton data-tip={`Download Resume`} data-background-color='#36B37E' onClick={downloadResume}>
+            <IconButton data-tip={`Download Resume`} data-background-color='#36B37E' onClick={() => downloadResume(resumeName)}>
               <FaFileDownload />
             </IconButton>          
           </IconContext.Provider>  

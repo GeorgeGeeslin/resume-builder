@@ -89,18 +89,35 @@ const App = () => {
     }
   };
 
-  // Create PDF from base64 string and open download link.
-  const createPDF = (b64) => {
-    //TODO: Does not save with .pdf file extention
-    //Also, make open browser's pdf view like lucidchart.
+  const createPDF = (b64, name) => {
+    const blob = base64toBlob(b64);
 
-    // Force a download by creating a downloadlink and then clicking and removing it.
-    const link = document.createElement('a');
-    link.href = 'data:application/octet-stream;base64,' + b64;
-    // link.href = 'data:application/pdf;base64,' + b64
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link)
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(blob, `${name}.pdf`);
+    } else {
+      const blobUrl = URL.createObjectURL(blob);
+      window.open(blobUrl);
+    }
+  };
+
+  const base64toBlob = (b64) => {
+    const sliceSize = 1024;
+    const byteCharacters = atob(b64);
+    const bytesLength = byteCharacters.length;
+    const slicesCount = Math.ceil(bytesLength / sliceSize);
+    const byteArrays = new Array(slicesCount);
+    
+    for (let sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
+      const begin = sliceIndex * sliceSize;
+      const end = Math.min(begin + sliceSize, bytesLength);
+  
+      const bytes = new Array(end - begin);
+      for (let offset = begin, i = 0; offset < end; ++i, ++offset) {
+        bytes[i] = byteCharacters[offset].charCodeAt(0);
+      }
+      byteArrays[sliceIndex] = new Uint8Array(bytes);
+    }
+    return new Blob(byteArrays, { type: "application/pdf" }); 
   };
 
   const resumeHTML = () => {
@@ -120,15 +137,16 @@ const App = () => {
   };
 
   // Post HTML string to Lambda and return base64 encoded PDF.
-  async function downloadResume() {
+  async function downloadResume(name) {
+    console.log(name)
 
     const htmlString = resumeHTML();
 
     const pdfString = await API.post("resume", "/resume/download", {
-      body: {data: htmlString}
+      body: {html: htmlString }
     });
 
-    createPDF(pdfString);
+    createPDF(pdfString, name);
   };
 
   //TODO: Can move?
