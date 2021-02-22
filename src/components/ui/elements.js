@@ -362,6 +362,14 @@ export const SavedResumeCard = styled.div`
   }
 `;
 
+export const SavedResumesWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px);
+`;
+
 
 // Not exported directly, dependent on Skill functions in this file.
 const SkillChip = styled.div`
@@ -540,5 +548,11 @@ export const CurrentCheckbox = ({label, value, onClickFunc}) => {
       <label htmlFor="current" style={{marginRight: '1em'}}>{label}</label>
       <input type="checkbox" name="current" checked={value} onChange={onClickFunc}/>
     </div>
+  )
+};
+
+export const Spinner = () => {
+  return (
+    <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
   )
 };

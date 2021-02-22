@@ -223,12 +223,21 @@ const App = () => {
     // load state (resumeId and resumeContent) into the reducer stores.
         
     if (resumeId) {
+
       dispatchResumeContent({type: 'loadAppState', resumeContent});
       configInfoChange({payload: resumeId, name: "resumeId"});      
 
     } else {
-      onError("No resumeId provided to loadAppState");
-      console.log("No Saved State!!")
+
+      const  newResumeStr = JSON.stringify(ResumeReducer.initialState);
+      const newResume = JSON.parse(newResumeStr);
+      console.log(newResumeStr)
+      console.log(newResume)
+
+      dispatchResumeContent({type: 'loadAppState', resumeContent: newResume});
+      configInfoChange({payload: null, name: "resumeId"}); 
+
+
     }
   };
 

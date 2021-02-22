@@ -14,7 +14,7 @@ const Nav = () => {
   const context = useContext(Context);
   // const {resumeName} = context.resumeContent;
   const {resumeId, themeModal, userHasAuthenticated} = context.configState;
-  const {configInfoChange, downloadResume, saveOrUpdate, newResume} = context;
+  const {configInfoChange, downloadResume, saveOrUpdate, newResume, loadAppState} = context;
   const resumeContent = context.resumeContent;
   const {resumeName} = context.resumeContent;
 
@@ -23,6 +23,7 @@ const Nav = () => {
   async function handleLogout() {
     await Auth.signOut();
     configInfoChange({payload: false, name: 'userHasAuthenticated'});
+    loadAppState(null);
     history.push("/login");
   };
 

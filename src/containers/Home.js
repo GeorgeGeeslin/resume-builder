@@ -1,9 +1,10 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useContext, useState} from 'react';
 import Context from '../context/Context';
 import { onError } from "../libs/errorLib";
 import Nav from '../components/Nav';
 import ResumeEditor from './ResumeEditor';
 import ReactTooltip from "react-tooltip";
+import {Spinner} from '../components/ui/elements';
 
 export default function Home() {
 
@@ -12,23 +13,33 @@ export default function Home() {
   const resumeContent = context.resumeContent;
   const {getLastState, updateUserMeta} = context;
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
-    if (!resumeId) onLoad();
-    if (resumeId) updateUserMeta(resumeId, resumeContent); 
+    if (!resumeId) onfirstLoad();
+    if (resumeId) updateUserMeta(resumeId, resumeContent);
   }, [resumeId]);
 
-  async function onLoad() {
+  async function onfirstLoad() {
+    setIsLoading(true)
     try {
       await getLastState();
     } catch (err) {
-      onError(err)
+      onError(err);
+    } finally{
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <>
       <Nav />
-      <ResumeEditor />
+      { isLoading && 
+        <div style={{backgroundColor: '#DFE1E6', width: '100vw', height: '100vh', display: 'flex', alignItems:'center', justifyContent:'center'}}>
+          <Spinner/>
+        </div>   
+      }
+      { !isLoading && <ResumeEditor /> }
       <ReactTooltip /> 
     </>
   )

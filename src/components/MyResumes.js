@@ -5,7 +5,7 @@ import { API } from "aws-amplify";
 // import { DateTime } from "luxon";
 import { FaFileDownload, FaTrashAlt } from "react-icons/fa";
 import { onError } from "../libs/errorLib";
-import { SavedResumeCard} from "./ui/elements";
+import { SavedResumeCard, Spinner, SavedResumesWrapper} from "./ui/elements";
 import Nav from './Nav';
 import {initialState} from '../store/reducers/resumeReducer';
 
@@ -16,6 +16,7 @@ const MyResumes = () => {
   const {updateUserMeta, loadAppState} = context;
 
   const [myResumes, setMyResumes] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchResumes();
@@ -26,6 +27,7 @@ const MyResumes = () => {
       const resumes = await API.get("resume", "/resume");
       console.log(resumes)
       setMyResumes(resumes);
+      setIsLoading(false);
     } catch (err) {
       onError(err)
     }
@@ -100,11 +102,10 @@ const MyResumes = () => {
   return (
     <>
       <Nav />
-      <div>
-          <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center"}}>
-            {resumeDisplay}
-          </div>
-        </div>
+        <SavedResumesWrapper>
+          {isLoading && <Spinner/>}
+          {!isLoading && resumeDisplay}         
+        </SavedResumesWrapper>
     </>
   )
 };
