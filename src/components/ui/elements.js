@@ -326,7 +326,6 @@ export const SavedResumeCard = styled.div`
     align-items: center;
     background-color: #B3BAC5;
     height: 40px;
-    cursor: pointer;
   }
   .nameplate-name {
     text-align: center;
@@ -342,6 +341,7 @@ export const SavedResumeCard = styled.div`
     border-radius: 10px;
     padding: 0.5em;
     transition all 150ms ease-in-out;
+    cursor: pointer;
     &:hover {
       background-color: #7A869A;
     }

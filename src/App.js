@@ -138,8 +138,6 @@ const App = () => {
 
   // Post HTML string to Lambda and return base64 encoded PDF.
   async function downloadResume(name) {
-    console.log(name)
-
     const htmlString = resumeHTML();
 
     const pdfString = await API.post("resume", "/resume/download", {
