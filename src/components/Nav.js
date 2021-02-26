@@ -61,13 +61,15 @@ const Nav = () => {
             </IconButton>          
           </IconContext.Provider>  
         </IconBar>
-        <NavButton onClick={() => saveOrUpdate('new', {resumeContent})}>
-          Save as new        
-        </NavButton>
-        <NavButton onClick={newResume}>
-          <FaPlus style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
-          New
-        </NavButton>
+          <NavButton onClick={() => saveOrUpdate('new', {resumeContent})}>
+            Save as new        
+          </NavButton>
+        <Link to="/">
+          <NavButton onClick={newResume}>
+            <FaPlus style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
+            New
+          </NavButton>
+        </Link>
         <Link to="/resumes">
           <NavButton>My Resumes</NavButton>
         </Link>
