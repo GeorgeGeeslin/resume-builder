@@ -1,15 +1,18 @@
-import React, {useContext} from 'react';
+import React, { useContext, useState } from 'react';
 import Context from '../context/Context';
 import { Link, useHistory } from "react-router-dom";
-import { Navbar, NavButton, Logo, FlexGroup, IconButton, IconBar, ResumeNameWrapper } from './ui/elements';
-import {FaPaintRoller, FaFileDownload, FaSave, FaPlus, FaSignInAlt} from 'react-icons/fa';
-import { IconContext } from "react-icons";
+import { Navbar, NavButton, Logo, FlexGroup, ResumeNameWrapper } from './ui/elements';
+import { FaPaintRoller, FaFileDownload, FaSave, FaPlus, FaSignInAlt, FaSpinner, FaClone } from 'react-icons/fa';
+// import { IconContext } from "react-icons";
 import { Auth } from 'aws-amplify';
-// import ReactTooltip from "react-tooltip";
 import ResumeName from './resumeInput/ResumeName';
 
 //TODO break Iconbar stuff out into its own component 
-const Nav = () => {
+const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool}) => {
+
+  const [saving, setSaving] = useState(false);
+  const [savingAsNew, setSavingAsNew] = useState(false);
+  const [downloading, setDownloading] = useState(false);
 
   const context = useContext(Context);
   // const {resumeName} = context.resumeContent;
@@ -27,6 +30,18 @@ const Nav = () => {
     history.push("/login");
   };
 
+  async function handleSave(resumeId, resumeContent) {
+    resumeId === "new" ? setSavingAsNew(true) : setSaving(true);
+    await saveOrUpdate(resumeId, resumeContent);
+    resumeId === "new" ? setSavingAsNew(false) : setSaving(false);
+  };
+
+  async function handleDownload(resumeName) {
+    setDownloading(true);
+    await downloadResume(resumeName);
+    setDownloading(false);
+  };
+
   return (
     <Navbar>
       <div style={{display: 'flex'}}>
@@ -38,41 +53,59 @@ const Nav = () => {
         <ResumeNameWrapper>
           <ResumeName/>
         </ResumeNameWrapper>
+        <FlexGroup style={{alignItems: 'center'}}>
+          { saveBool &&
+          <>
+            <NavButton style={{marginLeft: '0.5em'}} onClick={() => handleSave(resumeId, {resumeContent})}>
+            {  saving ? 
+              <FaSpinner className="rotate" style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
+              :
+              <FaSave style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/> 
+            }
+              Save
+            </NavButton>
+            <NavButton onClick={() => handleSave("new", {resumeContent})}>
+            { savingAsNew ? 
+              <FaSpinner className="rotate" style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
+              :
+              <FaClone style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
+            }  
+              Save as new
+            </NavButton>
+          </>
+          }
+          { newResumeBool &&
+            <Link to="/">
+              <NavButton onClick={newResume}>
+                <FaPlus style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
+                New Resume
+              </NavButton>
+            </Link>
+        }
+        { themeBool &&
+          <NavButton onClick={(e) => configInfoChange({payload: !themeModal, name: 'themeModal'})}>
+            <FaPaintRoller style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
+            Themes
+          </NavButton>
+        }
+        { downloadBool &&
+          <NavButton onClick={() => handleDownload(resumeName)}>
+            { downloading ?
+              <FaSpinner className="rotate" style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
+              :
+              <FaFileDownload style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
+            }
+            Download
+          </NavButton>
+        }
+        </FlexGroup>
       </div>
       <FlexGroup style={{alignItems: 'center'}}>
-        <IconBar> 
-          <IconContext.Provider value={{color: 'white'}}>
-            <IconButton data-tip={`Save Resume`} data-background-color='#36B37E' 
-              onClick={() => saveOrUpdate(resumeId, {resumeContent})}
-            >
-              <FaSave /> 
-            </IconButton>
-            <IconButton data-tip={`Select Theme`} data-background-color='#36B37E'
-              onClick={(e) => configInfoChange(
-                {
-                  payload: !themeModal,
-                  name: 'themeModal'
-                }
-            )}>
-              <FaPaintRoller />
-            </IconButton>              
-            <IconButton data-tip={`Download Resume`} data-background-color='#36B37E' onClick={() => downloadResume(resumeName)}>
-              <FaFileDownload />
-            </IconButton>          
-          </IconContext.Provider>  
-        </IconBar>
-          <NavButton onClick={() => saveOrUpdate('new', {resumeContent})}>
-            Save as new        
-          </NavButton>
-        <Link to="/">
-          <NavButton onClick={newResume}>
-            <FaPlus style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
-            New
-          </NavButton>
-        </Link>
+        { myResumesBool &&
         <Link to="/resumes">
           <NavButton>My Resumes</NavButton>
         </Link>
+        }
         { userHasAuthenticated ? (
           <NavButton onClick={handleLogout}>Logout</NavButton>
         ) : (

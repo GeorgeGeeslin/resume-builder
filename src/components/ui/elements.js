@@ -66,9 +66,10 @@ export const NavButton = styled.button`
   padding: 0.5em;
   margin-right: 1em;
   height: 35px;
-  border-radius: 10px;
+  border-radius: 5px;
   &:hover {
-    background-color: #00B8D9;
+    // background-color: #00B8D9;
+    background-color: #344563;
   }
   &:focus{
     outline: none;
@@ -80,41 +81,108 @@ export const NavButton = styled.button`
   }
 `;
 
-export const IconBar = styled.div`
-  display: flex;
-  justify-content: center;
-  background-color: #172B4D;
-  padding: 0.35em 1em;
-  border-radius: 15%/50%;
-  margin-right: 2em;
-`;
+// TODO: Not needed right now, but might be nice to 
+// consolidate buttons into a dropdown menu.
 
-export const IconButton = styled.button`
-  display: block;
-  border: none;
-  margin: 0;
-  text-decoration: none;
-  color: #ffffff;
-  cursor: pointer;
-  text-align: center;
-  transition: background 250ms ease-in-out, 
-  transform 150ms ease;
-  font-size: 16px;
-  padding: 0.5em 0.75em;
-  background-color: #172B4D;
-  &:hover {
-    background-color: #0052CC;
-  }
-  &:focus {
-    outline: 1px solid #fff;
-    outline-offset: -4px;
-  }
-  &:active {
-    transform: scale(0.95);
-    outline: 1px solid #fff;
-    outline-offset: -4px;    
-  }
-`;
+// export const NavButtonDropDown = styled.button`
+//   display: block;
+//   border: none;
+//   margin: 0;
+//   text-decoration: none;
+//   background: #172B4D;
+//   color: #ffffff;
+//   cursor: pointer;
+//   text-align: center;
+//   transition: all 250ms ease-in-out, 
+//   transform 150ms ease;
+//   font-size: 14px;
+//   padding: 0.5em;
+//   margin-right: 1em;
+//   height: 35px;
+//   // border-radius: 10px;
+//   width: 150px;
+
+//   svg {
+//    transition: all 250ms ease-in-out, 
+//    transform 150ms ease;
+//   }
+
+//   .dropdown-content {
+//     visibility: hidden;
+//     position: relative;
+//     top: 12px;
+//     left: -6px;
+//     width: 116px;
+//     background-color: #97A0AF;
+//     box-shadown: 0px 8px 16px 0px rgba(0,0,0,0.2);
+//     padding: 12px 16px;
+//     z-index: 1;
+//     opacity: 0;
+//     // transition: all 250ms ease-in-out, 
+//     // transform 150ms ease;
+//     // transition: opacity 250ms;
+//     border: 1px solid #505F79;
+//   }
+
+//   &:hover {
+//   //  background-color: #00B8D9;
+
+//     svg {
+//       transform: rotate(90deg);
+//     }
+
+//     .dropdown-content {
+//       opacity: 1;
+//       visibility: visible;
+//     }
+
+//   }
+
+//   &:focus{
+//     outline: none;
+//   }
+//   &:active {
+//     position: relative;
+//     top: 2px;
+//     transform: scale(0.99);   
+//   }
+// `;
+
+// export const IconBar = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   background-color: #172B4D;
+//   padding: 0.35em 1em;
+//   border-radius: 15%/50%;
+//   margin-right: 2em;
+// `;
+
+// export const IconButton = styled.button`
+//   display: block;
+//   border: none;
+//   margin: 0;
+//   text-decoration: none;
+//   color: #ffffff;
+//   cursor: pointer;
+//   text-align: center;
+//   transition: background 250ms ease-in-out, 
+//   transform 150ms ease;
+//   font-size: 16px;
+//   padding: 0.5em 0.75em;
+//   background-color: #172B4D;
+//   &:hover {
+//     background-color: #0052CC;
+//   }
+//   &:focus {
+//     outline: 1px solid #fff;
+//     outline-offset: -4px;
+//   }
+//   &:active {
+//     transform: scale(0.95);
+//     outline: 1px solid #fff;
+//     outline-offset: -4px;    
+//   }
+// `;
 
 
 /***Grouping Elements***/

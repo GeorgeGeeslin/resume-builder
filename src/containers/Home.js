@@ -31,9 +31,17 @@ export default function Home() {
     }
   };
 
+  const options = {
+    saveBool: true,
+    themeBool: true,
+    downloadBool: true,
+    newResumeBool: true,
+    myResumesBool: true
+  };
+
   return (
     <>
-      <Nav />
+      <Nav {...options}/>
       { isLoading && 
         <div style={{backgroundColor: '#DFE1E6', width: '100vw', height: '100vh', display: 'flex', alignItems:'center', justifyContent:'center'}}>
           <Spinner/>

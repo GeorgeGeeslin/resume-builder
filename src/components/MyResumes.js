@@ -38,9 +38,17 @@ const MyResumes = () => {
     )
   });
 
+  const options = {
+    saveBool: false,
+    themeBool: false,
+    downloadBool: false,
+    newResumeBool: true,
+    myResumesBool: false
+  };
+
   return (
     <>
-      <Nav />
+      <Nav {...options}/>
         <SavedResumesWrapper>
           {isLoading && <Spinner/>}
           {!isLoading && resumeDisplay}         
