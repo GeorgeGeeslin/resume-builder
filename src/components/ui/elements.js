@@ -438,7 +438,6 @@ export const SavedResumesWrapper = styled.div`
   min-height: calc(100vh - 60px);
 `;
 
-
 // Not exported directly, dependent on Skill functions in this file.
 const SkillChip = styled.div`
   display: inline-block;

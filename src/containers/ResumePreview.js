@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
-import {PreviewBox, PreviewWrapper, ResumeContent} from '../components/ui/previewElements';
+import {PreviewBox, PreviewWrapper, ResumeContent, Preview} from '../components/ui/previewElements';
 import ResumePage from '../components/resumePreview/ResumePage';
 
 //Themes 
@@ -13,7 +13,7 @@ const ResumePreview = () => {
     const {theme, resumeHeight} = context.resumeContent;
 
     return (
-        <div id="resumePreview">
+        <Preview>
             <PreviewBox>
                 <PreviewWrapper>
                     <ResumePage>
@@ -24,7 +24,7 @@ const ResumePreview = () => {
                     </ResumePage>
                 </PreviewWrapper>
             </PreviewBox>
-        </div>
+        </Preview>
 
       
 

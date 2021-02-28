@@ -9,6 +9,12 @@ export const PreviewNav = styled.div`
     margin-bottom: 8px;
 `;
 
+export const Preview = styled.div`
+  border-top: 1 px solid #444;
+  min-width: 848px;
+  width: 100%;
+`;
+
 export const PreviewBox = styled.div`
     box-sizing: border-box;
     display: flex;
