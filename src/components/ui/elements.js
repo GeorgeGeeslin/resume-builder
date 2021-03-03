@@ -41,7 +41,7 @@ export const Navbar = styled.nav`
   }
 `;
 
-export const ResumeNameWrapper = styled.div`
+export const ResumeNameWrapperNav = styled.div`
   position: relative;
   top: 10px;
   width: 200px;
@@ -49,7 +49,31 @@ export const ResumeNameWrapper = styled.div`
     background-color: #B3D4FF;
     border: none;
   }
+
+  @media screen and (max-width: 1275px) and (min-width: 1075px) {
+    display: none;
+  }
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 `
+
+export const ResumeNameWrapperBody = styled.div`
+  display: none;
+  width: 100%; 
+  margin-bottom: 0.5em;
+  input {
+    background-color: #B3D4FF;
+    width: 250px;
+  }
+
+  @media screen and (max-width: 1275px) and (min-width: 1075px) {
+    display: block;
+  }
+  @media screen and (max-width: 600px) {
+    display: block;
+  }
+`;
 
 export const NavButton = styled.button`
   display: block;
@@ -69,7 +93,8 @@ export const NavButton = styled.button`
   border-radius: 5px;
   &:hover {
     // background-color: #00B8D9;
-    background-color: #344563;
+    // background-color: #344563;
+    background-color: #42526E;
   }
   &:focus{
     outline: none;
@@ -79,6 +104,53 @@ export const NavButton = styled.button`
     top: 2px;
     transform: scale(0.99);   
   }
+`;
+
+export const MenuIcon = styled.div`
+  display: none;
+
+  @media screen and (max-width: 1075px) {
+    display: block;
+  }
+`;
+
+export const ResponsiveDesktop = styled.div`
+
+  @media screen and (max-width: 1075px) {
+    display: none;
+  }
+`;
+
+export const DropdownMenu = styled.div`
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: calc(100vw - (34px + 180px));
+  box-shadow: 0 1px 3px rgba(0,0,0,0.45), 0 1px 2px rgba(0,0,0,0.55);
+
+  @media screen and (max-width: 1075px) {
+    display: block;
+  }
+`;
+
+export const DropdownButton = styled.div`
+  background-color: #172B4D;
+  color: white; 
+  width: 180px;
+  padding: 1em;
+  border: 1px solid #091E42;
+  cursor: pointer;
+  a {
+    color: white;
+  }
+  &:hover {
+    background-color: #42526E;
+  }
+  &:active {
+    background-color: #42526E;    
+  }
+
+
 `;
 
 // TODO: Not needed right now, but might be nice to 

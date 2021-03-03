@@ -6,6 +6,8 @@ import EduInput from '../components/resumeInput/EduInput';
 import EduInputGroup from '../components/resumeInput/EduInputGroup';
 import PersonalInfoInput from '../components/resumeInput/PersonalInfoInput';
 import Skillwrapper from '../components/resumeInput/Skillwrapper';
+import ResumeName from '../components/resumeInput/ResumeName';
+import { ResumeNameWrapperBody } from '../components/ui/elements';
 
 const ResumeInput = () => {
 
@@ -38,6 +40,9 @@ const ResumeInput = () => {
 
     return (
         <div id="resumeInput">
+            <ResumeNameWrapperBody>
+                <ResumeName />
+            </ResumeNameWrapperBody>
             <PersonalInfoInput />
             <WorkExpInputGroup workExpInputArray={workExpInputArray} addArrayItem={addArrayItem}/>
             <EduInputGroup eduInputArray={eduInputArray} addArrayItem={addArrayItem} />

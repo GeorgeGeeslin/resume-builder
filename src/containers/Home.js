@@ -36,7 +36,8 @@ export default function Home() {
     themeBool: true,
     downloadBool: true,
     newResumeBool: true,
-    myResumesBool: true
+    myResumesBool: true,
+    resumeNameBool: true
   };
 
   return (

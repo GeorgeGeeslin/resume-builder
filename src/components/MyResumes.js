@@ -43,7 +43,8 @@ const MyResumes = () => {
     themeBool: false,
     downloadBool: false,
     newResumeBool: true,
-    myResumesBool: false
+    myResumesBool: false,
+    resumeNameBool: false
   };
 
   return (
