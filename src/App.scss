@@ -150,64 +150,33 @@ $transitionTime: 0.1s;
 }
 
 //TODO move media queries and this crap into styled-components
-#resumeInput {
-    border-right: 1px solid #444;
-    padding: 1em;
-    overflow-y: auto;
-    height: 100vh;
-    width: 50%;
-    max-width: 700px;
+// #resumeInput {
+//     border-right: 1px solid #444;
+//     padding: 1em;
+//     overflow-y: auto;
+//     height: 100vh;
+//     width: 50%;
+//     max-width: 700px;
+//     min-width: 450px;
+// }
+
+// min-width: 450px;
+.pannelExpand {
     min-width: 450px;
-
-    /*
-    @include large-desktop {
-        width: 45%;
-    }
-
-    @include medium-desktop {
-        width: 40%;
-    }
-
-    @include small-desktop {
-        width: 30%;
-    }
-
-    @include tablet {
-        width: 30%;
-    }
-
-    @include mobile {
-        width: 30%;
-    }
-*/    
 }
 
-/*
-#resumePreview {
-    border-top: 1px solid #444;
-    min-width: 848px;
-
-    @include large-desktop {
-        width: 55%;
-    }
-
-    @include medium-desktop {
-        width: 60%;
-    }
-
-    @include small-desktop {
-        width: 70%;
-    }
-
-    @include tablet {
-        width: 70%;
-    }
-
-    @include mobile {
-        width: 70%;
+.pannelCollapse {
+    display: block;
+    // background-color: blue;
+    width: 2.7em;
+    // max-width: '100px';
+    // min-width: '100px';
+    transition: all 250ms ease-in-out, 
+    transform 150ms ease;
+    .hideable-inputs {
+        display: none;
     }
 }
-*/
 
 .rotate { 
     animation: rotation 2s infinite linear;
@@ -219,6 +188,34 @@ $transitionTime: 0.1s;
     }
     to {
       transform: rotate(359deg);
+    }
+}
+
+.rotate180 {
+    animation: rotate180 250ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes rotate180{
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+.rotate180back {
+    animation: rotate180back 250ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes rotate180back{
+    from {
+        transform: rotate(180deg);
+    }
+    to {
+        transform: rotate(360deg);
     }
 }
 

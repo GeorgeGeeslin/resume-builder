@@ -1,18 +1,22 @@
 import styled from 'styled-components';
 
 // Layout Elements (position the Resume Preview on screen)
-export const PreviewNav = styled.div`
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    margin-top: 8px;
-    margin-bottom: 8px;
-`;
+// export const PreviewNav = styled.div`
+//     display: flex;
+//     justify-content: center;
+//     margin: 0 auto;
+//     margin-top: 8px;
+//     margin-bottom: 8px;
+// `;
 
 export const Preview = styled.div`
   border-top: 1 px solid #444;
   min-width: 848px;
   width: 100%;
+
+  @media screen and (max-width: 600px) {
+    display: none;
+}
 `;
 
 export const PreviewBox = styled.div`

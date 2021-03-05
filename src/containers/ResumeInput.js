@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Context from '../context/Context';
 import WorkExpInput from '../components/resumeInput/WorkExpInput';
 import WorkExpInputGroup from '../components/resumeInput/WorkExpInputGroup';
@@ -7,7 +7,9 @@ import EduInputGroup from '../components/resumeInput/EduInputGroup';
 import PersonalInfoInput from '../components/resumeInput/PersonalInfoInput';
 import Skillwrapper from '../components/resumeInput/Skillwrapper';
 import ResumeName from '../components/resumeInput/ResumeName';
-import { ResumeNameWrapperBody } from '../components/ui/elements';
+import { ResumeNameWrapperBody, CollapseCircle, ResumeInputWrapper } from '../components/ui/elements';
+import { FaArrowLeft } from 'react-icons/fa';
+import { IconContext } from "react-icons";
 
 const ResumeInput = () => {
 
@@ -15,6 +17,8 @@ const ResumeInput = () => {
     const work = context.resumeContent.work;
     const education = context.resumeContent.education;
     const addArrayItem = context.addArrayItem;
+
+    const [css, setCss] = useState({width: '50%', minWidth: '450px', display: 'block'});
 
     const workExpInputArray = work.map((item, index) => {
         const { employer, title, dates, experience, current, city, state } = context.resumeContent.work[index];
@@ -38,16 +42,41 @@ const ResumeInput = () => {
         )
     });
 
+    const handleCollapse = () => {
+        const circ = document.getElementById('collapse');
+        const pannel = document.getElementById('resumeInput');
+
+        if (circ.classList.contains('rotate180')) {
+            circ.classList.add('rotate180back');
+            circ.classList.remove('rotate180');
+
+            setCss({width: '50%', minWidth: '450px', display: 'block'});
+
+        } else {
+            circ.classList.add('rotate180');
+            circ.classList.remove('rotate180back');
+
+            setCss({width: '2.7em', minWidth: '2.7em', display: 'none', background: '#99a2b0'});
+        }
+    };
+
     return (
-        <div id="resumeInput">
-            <ResumeNameWrapperBody>
-                <ResumeName />
-            </ResumeNameWrapperBody>
-            <PersonalInfoInput />
-            <WorkExpInputGroup workExpInputArray={workExpInputArray} addArrayItem={addArrayItem}/>
-            <EduInputGroup eduInputArray={eduInputArray} addArrayItem={addArrayItem} />
-            <Skillwrapper />
-        </div>
+        <ResumeInputWrapper width={css.width} minWidth={css.minWidth} display={css.display} background={css.background} id='resumeInput'>
+            <CollapseCircle onClick={handleCollapse} id='collapse'>
+                <IconContext.Provider value={{size: '1.5em', color: 'white'}}>
+                    <FaArrowLeft/>
+                </IconContext.Provider>
+            </CollapseCircle>
+            <div class="hideable-inputs">
+                <ResumeNameWrapperBody>
+                    <ResumeName />
+                </ResumeNameWrapperBody>
+                <PersonalInfoInput />
+                <WorkExpInputGroup workExpInputArray={workExpInputArray} addArrayItem={addArrayItem}/>
+                <EduInputGroup eduInputArray={eduInputArray} addArrayItem={addArrayItem} />
+                <Skillwrapper />
+            </div>
+        </ResumeInputWrapper>
     )
 };
 

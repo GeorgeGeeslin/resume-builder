@@ -7,7 +7,7 @@ import { IconContext } from "react-icons";
 import { Auth } from 'aws-amplify';
 import ResumeName from './resumeInput/ResumeName';
 
-//TODO break Iconbar stuff out into its own component 
+  //TODO: seperate menus into their own components (desktop and mobile)
 const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, resumeNameBool}) => {
 
   const [saving, setSaving] = useState(false);
@@ -16,7 +16,6 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
   const [dropdownMenu, setDropdownMenu] = useState(false);
 
   const context = useContext(Context);
-  // const {resumeName} = context.resumeContent;
   const {resumeId, themeModal, userHasAuthenticated} = context.configState;
   const {configInfoChange, downloadResume, saveOrUpdate, newResume, loadAppState} = context;
   const resumeContent = context.resumeContent;
@@ -144,7 +143,7 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
               Save
               </DropdownButton>  
             }
-            { newResumeBool &&
+            { saveBool &&
               <DropdownButton onClick={() => handleSave("new", {resumeContent})}> 
               { savingAsNew ? 
               <FaSpinner className="rotate" style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>

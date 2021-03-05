@@ -7,7 +7,7 @@ import ThemeMenu from "../components/ThemeMenu";
 const ResumeEditor = () => {
 
     return (
-        <div style={{display: 'flex', backgroundColor: '#DFE1E6'}}>
+        <div style={{display: 'flex', backgroundColor: '#DFE1E6', maxWidth: '100vw', overflowX: 'scroll'}}>
             <PageCountWarning /> 
             <ResumeInput />
             <ResumePreview />

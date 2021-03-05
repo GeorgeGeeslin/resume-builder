@@ -127,6 +127,7 @@ export const DropdownMenu = styled.div`
   top: 50px;
   left: calc(100vw - (34px + 180px));
   box-shadow: 0 1px 3px rgba(0,0,0,0.45), 0 1px 2px rgba(0,0,0,0.55);
+  z-index: 2;
 
   @media screen and (max-width: 1075px) {
     display: block;
@@ -149,113 +150,31 @@ export const DropdownButton = styled.div`
   &:active {
     background-color: #42526E;    
   }
-
-
 `;
 
-// TODO: Not needed right now, but might be nice to 
-// consolidate buttons into a dropdown menu.
+export const CollapseCircle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #091E42;
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  margin-bottom: 0.5em;
+  transition: all 250ms ease-in-out, 
+  transform 150ms ease;
+  &:hover {
+    background-color: #42526E;
+  }
 
-// export const NavButtonDropDown = styled.button`
-//   display: block;
-//   border: none;
-//   margin: 0;
-//   text-decoration: none;
-//   background: #172B4D;
-//   color: #ffffff;
-//   cursor: pointer;
-//   text-align: center;
-//   transition: all 250ms ease-in-out, 
-//   transform 150ms ease;
-//   font-size: 14px;
-//   padding: 0.5em;
-//   margin-right: 1em;
-//   height: 35px;
-//   // border-radius: 10px;
-//   width: 150px;
+  @media screen and (min-width: 1275px) {
+    display: none;
+  }
 
-//   svg {
-//    transition: all 250ms ease-in-out, 
-//    transform 150ms ease;
-//   }
-
-//   .dropdown-content {
-//     visibility: hidden;
-//     position: relative;
-//     top: 12px;
-//     left: -6px;
-//     width: 116px;
-//     background-color: #97A0AF;
-//     box-shadown: 0px 8px 16px 0px rgba(0,0,0,0.2);
-//     padding: 12px 16px;
-//     z-index: 1;
-//     opacity: 0;
-//     // transition: all 250ms ease-in-out, 
-//     // transform 150ms ease;
-//     // transition: opacity 250ms;
-//     border: 1px solid #505F79;
-//   }
-
-//   &:hover {
-//   //  background-color: #00B8D9;
-
-//     svg {
-//       transform: rotate(90deg);
-//     }
-
-//     .dropdown-content {
-//       opacity: 1;
-//       visibility: visible;
-//     }
-
-//   }
-
-//   &:focus{
-//     outline: none;
-//   }
-//   &:active {
-//     position: relative;
-//     top: 2px;
-//     transform: scale(0.99);   
-//   }
-// `;
-
-// export const IconBar = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   background-color: #172B4D;
-//   padding: 0.35em 1em;
-//   border-radius: 15%/50%;
-//   margin-right: 2em;
-// `;
-
-// export const IconButton = styled.button`
-//   display: block;
-//   border: none;
-//   margin: 0;
-//   text-decoration: none;
-//   color: #ffffff;
-//   cursor: pointer;
-//   text-align: center;
-//   transition: background 250ms ease-in-out, 
-//   transform 150ms ease;
-//   font-size: 16px;
-//   padding: 0.5em 0.75em;
-//   background-color: #172B4D;
-//   &:hover {
-//     background-color: #0052CC;
-//   }
-//   &:focus {
-//     outline: 1px solid #fff;
-//     outline-offset: -4px;
-//   }
-//   &:active {
-//     transform: scale(0.95);
-//     outline: 1px solid #fff;
-//     outline-offset: -4px;    
-//   }
-// `;
-
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
+`;
 
 /***Grouping Elements***/
 export const Grouper = styled.div`
@@ -508,6 +427,39 @@ export const SavedResumesWrapper = styled.div`
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 60px);
+`;
+
+export const ResumeInputWrapper = styled.div`
+  background-color: ${props => props.background};
+  border-right: 1px solid #444;
+  padding: 1em;
+  overflow-y: auto;
+  height: 100vh;
+  min-width: ${props => props.minWidth};
+  width: ${props => props.width};
+  max-width: 700px;
+  transition: all 250ms ease-in-out, 
+  transform 150ms ease;
+
+  .hideable-inputs {
+    display: ${props => props.display};
+  }
+
+  @media screen and (min-width: 1275px) {
+    width: 50%;
+    min-width: 450px;
+    background-color: transparent;
+    
+    .hideable-inputs {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+  }
 `;
 
 // Not exported directly, dependent on Skill functions in this file.
