@@ -17,7 +17,14 @@ const MyResumes = () => {
   async function fetchResumes() {
     try {
       const resumes = await API.get("resume", "/resume");
-      console.log(resumes)
+
+      // Sort resumes by earliest create date to latest create date.
+      resumes.sort((a, b) => {
+        return (a.created > b.created) ? 1 : -1
+      });
+
+      console.log(resumes);
+
       setMyResumes(resumes);
       setIsLoading(false);
     } catch (err) {

@@ -31,10 +31,16 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
   };
 
   async function handleSave(resumeId, resumeContent) {
-    resumeId === "new" ? setSavingAsNew(true) : setSaving(true);
+    setSaving(true);
     await saveOrUpdate(resumeId, resumeContent);
-    resumeId === "new" ? setSavingAsNew(false) : setSaving(false);
+    setSaving(false);
   };
+
+  async function handleSaveNew(resumeId, resumeContent) {
+    setSavingAsNew(true);
+    await saveOrUpdate(resumeId, resumeContent);
+    setSavingAsNew(false);
+  }
 
   async function handleDownload(resumeName) {
     setDownloading(true);
@@ -72,7 +78,7 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
                 }
                   Save
                 </NavButton>
-                <NavButton onClick={() => handleSave("new", {resumeContent})}>
+                <NavButton onClick={() => handleSaveNew("new", {resumeContent})}>
                 { savingAsNew ? 
                   <FaSpinner className="rotate" style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
                   :
@@ -144,7 +150,7 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
               </DropdownButton>  
             }
             { saveBool &&
-              <DropdownButton onClick={() => handleSave("new", {resumeContent})}> 
+              <DropdownButton onClick={() => handleSaveNew("new", {resumeContent})}> 
               { savingAsNew ? 
               <FaSpinner className="rotate" style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
               :

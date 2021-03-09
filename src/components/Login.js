@@ -3,9 +3,11 @@ import { Auth } from "aws-amplify";
 import Context from '../context/Context';
 import {FlexGroup, Input, LoginForm, LoadingButton} from './ui/elements';
 import LoginNav from './LoginNav';
+import ForgotPassword from './ForgotPassword';
 import { onError } from "../libs/errorLib";
 import { useFormFields } from '../libs/hooksLibs';
 import { useHistory } from "react-router-dom";
+
 
 const Login = () => {
 
@@ -85,6 +87,7 @@ const Login = () => {
           value={fields.password} 
           onChange={handleFieldChange}/>
         <LoadingButton label="Login" isLoading={isLoading} />
+        <ForgotPassword />
       </LoginForm>
     )
   };

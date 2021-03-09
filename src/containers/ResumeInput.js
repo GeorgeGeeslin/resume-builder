@@ -56,18 +56,18 @@ const ResumeInput = () => {
             circ.classList.add('rotate180');
             circ.classList.remove('rotate180back');
 
-            setCss({width: '2.7em', minWidth: '2.7em', display: 'none', background: '#99a2b0'});
+            setCss({width: '2em', minWidth: '2em', display: 'none', background: '#99a2b0'});
         }
     };
 
     return (
         <ResumeInputWrapper width={css.width} minWidth={css.minWidth} display={css.display} background={css.background} id='resumeInput'>
             <CollapseCircle onClick={handleCollapse} id='collapse'>
-                <IconContext.Provider value={{size: '1.5em', color: 'white'}}>
+                <IconContext.Provider value={{size: '1.2em', color: 'white'}}>
                     <FaArrowLeft/>
                 </IconContext.Provider>
             </CollapseCircle>
-            <div class="hideable-inputs">
+            <div className="hideable-inputs">
                 <ResumeNameWrapperBody>
                     <ResumeName />
                 </ResumeNameWrapperBody>

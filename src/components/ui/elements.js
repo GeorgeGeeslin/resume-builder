@@ -158,8 +158,8 @@ export const CollapseCircle = styled.div`
   align-items: center;
   background-color: #091E42;
   border-radius: 50%;
-  width: 2.5em;
-  height: 2.5em;
+  width: 1.8em;
+  height: 1.8em;
   margin-bottom: 0.5em;
   transition: all 250ms ease-in-out, 
   transform 150ms ease;
