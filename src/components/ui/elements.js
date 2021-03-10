@@ -592,13 +592,13 @@ export const AddButton = ({onClickFunc, label}) => {
   )
 };
 
-export const LoadingButton = ({label, isLoading}) => {
+export const LoadingButton = ({label, isLoading, width}) => {
 
   const visibility = isLoading ? 'visible' : 'hidden';
   const rotate = isLoading ? 'rotate' : '';
 
   return (
-    <Button type="submit" style={{marginTop: '1em', width: '90px'}}>
+    <Button type="submit" style={{marginTop: '1em', width: width || '90px'}}>
       {label}
       <span style={{display: 'inline-block', position: 'relative', top: '2px', left: '0.5em', height: '36px'}}>
         <AiOutlineLoading3Quarters className={rotate} style={{visibility: visibility}}/>

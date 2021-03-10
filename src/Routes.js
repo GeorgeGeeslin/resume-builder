@@ -6,6 +6,7 @@ import Signup from "./components/Signup";
 import MyResumes from "./components/MyResumes";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
+import ForgotPassword from "./components/ForgotPassword";
 
 export default function Routes() {
   return (
@@ -19,9 +20,14 @@ export default function Routes() {
       <UnauthenticatedRoute exact path="/signup">
         <Signup />
       </UnauthenticatedRoute>
+      <UnauthenticatedRoute exact path="/forgotpassword">
+        <ForgotPassword />
+      </UnauthenticatedRoute>
       <AuthenticatedRoute exact path="/resumes">
         <MyResumes />
       </AuthenticatedRoute>
     </Switch>
   );
 }
+
+
