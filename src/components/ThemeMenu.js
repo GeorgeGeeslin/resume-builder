@@ -29,8 +29,9 @@ const ThemeMenu = () => {
         <div style={{textAlign: 'center'}}>
          <p>Minimalist Compact</p>
         </div>
-        <img src={defaultImage} alt="default resume theme" />
+        <img src={defaultImage} alt="Minimalist compact resume theme" />
       </ThemeWindow>
+
       <ThemeWindow onClick={(e) => baseInfoChange(
         {
           payload: 'singleColumn',
@@ -40,7 +41,19 @@ const ThemeMenu = () => {
         <div style={{textAlign: 'center'}}>
           <p>Minimalist Single Column</p>
         </div>
-        <img src={singleColumnImage} alt="single column resume theme" />
+        <img src={singleColumnImage} alt="Minimalist single column resume theme" />
+      </ThemeWindow>
+      
+      <ThemeWindow onClick={(e) => baseInfoChange(
+        {
+          payload: 'modern',
+          name: 'theme'
+        }
+      )}>
+        <div style={{textAlign: 'center'}}>
+          <p>Modern Compact</p>
+        </div>
+        <img src={defaultImage} alt="Modern compact resume theme" />
       </ThemeWindow>
 
       {/* TODO Add 3rd and 4th themes here

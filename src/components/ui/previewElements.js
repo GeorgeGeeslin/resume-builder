@@ -77,11 +77,17 @@ export const WorkDesc = styled.div`
 
 // These are objects to be used as in-line styles so that they will be included in the html payload.
 // Styled components will not be included in the payload.
-export const sectionHeadLine = {
-    color: "#0052CC",
-    textTransform: "uppercase",
-    fontWeight: "bold",
-    fontSize: "18px"
+
+export const sectionHeadLine = (color) => {
+
+    const fontColor = color || "#0052CC";
+
+    return {
+        color: fontColor,
+        textTransform: "uppercase",
+        fontWeight: "bold",
+        fontSize: "18px" 
+    }
 };
 
 export const sectionSeparatorSmall = {

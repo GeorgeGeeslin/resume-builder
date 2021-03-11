@@ -36,7 +36,7 @@ const Default = () => {
                 <div style={sectionSeparatorSmall}>
                     <BasicInfo name={name} phone={phone} email={email} role={role} profile={profile}/>                      
                 </div>
-                { workComponents.length > 0 && <div style={sectionHeadLine}>Experience</div> } 
+                { workComponents.length > 0 && <div style={sectionHeadLine()}>Experience</div> } 
                 {workComponents}
             </div>
             {/*sidebar*/}
@@ -48,11 +48,11 @@ const Default = () => {
                 </div>
                 { skills.length > 0 &&
                     <div style={sectionSeparatorSmall}>
-                        <div style={sectionHeadLine}>Skills</div>
+                        <div style={sectionHeadLine()}>Skills</div>
                         <Skills />
                     </div>
                 }
-                { eduComponents.length > 0 && <div style={sectionHeadLine}>Education</div> }
+                { eduComponents.length > 0 && <div style={sectionHeadLine()}>Education</div> }
                 { eduComponents }
             </div> 
         </div>   

@@ -47,16 +47,15 @@ const SingleColumn = () => {
                         facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}
                     />
                 </div>
- 
             </div>
 
-            { workComponents.length > 0 && <div style={sectionHeadLine}>Experience</div> }
+            { workComponents.length > 0 && <div style={sectionHeadLine()}>Experience</div> }
             { workComponents }
-            { eduComponents.length > 0 && <div style={sectionHeadLine}>Education</div> }
+            { eduComponents.length > 0 && <div style={sectionHeadLine()}>Education</div> }
             { eduComponents }
             { skills.length > 0 &&
                 <div style={sectionSeparator}>
-                    <div style={{...sectionHeadLine}}>Skills</div>
+                    <div style={{...sectionHeadLine()}}>Skills</div>
                     <div style={{marginTop: '0.5em'}}>
                         <Skills array={skills}/>
                     </div>
