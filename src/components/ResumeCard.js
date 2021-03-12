@@ -41,7 +41,6 @@ const ResumeCard = ({resume, index, removeResume}) => {
         removeResume(index);
 
         if (thisResumeId === resumeId) {
-          console.log("active copy delete!!")
           await updateUserMeta(null, initialState);
           loadAppState("new", initialState)
         }

@@ -38,23 +38,32 @@ const Modern = () => {
       <Header name={name} role={role} desired_position={desired_position}/>
       <div style={{display: 'flex'}}>
         {/*sidebar*/}
-        <div id="sidebar" style={{width: '25%'}}>
+        <div id="sidebar" style={{width: '30%'}}>
           <div style={sectionSeparatorSmall}>
-            <Contact street1={street1}street2={street2}city={city}state={state}zip={zip}phone={phone}email={email}
-                facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}
-            />
+            <div style={{borderRight: '3px solid #DAA520',  width: '80%'}}>
+              <Contact street1={street1}street2={street2}city={city}state={state}zip={zip}phone={phone}email={email}
+                  facebook={facebook}twitter={twitter}linkedin={linkedin}github={github}portfolio={portfolio}otherLink={otherLink}
+              />
+            </div>
           </div>
+
           { skills.length > 0 &&
-                    <div style={sectionSeparatorSmall}>
-                        <div style={sectionHeadLine("#DAA520")}>Skills</div>
-                        <Skills />
-                    </div>
-                }
-                { eduComponents.length > 0 && <div style={sectionHeadLine('#DAA520')}>Education</div> }
-                { eduComponents }          
+          <div style={sectionSeparatorSmall}>
+            <div style={{borderRight: '3px solid #DAA520',  width: '80%'}}>
+                <div style={sectionHeadLine("#DAA520")}>Skills</div>
+                <Skills />
+            </div>
+          </div>
+          }
+          { eduComponents.length > 0 && 
+          <div style={{borderRight: '3px solid #DAA520',  width: '80%'}}>
+          <div style={sectionHeadLine('#DAA520')}>Education</div>
+            { eduComponents }      
+          </div>
+          }
         </div>
         {/*maincontent*/}
-        <div id="maincontent" style={{width: '75%'}}>
+        <div id="maincontent" style={{width: '70%'}}>
           <div style={sectionSeparatorSmall}>
             { (profile && desired_position) &&
             <>

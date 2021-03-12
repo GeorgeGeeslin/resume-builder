@@ -3,6 +3,7 @@ import Context from '../context/Context';
 import { ThemeModal, ThemeModalContent, ThemeWindow } from './ui/elements';
 import singleColumnImage from '../images/single-column.png';
 import defaultImage from '../images/default.png';
+import modernImage from '../images/modern.png';
 
 const ThemeMenu = () => {
 
@@ -43,7 +44,7 @@ const ThemeMenu = () => {
         </div>
         <img src={singleColumnImage} alt="Minimalist single column resume theme" />
       </ThemeWindow>
-      
+
       <ThemeWindow onClick={(e) => baseInfoChange(
         {
           payload: 'modern',
@@ -51,9 +52,9 @@ const ThemeMenu = () => {
         }
       )}>
         <div style={{textAlign: 'center'}}>
-          <p>Modern Compact</p>
+          <p>Modern</p>
         </div>
-        <img src={defaultImage} alt="Modern compact resume theme" />
+        <img src={modernImage} alt="Modern compact resume theme" />
       </ThemeWindow>
 
       {/* TODO Add 3rd and 4th themes here

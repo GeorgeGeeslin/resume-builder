@@ -1,20 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Header = ({name, role, desired_position}) => {
 
+  const [nameFirst, setNameFirst] = useState();
+  const [nameLast, setNameLast] = useState();
+
+  useEffect(() => {
+    buildNames();
+  }, [name])
+
+  const buildNames = () => {
+    let nameParts = name.split(' ');
+
+    let nameLast;
+    let nameFirst;
+
+    if (nameParts.length < 2) {
+      nameFirst = name;
+    } else {
+      nameLast = nameParts.splice(nameParts.length - 1, nameParts.length);
+      nameFirst = nameParts.join(' ');
+    }
+
+    setNameFirst(nameFirst);
+    setNameLast(nameLast);
+  };
 
   const header = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: '#091E42',
-    // color: 'white',
-    // marginTop: '-0.5in',
-    // marginLeft: '-0.5in',
-    // marginRight: '-0.5in',
     height: '150px',
     marginBottom: '1rem'
-  }
+  };
 
   const nameStyles = {
     fontSize: '48px',
@@ -25,39 +43,32 @@ const Header = ({name, role, desired_position}) => {
 
   const lNameStyle = {
     fontWeight: 'bold',
-    color: '#DAA520'
-  }
+    color: '#DAA520',
+  };
 
   const roleStyles = {
     fontSize: '18px',
     marginTop: '1rem',
     textAlign: 'center',
     fontWeight: 'bold'
-  }
-
-  let nameParts = name.split(' ');
-
-  const nameLast = nameParts.splice(1, (nameParts.length));
-  const nameFirst = nameParts.join(' ')
-
-
+  };
 
   return (
     <div style={header}>
       <div style={{minWidth: '70%'}}>
+        { name && 
         <div style={nameStyles}>
-          <span>{nameFirst} </span><span style={lNameStyle}>{nameLast}</span>
-          
-        </div>
+          <span>{nameFirst} </span><span style={lNameStyle}>{nameLast}</span>  
+        </div>        
+        }
         { (desired_position && role) &&
         <div style={roleStyles}>
           {role}
         </div>
         }
-
       </div>
     </div>
-  )
+  );
 };
 
 export default Header;
