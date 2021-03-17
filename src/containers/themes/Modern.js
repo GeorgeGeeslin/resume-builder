@@ -49,7 +49,7 @@ const Modern = () => {
 
           { skills.length > 0 &&
           <div style={sectionSeparatorSmall}>
-            <div style={{borderRight: '3px solid #DAA520',  width: '80%'}}>
+            <div style={{borderRight: '3px solid #DAA520',  width: '80%', paddingRight: '5px'}}>
                 <div style={sectionHeadLine("#DAA520")}>Skills</div>
                 <Skills />
             </div>

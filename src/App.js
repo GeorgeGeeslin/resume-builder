@@ -182,12 +182,8 @@ const App = () => {
 
   //TODO: Ready to move.
   async function saveOrUpdate(resumeId, resume) {
-    // const thumbnail = await createThumbnail();
-    // resume.thumbnail = thumbnail;
     const thumbnail = await resumeScreenshot();
     resume.thumbnail = thumbnail;
-
-  
 
     if (!resumeId || resumeId === "new") {
       console.log("SAVE RESUME!")
