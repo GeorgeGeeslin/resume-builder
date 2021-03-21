@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect } from 'react';
+import React, { useReducer, /*useState,*/ useEffect } from 'react';
 import { Auth } from "aws-amplify";
 import Context from './context/Context';
 import * as ResumeReducer from './store/reducers/resumeReducer';
@@ -13,7 +13,7 @@ import { API } from "aws-amplify";
 
 const App = () => {
 
-  const [isAuthenticating, setIsAuthenticating] = useState(true);
+  // const [isAuthenticating, setIsAuthenticating] = useState(true);
 
   const [resumeContent, dispatchResumeContent] = useReducer(ResumeReducer.ResumeReducer, ResumeReducer.initialState);
   const [configState, dispatchConfigState] = useReducer(ConfigReducer.ConfigReducer, ConfigReducer.initialState);
@@ -31,7 +31,7 @@ const App = () => {
         onError(err);
       }
     }
-    setIsAuthenticating(false);
+    // setIsAuthenticating(false);
   };
 
   async function getLastState() {
@@ -39,15 +39,14 @@ const App = () => {
     // if no META# record exists then create one with a default state. 
     try {
       const meta = await API.get("resume", `/meta`);
-      console.log(meta)
+
       if (meta.length === 0) {
         createUserMeta();
       } else {
         const last = meta.length - 1;
         const resumeContent = meta[last].resumeContent ? meta[last].resumeContent : ResumeReducer.initialState
         const resumeId = meta[last].lastResume ? meta[last].lastResume : ConfigReducer.initialState.resumeId
-        // console.log(resumeId)
-        // console.log(resumeContent)
+
         loadAppState(resumeId, resumeContent);
       }
 
@@ -186,11 +185,8 @@ const App = () => {
     resume.thumbnail = thumbnail;
 
     if (!resumeId || resumeId === "new") {
-      console.log("SAVE RESUME!")
       saveResume(resume);
     } else {
-      console.log("UPDATE RESUME!")
-      console.log(resumeId)
       updateResume(resumeId, resume);
       updateUserMeta(resumeId, resumeContent);
     }
@@ -222,8 +218,6 @@ const App = () => {
 
       const  newResumeStr = JSON.stringify(ResumeReducer.initialState);
       const newResume = JSON.parse(newResumeStr);
-      console.log(newResumeStr)
-      console.log(newResume)
 
       dispatchResumeContent({type: 'loadAppState', resumeContent: newResume});
       configInfoChange({payload: null, name: "resumeId"}); 

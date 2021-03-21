@@ -62,7 +62,7 @@ const ResumeCard = ({resume, index, removeResume}) => {
     <SavedResumeCard> 
       <Link to="/" onClick={() => loadAppState(thisResumeId, resumeContent)}>
         { isLoading && <div style={{width: "192px", height: "230px", display: "flex", justifyContent: "center", alignItems: "center"}}><Spinner/></div>}
-        { !isLoading && <img style={{width: "192px", height:"230px"}}src={`data:image/png;base64,${thumbnail}`} /> }
+        { !isLoading && <img alt={resumeContent.resumeName} style={{width: "192px", height:"230px"}}src={`data:image/png;base64,${thumbnail}`} /> }
       </Link>
       <div className="nameplate">
       <div className="nameplate-name">

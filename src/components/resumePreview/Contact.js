@@ -21,7 +21,7 @@ const Contact = ({street1, street2, city, state, zip, phone, email, linkedin, gi
         absoluteUrl = "http://" + url;
     }
 
-       return  <p key={index}><a href={absoluteUrl} target="_blank">{url}</a></p>
+       return  <p key={index}><a href={absoluteUrl} target="_blank" rel="noopener noreferrer">{url}</a></p>
     })
 
     return(

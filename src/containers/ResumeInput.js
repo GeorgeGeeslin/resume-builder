@@ -44,7 +44,6 @@ const ResumeInput = () => {
 
     const handleCollapse = () => {
         const circ = document.getElementById('collapse');
-        const pannel = document.getElementById('resumeInput');
 
         if (circ.classList.contains('rotate180')) {
             circ.classList.add('rotate180back');

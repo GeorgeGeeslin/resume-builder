@@ -23,8 +23,6 @@ const MyResumes = () => {
         return (a.created > b.created) ? 1 : -1
       });
 
-      console.log(resumes);
-
       setMyResumes(resumes);
       setIsLoading(false);
     } catch (err) {

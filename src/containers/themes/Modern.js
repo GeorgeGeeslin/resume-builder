@@ -3,7 +3,6 @@ import Context from '../../context/Context';
 import {sectionHeadLine, sectionSeparatorSmall} from '../../components/ui/previewElements';
 //Components
 import WorkExp from '../../components/resumePreview/WorkExp';
-import BasicInfo from '../../components/resumePreview/BasicInfo';
 import Edu from '../../components/resumePreview/themes/default/Edu';
 import Contact from '../../components/resumePreview/Contact';
 import Skills from '../../components/resumePreview/themes/default/Skills';
@@ -13,7 +12,7 @@ import Header from '../../components/resumePreview/themes/modern/Header';
 const Modern = () => {
 
   const context = useContext(Context);
-  const {name, phone, email, resumeHeight} = context.resumeContent;
+  const {name, phone, email} = context.resumeContent;
   const {role, profile} = context.resumeContent.desired_position;
   const work = context.resumeContent.work;
   const education = context.resumeContent.education;

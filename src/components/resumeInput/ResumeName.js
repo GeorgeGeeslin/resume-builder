@@ -9,7 +9,7 @@ const ResumeName = () => {
   const {resumeName} = context.resumeContent;
 
   return (
-    <Input type="text" placeholder="Resume Name" value={resumeName} id="resumeName" onChange={(e) => baseInfoChange(
+    <Input type="text" placeholder="Resume Name" value={resumeName} onChange={(e) => baseInfoChange(
       {
         payload: e.target.value,
         name: "resumeName"

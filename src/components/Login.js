@@ -35,7 +35,6 @@ const Login = () => {
         setIsLoading(false);
         history.push("/");
       } catch (err) {
-        console.log(err)
         if (err.code === "UserNotConfirmedException") {
          
           await Auth.resendSignUp(fields.email);
