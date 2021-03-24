@@ -78,6 +78,7 @@ const ResumePage = (props) => {
     const pageHeight = 1000;
     const innerPageHeight = pageHeight - 48 - 48; // Height - padding of ResumeContent.
 
+    // eslint-disable-next-line
     useEffect(() => {
         setContentHeight(document.getElementById('contentHolder').clientHeight);
         setContentOffset(document.getElementById('ResumeContent').offsetTop);
@@ -113,7 +114,8 @@ const ResumePage = (props) => {
                 payload: pageHeight + "px",
                 name: "resumeHeight"
             })
-        }     
+        }   
+    // eslint-disable-next-line      
     }, [contentHeight, work, education, skills]);
 
     return (

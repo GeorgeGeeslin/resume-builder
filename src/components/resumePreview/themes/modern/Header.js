@@ -7,6 +7,7 @@ const Header = ({name, role, desired_position}) => {
 
   useEffect(() => {
     buildNames();
+  // eslint-disable-next-line
   }, [name])
 
   const buildNames = () => {

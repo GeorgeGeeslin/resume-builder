@@ -18,6 +18,7 @@ export default function Home() {
   useEffect(() => {
     if (!resumeId) onfirstLoad();
     if (resumeId) updateUserMeta(resumeId, resumeContent);
+  // eslint-disable-next-line  
   }, [resumeId]);
 
   async function onfirstLoad() {

@@ -20,6 +20,7 @@ const App = () => {
 
   useEffect(() => {
     onLoad();
+  // eslint-disable-next-line    
   }, []);
 
   async function onLoad() {
