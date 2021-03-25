@@ -179,7 +179,7 @@ const PersonalInfoInput = () => {
                         )} />
                     </div>
                     <div style={{width: '50%'}}>
-                        <label htmlFor='github'>GithHub</label>
+                        <label htmlFor='github'>GitHub</label>
                         <Input disabled={!links} type='text' value={github} id='github' onChange={e => baseObjectInfoChange(
                             {
                                 payload: e.target.value,
