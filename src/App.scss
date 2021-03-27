@@ -160,23 +160,6 @@ $transitionTime: 0.1s;
 //     min-width: 450px;
 // }
 
-// min-width: 450px;
-.pannelExpand {
-    min-width: 450px;
-}
-
-.pannelCollapse {
-    display: block;
-    // background-color: blue;
-    width: 2.7em;
-    // max-width: '100px';
-    // min-width: '100px';
-    transition: all 250ms ease-in-out, 
-    transform 150ms ease;
-    .hideable-inputs {
-        display: none;
-    }
-}
 
 .rotate { 
     animation: rotation 2s infinite linear;

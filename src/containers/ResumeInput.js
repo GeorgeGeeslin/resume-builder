@@ -18,7 +18,7 @@ const ResumeInput = () => {
     const education = context.resumeContent.education;
     const addArrayItem = context.addArrayItem;
 
-    const [css, setCss] = useState({width: '50%', minWidth: '450px', display: 'block'});
+    const [css, setCss] = useState({width: '50%', minWidth: '325px', display: 'block'});
 
     const workExpInputArray = work.map((item, index) => {
         const { employer, title, dates, experience, current, city, state } = context.resumeContent.work[index];
@@ -49,7 +49,7 @@ const ResumeInput = () => {
             circ.classList.add('rotate180back');
             circ.classList.remove('rotate180');
 
-            setCss({width: '50%', minWidth: '450px', display: 'block'});
+            setCss({width: '50%', minWidth: '325px', display: 'block'});
 
         } else {
             circ.classList.add('rotate180');
