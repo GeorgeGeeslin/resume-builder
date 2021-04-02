@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from "./containers/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
@@ -11,9 +11,9 @@ import ForgotPassword from "./components/ForgotPassword";
 export default function Routes() {
   return (
     <Switch>
-      <AuthenticatedRoute exact path="/">
+      <Route exact path="/">
         <Home />
-      </AuthenticatedRoute>
+      </Route>
       <UnauthenticatedRoute exact path="/login">
           <Login />
       </UnauthenticatedRoute>

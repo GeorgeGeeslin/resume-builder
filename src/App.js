@@ -14,26 +14,31 @@ import { API } from "aws-amplify";
 const App = () => {
 
   // const [isAuthenticating, setIsAuthenticating] = useState(true);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+
 
   const [resumeContent, dispatchResumeContent] = useReducer(ResumeReducer.ResumeReducer, ResumeReducer.initialState);
   const [configState, dispatchConfigState] = useReducer(ConfigReducer.ConfigReducer, ConfigReducer.initialState);
 
-  useEffect(() => {
-    onLoad();
-  // eslint-disable-next-line    
-  }, []);
+  // useEffect(() => {
+  //   onLoad();
+  // // eslint-disable-next-line    
+  // }, []);
 
-  async function onLoad() {
-    try {
-      await Auth.currentSession();
-      configInfoChange({payload: true, name: 'userHasAuthenticated'});
-    } catch(err) {
-      if (err !== 'No current user') {
-        onError(err);
-      }
-    }
-    // setIsAuthenticating(false);
-  };
+  // async function onLoad() {
+  //   try {
+  //     console.log("currentSession()")
+  //     const session = await Auth.currentSession();
+  //     console.log(session)
+  //     configInfoChange({payload: true, name: 'userHasAuthenticated'});
+  //   } catch(err) {
+  //     if (err !== 'No current user') {
+  //       onError(err);
+  //     }
+  //   }
+  //   // setIsAuthenticating(false);
+  // };
 
   async function getLastState() {
     // gets the last saved state from dynamodb (resumeId: META#)

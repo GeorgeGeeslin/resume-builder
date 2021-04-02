@@ -80,7 +80,7 @@ export const NavButton = styled.button`
   border: none;
   margin: 0;
   text-decoration: none;
-  background: #172B4D;
+  background-color: #172B4D;
   color: #ffffff;
   cursor: pointer;
   text-align: center;
@@ -92,8 +92,6 @@ export const NavButton = styled.button`
   height: 35px;
   border-radius: 5px;
   &:hover {
-    // background-color: #00B8D9;
-    // background-color: #344563;
     background-color: #42526E;
   }
   &:focus{
@@ -103,6 +101,10 @@ export const NavButton = styled.button`
     position: relative;
     top: 2px;
     transform: scale(0.99);   
+  }
+  &:disabled {
+    background-color: #7A869A;
+    cursor: default;
   }
 `;
 

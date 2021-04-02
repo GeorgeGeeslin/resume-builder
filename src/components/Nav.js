@@ -6,6 +6,7 @@ import { FaPaintRoller, FaFileDownload, FaSave, FaPlus, FaSignInAlt, FaSpinner, 
 import { IconContext } from "react-icons";
 import { Auth } from 'aws-amplify';
 import ResumeName from './resumeInput/ResumeName';
+import ReactTooltip from "react-tooltip";
 
   //TODO: seperate menus into their own components (desktop and mobile)
 const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, resumeNameBool}) => {
@@ -70,7 +71,7 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
             <div style={{display: 'flex'}}>
               { saveBool &&
               <>
-                <NavButton style={{marginLeft: '0.5em'}} onClick={() => handleSave(resumeId, {resumeContent})}>
+                <NavButton disabled={userHasAuthenticated ? false : true} style={{marginLeft: '0.5em'}} onClick={() => handleSave(resumeId, {resumeContent})}>
                 {  saving ? 
                   <FaSpinner className="rotate" style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
                   :
@@ -78,7 +79,7 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
                 }
                   Save
                 </NavButton>
-                <NavButton onClick={() => handleSaveNew("new", {resumeContent})}>
+                <NavButton disabled={userHasAuthenticated ? false : true} onClick={() => handleSaveNew("new", {resumeContent})}>
                 { savingAsNew ? 
                   <FaSpinner className="rotate" style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
                   :
@@ -90,7 +91,7 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
               }
               { newResumeBool &&
               <Link to="/">
-                <NavButton onClick={newResume}>
+                <NavButton disabled={userHasAuthenticated ? false : true} onClick={newResume}>
                   <FaPlus style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
                   New Resume
                 </NavButton>
@@ -114,7 +115,7 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
               }
               { myResumesBool &&
               <Link to="/resumes">
-                <NavButton>My Resumes</NavButton>
+                <NavButton disabled={userHasAuthenticated ? false : true}>My Resumes</NavButton>
               </Link>
               }
             </div>
@@ -204,9 +205,7 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
           </DropdownMenu>
           }
         </div>
-     
       </FlexGroup>
-
     </Navbar>
   )
 };
