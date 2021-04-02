@@ -25,8 +25,9 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
   const history = useHistory();
 
   async function handleLogout() {
-    await Auth.signOut();
     configInfoChange({payload: false, name: 'userHasAuthenticated'});
+    configInfoChange({payload: null, name: 'resumeId'});
+    await Auth.signOut();
     loadAppState(null);
     history.push("/login");
   };
