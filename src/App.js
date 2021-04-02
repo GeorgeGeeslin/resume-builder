@@ -200,15 +200,17 @@ const App = () => {
 
   //TODO: Can move?
   const newResume = () => {
-    const confirm = window.confirm("Create a new resume? All unsaved changes will be lost.")
+    if (configState.userHasAuthenticated) {
+      const confirm = window.confirm("Create a new resume? All unsaved changes will be lost.")
 
-    if (confirm) {
-
-      // Looks hacky. Just an easy and fast way to deep clone an object.
-      // Otherwise data in nested objects will not be set back to their initial state. 
-      const  newResumeStr = JSON.stringify(ResumeReducer.initialState);
-
-      loadAppState("new", JSON.parse(newResumeStr));
+      if (confirm) {
+  
+        // Looks hacky. Just an easy and fast way to deep clone an object.
+        // Otherwise data in nested objects will not be set back to their initial state. 
+        const  newResumeStr = JSON.stringify(ResumeReducer.initialState);
+  
+        loadAppState("new", JSON.parse(newResumeStr));
+      }
     }
   };
 

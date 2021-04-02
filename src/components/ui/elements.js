@@ -137,20 +137,20 @@ export const DropdownMenu = styled.div`
 `;
 
 export const DropdownButton = styled.div`
-  background-color: #172B4D;
+  background-color: ${props => props.auth ? '#172B4D' : '#7A869A'};
   color: white; 
   width: 180px;
   padding: 1em;
   border: 1px solid #091E42;
-  cursor: pointer;
+  cursor: ${props => props.auth ? 'pointer' : 'default'};
   a {
     color: white;
   }
   &:hover {
-    background-color: #42526E;
+    background-color: ${props => props.auth ? '#42526E' : '#7A869A'};
   }
   &:active {
-    background-color: #42526E;    
+    background-color: ${props => props.auth ? '#42526E' : '#7A869A'};  
   }
 `;
 

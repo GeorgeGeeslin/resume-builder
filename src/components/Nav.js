@@ -32,15 +32,19 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
   };
 
   async function handleSave(resumeId, resumeContent) {
-    setSaving(true);
-    await saveOrUpdate(resumeId, resumeContent);
-    setSaving(false);
+    if (userHasAuthenticated) {
+      setSaving(true);
+      await saveOrUpdate(resumeId, resumeContent);
+      setSaving(false);
+    }
   };
 
   async function handleSaveNew(resumeId, resumeContent) {
-    setSavingAsNew(true);
-    await saveOrUpdate(resumeId, resumeContent);
-    setSavingAsNew(false);
+    if (userHasAuthenticated) {
+      setSavingAsNew(true);
+      await saveOrUpdate(resumeId, resumeContent);
+      setSavingAsNew(false);
+    }
   }
 
   async function handleDownload(resumeName) {
@@ -141,7 +145,7 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
           { dropdownMenu &&
           <DropdownMenu>
             { saveBool &&
-              <DropdownButton onClick={() => handleSave(resumeId, {resumeContent})}>
+              <DropdownButton auth={userHasAuthenticated} onClick={() => handleSave(resumeId, {resumeContent})}>
               {  saving ? 
               <FaSpinner className="rotate" style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
               :
@@ -151,7 +155,7 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
               </DropdownButton>  
             }
             { saveBool &&
-              <DropdownButton onClick={() => handleSaveNew("new", {resumeContent})}> 
+              <DropdownButton auth={userHasAuthenticated} onClick={() => handleSaveNew("new", {resumeContent})}> 
               { savingAsNew ? 
               <FaSpinner className="rotate" style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
               :
@@ -162,20 +166,20 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
             }
             { newResumeBool &&
               <Link to="/">
-                <DropdownButton onClick={newResume}>
+                <DropdownButton auth={userHasAuthenticated} onClick={newResume}>
                   <FaPlus style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
                   New Resume
                 </DropdownButton>
               </Link>
             }
             { themeBool &&
-              <DropdownButton onClick={(e) => configInfoChange({payload: !themeModal, name: 'themeModal'})}>
+              <DropdownButton auth={true} onClick={(e) => configInfoChange({payload: !themeModal, name: 'themeModal'})}>
                 <FaPaintRoller style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
                 Themes
               </DropdownButton>
             }
             { downloadBool &&
-              <DropdownButton onClick={() => handleDownload(resumeName)}>
+              <DropdownButton auth={true} onClick={() => handleDownload(resumeName)}>
               { downloading ?
               <FaSpinner className="rotate" style={{marginRight: '0.5em', position: 'relative', top: '2px'}}/>
               :
@@ -186,18 +190,18 @@ const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, r
             }
             { myResumesBool &&
               <Link to="/resumes">
-                <DropdownButton>
+                <DropdownButton auth={userHasAuthenticated}>
                   My Resumes
                 </DropdownButton>
               </Link>
             }
             { userHasAuthenticated ? (
-              <DropdownButton onClick={handleLogout}>
+              <DropdownButton auth={true} onClick={handleLogout}>
                 Logout
               </DropdownButton>
             ) : (
               <Link to="/login">
-                <DropdownButton>
+                <DropdownButton auth={true}>
                   Login
                 </DropdownButton>
               </Link>
