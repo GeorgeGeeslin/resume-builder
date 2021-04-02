@@ -6,7 +6,6 @@ import { FaPaintRoller, FaFileDownload, FaSave, FaPlus, FaSignInAlt, FaSpinner, 
 import { IconContext } from "react-icons";
 import { Auth } from 'aws-amplify';
 import ResumeName from './resumeInput/ResumeName';
-import ReactTooltip from "react-tooltip";
 
   //TODO: seperate menus into their own components (desktop and mobile)
 const Nav = ({saveBool, themeBool, downloadBool, newResumeBool, myResumesBool, resumeNameBool}) => {
