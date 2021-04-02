@@ -5,7 +5,7 @@ import Nav from '../components/Nav';
 import ResumeEditor from './ResumeEditor';
 import ReactTooltip from "react-tooltip";
 import {Spinner} from '../components/ui/elements';
-import { API, Auth } from "aws-amplify";
+import { Auth } from "aws-amplify";
 
 export default function Home() {
 
@@ -15,7 +15,6 @@ export default function Home() {
   const {getLastState, updateUserMeta, configInfoChange} = context;
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     if (!resumeId) onfirstLoad();

@@ -1,5 +1,4 @@
-import React, { useReducer, /*useState,*/ useEffect } from 'react';
-import { Auth } from "aws-amplify";
+import React, { useReducer } from 'react';
 import Context from './context/Context';
 import * as ResumeReducer from './store/reducers/resumeReducer';
 import * as ConfigReducer from './store/reducers/configReducer';
